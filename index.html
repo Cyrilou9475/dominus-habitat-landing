@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isolation thermique par l'extérieur (ITE) | Dominus Habitat</title>
+<meta name="description" content="Dominus Habitat isole votre maison par l'extérieur : jusqu'à -30 % de chauffage, façade neuve, aucune surface perdue, pose certifiée et garantie décennale. Étude gratuite.">
+<!-- TODO : remplacer le domaine par le domaine définitif (canonical, Open Graph, JSON-LD, sitemap.xml, robots.txt) -->
+<link rel="canonical" href="https://www.dominus-habitat.fr/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#164174">
+<meta name="color-scheme" content="light">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Dominus Habitat">
+<meta property="og:title" content="Isolation thermique par l'extérieur | Dominus Habitat">
+<meta property="og:description" content="Une façade neuve, une maison qui garde sa chaleur. Pose certifiée, garantie décennale, étude gratuite.">
+<meta property="og:url" content="https://www.dominus-habitat.fr/">
+<meta property="og:image" content="https://www.dominus-habitat.fr/assets/logo-dominus-habitat.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="assets/logo-monogramme.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Jost:wght@400;500;600&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Dominus Habitat",
+  "description": "Isolation thermique par l'extérieur (ITE) des maisons individuelles et maisons de ville.",
+  "url": "https://www.dominus-habitat.fr/",
+  "logo": "https://www.dominus-habitat.fr/assets/logo-dominus-habitat.png",
+  "image": "https://www.dominus-habitat.fr/assets/logo-dominus-habitat.png",
+  "telephone": "+33123456789",
+  "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
+  "address": { "@type": "PostalAddress", "addressCountry": "FR" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Combien de temps durent les travaux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pour une maison individuelle, comptez en général une à deux semaines de chantier, selon la surface de façade, l'accès et la météo. La date de début et la durée prévue sont fixées avec vous lors de la visite technique." } },
+    { "@type": "Question", "name": "Puis-je rester chez moi pendant le chantier ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui. L'isolation se pose entièrement depuis l'extérieur : aucune pièce n'est condamnée et vous continuez à vivre normalement. Seules les ouvertures concernées par les finitions peuvent être protégées quelques heures." } },
+    { "@type": "Question", "name": "Faut-il une autorisation administrative ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Une ITE modifie l'aspect extérieur de la maison : une déclaration préalable de travaux en mairie est nécessaire. Nous préparons le dossier et le déposons pour vous. En secteur protégé, l'avis de l'architecte des Bâtiments de France peut être requis." } },
+    { "@type": "Question", "name": "Quel isolant choisir : PSE ou laine de roche ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le polystyrène expansé (PSE) est le plus utilisé : léger, performant et adapté à la plupart des maisons. La laine de roche est incombustible et apporte un meilleur confort acoustique, recommandée près d'une limite de propriété ou d'une route passante. Le conseiller vous oriente lors de la visite technique." } },
+    { "@type": "Question", "name": "Quelles économies puis-je attendre ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les murs représentent une part importante des pertes de chaleur d'une maison non isolée. Une ITE permet de réduire la consommation de chauffage jusqu'à 30 % environ. Le gain réel dépend de votre maison, de votre chauffage et de vos habitudes : c'est un ordre de grandeur, pas une garantie." } },
+    { "@type": "Question", "name": "Que se passe-t-il après la pose ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nous faisons la réception du chantier avec vous, vous remettons les documents de garantie (dont l'attestation de garantie décennale) et restons joignables pour le suivi. Un enduit de façade se nettoie simplement et ne demande pas d'entretien particulier." } }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --marine:#164174;
+  --marine-deep:#0f2d52;
+  --ink:#0a1f3a;
+  --gold:#ecb855;
+  --gold-dark:#c9962f;
+  --gold-text:#8a6516;   /* or assombri : seule teinte or lisible (AA) en texte sur fond clair */
+  --ivory:#f7f4ee;
+  --white:#fff;
+  --text:#1d2a3b;
+  --muted:#4f5b6b;
+  --line:#e4dfd3;
+  --on-dark:#e8edf4;
+  --on-dark-muted:#b9c6d8;
+
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+
+  --wrap:1180px;
+  --gutter:clamp(16px,4vw,32px);
+  --cut:clamp(40px,7vw,110px); /* hauteur de la diagonale du toit */
+  --rule:8px;                   /* épaisseur du liseré or */
+  --radius:6px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--white);color:var(--text);font:400 1.0625rem/1.65 var(--sans)}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;color:var(--ink);letter-spacing:-.005em}
+h1{font-size:clamp(2.4rem,5.4vw,4rem)}
+h2{font-size:clamp(2rem,3.8vw,2.9rem)}
+h3{font-size:clamp(1.4rem,2vw,1.65rem);line-height:1.2}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.measure{max-width:62ch}
+.lede{font-size:1.125rem;color:var(--muted);margin-top:1rem}
+section{padding:clamp(64px,9vw,112px) 0}
+.alt{background:var(--ivory)}
+.section-head{margin-bottom:clamp(36px,5vw,56px)}
+.kicker{font-weight:500;color:var(--gold-text);margin-bottom:.6rem;font-size:1rem}
+.kicker-light{color:var(--gold)}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Focus clavier */
+:focus{outline:none}
+:focus-visible{outline:3px solid var(--marine);outline-offset:3px;border-radius:3px}
+.on-dark :focus-visible,.hero :focus-visible,.cta-final :focus-visible{outline-color:var(--gold)}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:10px 16px;border-radius:var(--radius);text-decoration:none}
+.skip:focus{top:12px}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.7rem 1.4rem;border-radius:var(--radius);border:2px solid transparent;font:600 1rem/1.2 var(--sans);text-decoration:none;cursor:pointer;text-align:center}
+.btn-gold{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn-gold:hover{background:#f2c672;border-color:#f2c672}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+.btn-line{background:transparent;color:var(--marine);border-color:var(--line)}
+.btn-line:hover{border-color:var(--marine)}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.header-in{display:flex;align-items:center;gap:24px;min-height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand img{width:52px;height:auto}
+.brand-name{display:flex;flex-direction:column;font:500 .95rem/1.05 var(--sans);letter-spacing:.16em}
+.brand-name b{font-weight:500;color:var(--marine)}
+.brand-name span{color:var(--gold-text)}
+.nav{margin-left:auto}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav a{text-decoration:none;font-weight:500;color:var(--text);padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--gold)}
+.header-tel{display:flex;flex-direction:column;text-decoration:none;line-height:1.15;font-weight:600;color:var(--marine);white-space:nowrap}
+.header-tel small{font-weight:400;color:var(--muted);font-size:.8rem}
+@media (max-width:1060px){.nav{display:none}.header-tel{margin-left:auto}}
+@media (max-width:560px){
+  .header-in{gap:12px;min-height:64px}
+  .brand img{width:44px}
+  .brand-name{font-size:.8rem}
+  .header-tel small{display:none}
+  .header-cta{display:none}
+}
+@media (max-width:380px){.brand-name{display:none}}
+
+/* ---------- Diagonale du toit ---------- */
+/* Le parent porte l'or, l'enfant marine est découpé un liseré plus haut : la diagonale monte de gauche à droite comme le toit du logo. */
+.roof-bottom{background:var(--gold);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut)),0 100%)}
+.roof-bottom>.roof-panel{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--cut) - var(--rule)),0 calc(100% - var(--rule)))}
+.roof-top{background:var(--gold);clip-path:polygon(0 var(--cut),100% 0,100% 100%,0 100%)}
+.roof-top>.roof-panel{clip-path:polygon(0 calc(var(--cut) + var(--rule)),100% var(--rule),100% 100%,0 100%)}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--marine);color:var(--on-dark);padding:clamp(48px,7vw,88px) 0 calc(var(--cut) + clamp(48px,6vw,72px))}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,64px);align-items:start}
+.hero h1{color:#fff}
+.hero-sub{margin-top:1.25rem;font-size:1.15rem;color:var(--on-dark);max-width:56ch}
+.hero-points{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem 1.5rem;max-width:560px}
+.hero-points li{display:flex;gap:.6rem;align-items:flex-start;color:var(--on-dark)}
+.hero-points svg{flex-shrink:0;margin-top:.3rem}
+.hero-figures{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.18)}
+.hero-figures dt{font:600 clamp(2.2rem,4vw,2.8rem)/1 var(--serif);color:var(--gold)}
+.hero-figures dd{margin:.35rem 0 0;color:var(--on-dark-muted);font-size:.95rem}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+@media (max-width:480px){
+  .hero-points{grid-template-columns:1fr}
+  .hero-figures{display:grid;grid-template-columns:repeat(3,auto);gap:16px;justify-content:start}
+  .hero-figures dt{font-size:1.85rem}
+  .hero-figures dd{font-size:.85rem}
+}
+
+/* ---------- Formulaire ---------- */
+.lead{background:#fff;color:var(--text);border-radius:10px;padding:clamp(22px,3vw,32px);box-shadow:0 24px 60px -24px rgba(5,15,30,.55)}
+.lead h2{font-size:clamp(1.7rem,2.6vw,2rem)}
+.lead-intro{color:var(--muted);margin-top:.35rem;font-size:.98rem}
+.progress{display:flex;gap:6px;margin:1.25rem 0 .4rem}
+.progress span{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.progress span.on{background:var(--gold-dark)}
+.step-count{font-size:.88rem;color:var(--muted)}
+.step{border:0;margin:0;padding:0;min-width:0}
+.step legend{font-weight:600;font-size:1.08rem;color:var(--ink);padding:0;margin:.9rem 0 .9rem}
+.choices{display:grid;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.choice label{display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px solid var(--line);border-radius:var(--radius);cursor:pointer;font-weight:500}
+.choice label svg{flex-shrink:0;color:var(--marine)}
+.choice label small{display:block;font-weight:400;color:var(--muted);font-size:.88rem}
+.choice input:checked+label{border-color:var(--marine);background:#f1f5fa}
+.choice input:focus-visible+label{outline:3px solid var(--marine);outline-offset:2px}
+.range-out{font:600 2.4rem/1 var(--serif);color:var(--marine);margin:.2rem 0 .8rem}
+.range-out small{font:500 1rem var(--sans);color:var(--muted);margin-left:.25rem}
+input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:pointer}
+.range-scale{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted)}
+.hint{font-size:.88rem;color:var(--muted);margin-top:.8rem}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:500;margin-bottom:5px;font-size:.96rem}
+.field input{width:100%;min-height:48px;padding:10px 14px;border:2px solid var(--line);border-radius:var(--radius);font:inherit;color:var(--text);background:#fff}
+.field input:focus-visible{outline:none;border-color:var(--marine);box-shadow:0 0 0 3px rgba(22,65,116,.35)}
+.field input[aria-invalid=true]{border-color:#b3261e}
+.err{display:block;color:#b3261e;font-size:.88rem;margin-top:4px;min-height:0}
+.err:empty{display:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.step-actions{display:flex;gap:10px;margin-top:1.25rem}
+.step-actions .btn-gold{flex:1}
+.consent{font-size:.82rem;color:var(--muted);margin-top:.9rem;line-height:1.5}
+.consent a{color:var(--marine)}
+.done{text-align:center;padding:1.5rem 0 .5rem}
+.done svg{margin:0 auto 1rem}
+.done h2{margin-bottom:.6rem}
+.done p{color:var(--muted)}
+[hidden]{display:none!important}
+
+/* ---------- Avantages ---------- */
+.benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,5vw,56px) clamp(32px,6vw,88px)}
+.benefit{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+.benefit-icon{width:56px;height:56px;border-radius:50%;background:var(--ivory);display:grid;place-items:center;color:var(--marine)}
+.benefit h3{margin-bottom:.45rem}
+.benefit p{color:var(--muted)}
+.benefit strong{color:var(--marine);font-weight:600}
+@media (max-width:760px){.benefits{grid-template-columns:1fr}}
+
+/* ---------- Chiffres clés ---------- */
+.keyfigs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--marine)}
+.keyfig{padding:28px 28px 8px 0}
+.keyfig+.keyfig{padding-left:28px;border-left:1px solid var(--line)}
+.keyfig .num{font:600 clamp(3rem,6vw,4.4rem)/1 var(--serif);color:var(--marine)}
+.keyfig p{margin-top:.6rem;color:var(--text);max-width:30ch}
+.sources{margin-top:28px;font-size:.85rem;color:var(--muted)}
+@media (max-width:760px){
+  .keyfigs{grid-template-columns:1fr}
+  .keyfig,.keyfig+.keyfig{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+}
+
+/* ---------- Isolants ---------- */
+.insulants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,3vw,32px)}
+.insulant{background:#fff;border-radius:10px;padding:clamp(24px,3.5vw,40px);border:1px solid var(--line)}
+.insulant-tag{display:inline-block;font-size:.88rem;font-weight:600;color:var(--ink);background:var(--gold);padding:4px 12px;border-radius:999px;margin-bottom:1rem}
+.insulant-tag.alt-tag{background:var(--marine);color:#fff}
+.insulant h3{font-size:clamp(1.7rem,2.6vw,2.1rem)}
+.insulant .lede{font-size:1rem;margin-top:.5rem}
+.insulant ul{list-style:none;padding:0;margin:1.4rem 0 0;display:grid;gap:.75rem}
+.insulant li{display:flex;gap:.7rem;align-items:flex-start}
+.insulant li svg{flex-shrink:0;margin-top:.3rem;color:var(--gold-dark)}
+@media (max-width:760px){.insulants{grid-template-columns:1fr}}
+
+/* ---------- Avant / après ---------- */
+.ba-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,72px);align-items:center}
+.ba-list{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.6rem}
+.ba-list li{padding-left:1.4rem;position:relative}
+.ba-list li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--gold-dark)}
+.ba{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;--pos:50%;background:#ddd;user-select:none}
+.ba-img{position:absolute;inset:0}
+.ba-img svg,.ba-img img{width:100%;height:100%;object-fit:cover}
+.ba-after{clip-path:inset(0 0 0 var(--pos))}
+.ba-label{position:absolute;top:14px;padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:600;background:rgba(10,31,58,.82);color:#fff}
+.ba-before .ba-label{left:14px}
+.ba-after .ba-label{right:14px;background:var(--gold);color:var(--ink)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:#fff;pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.ba-handle::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23164174' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center/22px no-repeat;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize}
+.ba:has(input:focus-visible){outline:3px solid var(--marine);outline-offset:4px}
+.ba-note{font-size:.85rem;color:var(--muted);margin-top:.75rem}
+@media (max-width:900px){.ba-grid{grid-template-columns:1fr}}
+
+/* ---------- Déroulé ---------- */
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(24px,3vw,40px);counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding-top:4.2rem}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;top:0;left:0;font:600 3.2rem/1 var(--serif);color:var(--gold-text)}
+.steps li::after{content:"";position:absolute;top:1.6rem;left:4.4rem;right:-1rem;height:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{margin-bottom:.5rem}
+.steps p{color:var(--muted)}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li::after{display:none}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}.steps li{padding:0 0 0 4.4rem}.steps li::before{font-size:2.6rem}}
+
+/* ---------- Garanties ---------- */
+.guarantees{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.guarantee{background:var(--marine);color:var(--on-dark);border-radius:10px;padding:28px 24px}
+.guarantee svg{color:var(--gold);margin-bottom:1.1rem}
+.guarantee h3{color:#fff;font-size:1.45rem;margin-bottom:.5rem}
+.guarantee p{color:var(--on-dark-muted);font-size:.98rem}
+@media (max-width:1000px){.guarantees{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.guarantees{grid-template-columns:1fr}}
+
+/* ---------- Avis ---------- */
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,32px)}
+.review{margin:0;display:flex;flex-direction:column;background:var(--ivory);border-radius:10px;padding:28px}
+.stars{display:flex;gap:2px;color:var(--gold-text);margin-bottom:1rem}
+.review blockquote{margin:0;font:600 1.3rem/1.4 var(--serif);color:var(--ink);flex:1}
+.review figcaption{margin-top:1.25rem;font-size:.95rem;color:var(--muted)}
+.review figcaption b{display:block;color:var(--text);font-weight:600}
+@media (max-width:900px){.reviews{grid-template-columns:1fr}}
+
+/* ---------- FAQ ---------- */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(32px,5vw,72px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font-weight:500;font-size:1.1rem;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex-shrink:0;width:14px;height:14px;background:linear-gradient(var(--marine),var(--marine)) center/14px 2px no-repeat,linear-gradient(var(--marine),var(--marine)) center/2px 14px no-repeat}
+.faq details[open] summary::after{background:linear-gradient(var(--marine),var(--marine)) center/14px 2px no-repeat}
+.faq details p{padding:0 0 22px;color:var(--muted);max-width:68ch}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+
+/* ---------- CTA final ---------- */
+.cta-final{background:var(--marine);color:var(--on-dark);padding:calc(var(--cut) + clamp(56px,7vw,96px)) 0 clamp(64px,8vw,104px);text-align:center}
+.cta-final h2{color:#fff;max-width:24ch;margin:0 auto}
+.cta-final p{max-width:52ch;margin:1.1rem auto 0;color:var(--on-dark)}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:2rem}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--ivory);padding:56px 0 32px;font-size:.95rem}
+.footer-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+.footer-logo{width:150px;height:auto}
+.footer-grid h2{font:600 1rem var(--sans);color:var(--ink);margin-bottom:.8rem}
+.footer-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:.45rem}
+.footer-grid a{text-decoration:none;color:var(--text)}
+.footer-grid a:hover{text-decoration:underline}
+.footer-about{color:var(--muted);margin-top:1rem;max-width:34ch}
+.disclaimer{border-top:1px solid var(--line);margin-top:40px;padding-top:24px;color:var(--muted);font-size:.85rem;max-width:none}
+.disclaimer p+p{margin-top:.5rem}
+@media (max-width:760px){.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
+
+/* ---------- CTA mobile ---------- */
+.mobile-cta{display:none}
+@media (max-width:900px){
+  .mobile-cta{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);border-top:1px solid var(--line);transition:transform .2s ease}
+  .mobile-cta .btn-gold{flex:1}
+  .mobile-cta .btn-line{flex:0 0 auto;padding-inline:14px}
+  .mobile-cta.is-hidden{transform:translateY(110%)}
+  body{padding-bottom:76px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="brand" href="#top" aria-label="Dominus Habitat, retour en haut de page">
+      <img src="assets/logo-monogramme.png" width="240" height="183" alt="">
+      <span class="brand-name"><b>DOMINUS</b><span>HABITAT</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#avantages">Avantages</a></li>
+        <li><a href="#isolants">Isolants</a></li>
+        <li><a href="#deroule">Déroulé</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <!-- TODO : numéro de téléphone réel (ici + footer + CTA + JSON-LD) -->
+    <a class="header-tel" href="tel:+33123456789"><small>Un conseiller vous répond</small>01 23 45 67 89</a>
+    <a class="btn btn-gold header-cta" href="#etude">Étude gratuite</a>
+  </div>
+</header>
+
+<main id="contenu">
+<div id="top" class="roof-bottom">
+  <section class="hero roof-panel" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker kicker-light">Isolation thermique par l'extérieur</p>
+        <h1 id="hero-title">Une façade neuve, une maison qui garde sa chaleur.</h1>
+        <p class="hero-sub">Nous isolons votre maison par l'extérieur et lui redonnons une façade nette, sans toucher à vos pièces.</p>
+        <ul class="hero-points">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Jusqu'à -30 % de chauffage*</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Confort 4 saisons</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Un bien valorisé</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pose par des équipes certifiées</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Garantie décennale</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>0 m² perdu à l'intérieur</li>
+        </ul>
+        <dl class="hero-figures">
+          <div><dt>1-2 sem.</dt><dd>de chantier</dd></div>
+          <div><dt>0 m²</dt><dd>de surface perdue</dd></div>
+          <div><dt>10 ans</dt><dd>de garantie décennale</dd></div>
+        </dl>
+      </div>
+
+      <div class="lead" id="etude">
+        <form id="lead-form" novalidate>
+          <div class="lead-head">
+            <h2 id="form-title">Demander mon étude gratuite</h2>
+            <p class="lead-intro">Trois questions, moins d'une minute. Sans engagement.</p>
+            <div class="progress" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+            <p class="step-count" id="step-count" aria-live="polite">Étape 1 sur 3</p>
+          </div>
+
+          <fieldset class="step" data-step="1">
+            <legend>Quel est votre type de logement ?</legend>
+            <div class="choices">
+              <div class="choice">
+                <input type="radio" name="logement" id="lg-maison" value="Maison individuelle" required>
+                <label for="lg-maison">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4 15L16 5l12 10"/><path d="M7 13v14h18V13"/><path d="M13 27v-8h6v8"/></svg>
+                  <span>Maison individuelle<small>Maison isolée sur son terrain</small></span>
+                </label>
+              </div>
+              <div class="choice">
+                <input type="radio" name="logement" id="lg-ville" value="Maison de ville">
+                <label for="lg-ville">
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 27V12l7-5 7 5v15"/><path d="M17 27V14l6-4 6 4v13"/><path d="M2 27h28"/><path d="M8 17h4M8 22h4M21 18h4"/></svg>
+                  <span>Maison de ville<small>Mitoyenne, en alignement sur rue</small></span>
+                </label>
+              </div>
+            </div>
+            <span class="err" id="err-logement" role="alert"></span>
+            <div class="step-actions">
+              <button type="button" class="btn btn-gold" data-next>Continuer</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-step="2" hidden>
+            <legend>Surface de façade à isoler</legend>
+            <p class="range-out" aria-hidden="true"><output id="surface-out" for="surface">120</output><small>m²</small></p>
+            <label class="visually-hidden" for="surface">Surface de façade en mètres carrés</label>
+            <input type="range" id="surface" name="surface" min="50" max="250" step="5" value="120" aria-valuetext="120 mètres carrés">
+            <div class="range-scale" aria-hidden="true"><span>50 m²</span><span>250 m²</span></div>
+            <p class="hint">Une estimation suffit : nous mesurons précisément lors de la visite technique.</p>
+            <div class="step-actions">
+              <button type="button" class="btn btn-line" data-prev>Retour</button>
+              <button type="button" class="btn btn-gold" data-next>Continuer</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="step" data-step="3" hidden>
+            <legend>Où vous envoyer votre étude ?</legend>
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" type="text" autocomplete="name" required maxlength="80" aria-describedby="err-nom">
+              <span class="err" id="err-nom"></span>
+            </div>
+            <div class="field">
+              <label for="tel">Téléphone</label>
+              <input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel">
+              <span class="err" id="err-tel"></span>
+            </div>
+            <div class="field">
+              <label for="cp">Code postal</label>
+              <input id="cp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" required maxlength="5" aria-describedby="err-cp">
+              <span class="err" id="err-cp"></span>
+            </div>
+            <div class="hp" aria-hidden="true">
+              <label for="website">Ne pas remplir ce champ</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn btn-line" data-prev>Retour</button>
+              <button type="submit" class="btn btn-gold">Recevoir mon étude</button>
+            </div>
+            <p class="consent">En envoyant ce formulaire, vous acceptez d'être recontacté par Dominus Habitat au sujet de votre projet. Vos données ne sont ni vendues ni cédées. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+          </fieldset>
+        </form>
+
+        <div class="done" id="lead-done" hidden tabindex="-1" aria-live="polite">
+          <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="#f7f4ee"/><path d="M17 29l7 7 15-16" fill="none" stroke="#164174" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2>Merci, votre demande est bien reçue.</h2>
+          <p>Un conseiller Dominus Habitat vous appelle sous 48 h ouvrées pour préparer votre étude gratuite.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="avantages" aria-labelledby="av-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Ce que change une ITE</p>
+      <h2 id="av-title">Une maison plus économe, plus belle et plus confortable.</h2>
+    </div>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3c3 4 7 7.5 7 12.5a7 7 0 0 1-14 0C7 10.5 11 7 14 3z"/><path d="M11 17a3 3 0 0 0 3 3"/></svg></div>
+        <div><h3>Des économies dès le premier hiver</h3><p>En supprimant les pertes de chaleur par les murs, une ITE réduit la consommation de chauffage <strong>jusqu'à 30 %</strong>*. Le gain se voit sur la facture dès la première saison froide.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13L14 4l11 9"/><path d="M6 11v13h16V11"/><path d="M11 18l3-3 3 3"/><path d="M14 15v6"/></svg></div>
+        <div><h3>Un patrimoine valorisé</h3><p>Une façade neuve et une meilleure étiquette énergétique (DPE) : votre maison gagne en attrait, à la revente comme à la location.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="3.5"/><path d="M9 2v1.5M9 14.5V16M2 9h1.5M14.5 9H16M4 4l1 1M13 13l1 1M4 14l1-1M13 5l1-1"/><path d="M20 12v9M17 15l3 3 3-3M16.5 24h7"/></svg></div>
+        <div><h3>Chaud l'hiver, frais l'été</h3><p>L'isolant enveloppe la maison et supprime les ponts thermiques : plus de murs froids en hiver, une chaleur qui reste dehors en été.</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="14" height="14" rx="1"/><path d="M3 3h4M3 3v4M25 3h-4M25 3v4M3 25h4M3 25v-4M25 25h-4M25 25v-4"/></svg></div>
+        <div><h3>Zéro m² perdu, vous restez chez vous</h3><p>Tout se passe depuis l'extérieur : aucune pièce condamnée, aucun meuble à déplacer, et la surface habitable reste intacte.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Pourquoi isoler maintenant</p>
+      <h2 id="why-title">L'énergie coûte plus cher, les murs restent la première fuite.</h2>
+    </div>
+    <!-- TODO : vérifier les chiffres et leurs sources avant mise en ligne (voir README) -->
+    <div class="keyfigs">
+      <div class="keyfig"><p class="num">+44 %</p><p>de hausse du tarif réglementé de l'électricité entre 2022 et 2024.</p></div>
+      <div class="keyfig"><p class="num">20-25 %</p><p>des pertes de chaleur d'une maison non isolée passent par les murs.</p></div>
+      <div class="keyfig"><p class="num">8 sur 10</p><p>Français se disent préoccupés par le montant de leur facture d'énergie.</p></div>
+    </div>
+    <p class="sources">Sources : Commission de régulation de l'énergie (évolutions des tarifs réglementés), ADEME, baromètre d'opinion. Ordres de grandeur.</p>
+  </div>
+</section>
+
+<section id="isolants" aria-labelledby="iso-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Nos isolants</p>
+      <h2 id="iso-title">Deux isolants éprouvés, choisis selon votre maison.</h2>
+      <p class="lede">Lors de la visite technique, nous vous recommandons celui qui convient à votre façade, à votre environnement et à vos attentes.</p>
+    </div>
+    <div class="insulants">
+      <article class="insulant">
+        <span class="insulant-tag">Le plus utilisé</span>
+        <h3>Polystyrène expansé (PSE)</h3>
+        <p class="lede">L'isolant de référence en ITE, pour la grande majorité des maisons.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Très bonne performance thermique pour une faible épaisseur</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Léger, adapté à la plupart des supports</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Insensible à l'humidité, stable dans le temps</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pose rapide, chantier plus court</li>
+        </ul>
+      </article>
+      <article class="insulant">
+        <span class="insulant-tag alt-tag">Sécurité renforcée</span>
+        <h3>Laine de roche</h3>
+        <p class="lede">Un isolant minéral incombustible, pour les situations les plus exigeantes.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Incombustible : la meilleure réaction au feu</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Excellent confort acoustique, idéal près d'une route</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Perméable à la vapeur d'eau : les murs respirent</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Bon déphasage pour le confort d'été</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="ba-title">
+  <div class="wrap ba-grid">
+    <div>
+      <p class="kicker">Avant / après</p>
+      <h2 id="ba-title">Votre maison isolée, et une façade qui retrouve son éclat.</h2>
+      <p class="lede">L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte et l'aspect. Fissures, salissures et murs fatigués disparaissent.</p>
+      <ul class="ba-list">
+        <li>Large choix de teintes et de finitions d'enduit</li>
+        <li>Appuis de fenêtre et habillages repris proprement</li>
+        <li>Une façade protégée des intempéries pour des années</li>
+      </ul>
+    </div>
+    <div>
+      <!-- TODO : remplacer les deux SVG par de vraies photos (WebP, 1200×900, même cadrage) :
+           <img src="assets/facade-avant.webp" width="1200" height="900" alt="..." loading="lazy" decoding="async"> -->
+      <div class="ba" id="ba">
+        <div class="ba-img ba-before">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration : façade avant travaux, enduit gris fissuré">
+            <rect width="400" height="300" fill="#cfd6de"/><rect y="250" width="400" height="50" fill="#9aa59a"/>
+            <path d="M60 120L200 40l140 80z" fill="#6b5a52"/><rect x="80" y="118" width="240" height="132" fill="#a9a59c"/>
+            <path d="M120 140l8 22-6 18 9 26M270 128l-6 20 8 16" stroke="#7c776d" stroke-width="2" fill="none"/>
+            <rect x="105" y="150" width="44" height="52" fill="#5f6b78"/><rect x="250" y="150" width="44" height="52" fill="#5f6b78"/>
+            <rect x="180" y="180" width="40" height="70" fill="#6b5a52"/>
+            <path d="M80 230h240" stroke="#8d897f" stroke-width="10" opacity=".5"/>
+          </svg>
+          <span class="ba-label">Avant</span>
+        </div>
+        <div class="ba-img ba-after">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration : façade après isolation, enduit clair neuf">
+            <rect width="400" height="300" fill="#cfe0f0"/><rect y="250" width="400" height="50" fill="#8fb08a"/>
+            <path d="M60 120L200 40l140 80z" fill="#164174"/><path d="M52 124L200 38l148 86" stroke="#ecb855" stroke-width="6" fill="none"/>
+            <rect x="76" y="118" width="248" height="132" fill="#f3ece0"/>
+            <rect x="105" y="150" width="44" height="52" fill="#3c5d84"/><rect x="250" y="150" width="44" height="52" fill="#3c5d84"/>
+            <rect x="101" y="202" width="52" height="5" fill="#fff"/><rect x="246" y="202" width="52" height="5" fill="#fff"/>
+            <rect x="180" y="180" width="40" height="70" fill="#164174"/>
+          </svg>
+          <span class="ba-label">Après</span>
+        </div>
+        <div class="ba-handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" id="ba-range" aria-label="Comparer la façade avant et après travaux" aria-valuetext="50 % après">
+      </div>
+      <p class="ba-note">Illustration. Photos de chantiers réels à venir.</p>
+    </div>
+  </div>
+</section>
+
+<section id="deroule" aria-labelledby="dr-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Le déroulé</p>
+      <h2 id="dr-title">De la première étude à la façade terminée, un seul interlocuteur.</h2>
+    </div>
+    <ol class="steps">
+      <li><h3>Étude personnalisée</h3><p>Vous nous décrivez votre maison. Un conseiller vous rappelle pour comprendre votre projet et vos attentes.</p></li>
+      <li><h3>Visite technique</h3><p>Un technicien mesure les façades, contrôle les supports et vous recommande l'isolant et la finition adaptés.</p></li>
+      <li><h3>Démarches administratives</h3><p>Nous préparons et déposons la déclaration préalable de travaux en mairie à votre place.</p></li>
+      <li><h3>Installation et suivi</h3><p>Pose par nos équipes certifiées en une à deux semaines, réception du chantier avec vous, puis suivi.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="alt" aria-labelledby="gr-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Nos engagements</p>
+      <h2 id="gr-title">Des travaux couverts et un savoir-faire contrôlé.</h2>
+    </div>
+    <div class="guarantees">
+      <div class="guarantee">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l12 5v9c0 8-5.5 13.5-12 16-6.5-2.5-12-8-12-16V8z"/><path d="M12.5 18l4 4 7-8" stroke-linecap="round"/></svg>
+        <h3>Garantie décennale</h3><p>Vos travaux sont couverts pendant 10 ans. L'attestation vous est remise avec le devis.</p>
+      </div>
+      <div class="guarantee">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="14" r="9"/><path d="M13 22l-3 11 8-4 8 4-3-11"/><path d="M14.5 14l2.5 2.5 4.5-5"/></svg>
+        <h3>Équipes certifiées</h3><p>Nos poseurs sont formés aux systèmes d'ITE et travaillent selon les règles de l'art.</p>
+      </div>
+      <div class="guarantee">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="26" height="18" rx="1"/><path d="M5 15h26M5 21h26M14 9v18M23 9v18"/></svg>
+        <h3>Matériaux certifiés ACERMI</h3><p>Des isolants dont les performances thermiques sont certifiées et contrôlées.</p>
+      </div>
+      <div class="guarantee">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20v-3a12 12 0 0 1 24 0v3"/><rect x="4" y="20" width="6" height="9" rx="2"/><rect x="26" y="20" width="6" height="9" rx="2"/><path d="M29 29c0 3-4 4-9 4"/></svg>
+        <h3>SAV et suivi</h3><p>Un interlocuteur dédié avant, pendant et après le chantier, joignable par téléphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis" aria-labelledby="avis-title">
+  <div class="wrap">
+    <div class="section-head measure">
+      <p class="kicker">Avis clients</p>
+      <h2 id="avis-title">Ils vivent dans une maison mieux isolée.</h2>
+    </div>
+    <!-- TODO : remplacer par de vrais avis clients (avec leur accord) ou par un widget d'avis vérifiés -->
+    <div class="reviews">
+      <figure class="review">
+        <div class="stars" role="img" aria-label="5 étoiles sur 5"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg></div>
+        <blockquote><p>« Chantier bouclé en huit jours, dans les délais annoncés. L'équipe a laissé la maison propre chaque soir. »</p></blockquote>
+        <figcaption><b>Sophie L.</b>Maison individuelle, 140 m² de façade</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" role="img" aria-label="5 étoiles sur 5"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg></div>
+        <blockquote><p>« Plus de murs froids dans le salon. On a baissé le thermostat d'un degré et on a pourtant plus chaud qu'avant. »</p></blockquote>
+        <figcaption><b>Marc et Hélène D.</b>Maison de ville mitoyenne</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" role="img" aria-label="5 étoiles sur 5"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L10 15l-5.2 2.7 1-5.9L1.5 7.7l5.9-.8z"/></svg></div>
+        <blockquote><p>« Cet été, la maison est restée fraîche sans ventilateur. Et la façade a l'air neuve, les voisins nous demandent le contact. »</p></blockquote>
+        <figcaption><b>Karim B.</b>Maison individuelle des années 70</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="alt faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="kicker">Questions fréquentes</p>
+      <h2 id="faq-title">Vos questions sur l'isolation par l'extérieur.</h2>
+      <p class="lede">Une autre question ? Un conseiller vous répond au <a href="tel:+33123456789">01 23 45 67 89</a>.</p>
+    </div>
+    <div>
+      <details><summary>Combien de temps durent les travaux ?</summary><p>Pour une maison individuelle, comptez en général une à deux semaines de chantier, selon la surface de façade, l'accès et la météo. La date de début et la durée prévue sont fixées avec vous lors de la visite technique.</p></details>
+      <details><summary>Puis-je rester chez moi pendant le chantier ?</summary><p>Oui. L'isolation se pose entièrement depuis l'extérieur : aucune pièce n'est condamnée et vous continuez à vivre normalement. Seules les ouvertures concernées par les finitions peuvent être protégées quelques heures.</p></details>
+      <details><summary>Faut-il une autorisation administrative ?</summary><p>Une ITE modifie l'aspect extérieur de la maison : une déclaration préalable de travaux en mairie est nécessaire. Nous préparons le dossier et le déposons pour vous. En secteur protégé, l'avis de l'architecte des Bâtiments de France peut être requis.</p></details>
+      <details><summary>Quel isolant choisir : PSE ou laine de roche ?</summary><p>Le polystyrène expansé (PSE) est le plus utilisé : léger, performant et adapté à la plupart des maisons. La laine de roche est incombustible et apporte un meilleur confort acoustique, recommandée près d'une limite de propriété ou d'une route passante. Le conseiller vous oriente lors de la visite technique.</p></details>
+      <details><summary>Quelles économies puis-je attendre ?</summary><p>Les murs représentent une part importante des pertes de chaleur d'une maison non isolée. Une ITE permet de réduire la consommation de chauffage jusqu'à 30 % environ. Le gain réel dépend de votre maison, de votre chauffage et de vos habitudes : c'est un ordre de grandeur, pas une garantie.</p></details>
+      <details><summary>Que se passe-t-il après la pose ?</summary><p>Nous faisons la réception du chantier avec vous, vous remettons les documents de garantie (dont l'attestation de garantie décennale) et restons joignables pour le suivi. Un enduit de façade se nettoie simplement et ne demande pas d'entretien particulier.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="roof-top">
+  <section class="cta-final roof-panel" aria-labelledby="cta-title">
+    <div class="wrap">
+      <h2 id="cta-title">Valorisez votre maison avec une façade qui isole.</h2>
+      <p>Étude gratuite et sans engagement. Un conseiller vous rappelle pour préparer la visite technique.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
+        <a class="btn btn-ghost" href="tel:+33123456789">Parler à un conseiller</a>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/logo-dominus-habitat.png" width="480" height="414" alt="Dominus Habitat" loading="lazy" decoding="async">
+        <p class="footer-about">Isolation thermique par l'extérieur des maisons individuelles et maisons de ville.</p>
+      </div>
+      <div>
+        <h2>La page</h2>
+        <ul>
+          <li><a href="#avantages">Avantages</a></li>
+          <li><a href="#isolants">Isolants</a></li>
+          <li><a href="#deroule">Déroulé</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contact et informations</h2>
+        <ul>
+          <li><a href="tel:+33123456789">01 23 45 67 89</a></li>
+          <li><a href="#etude">Étude gratuite</a></li>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <p>* Les économies de chauffage indiquées (jusqu'à 30 %) sont des ordres de grandeur pour une maison dont les murs n'étaient pas isolés. Le gain réel dépend de la maison, de son état, du mode de chauffage, du climat et des habitudes des occupants ; il n'est pas garanti.</p>
+      <p>© <span id="year">2026</span> Dominus Habitat. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta">
+  <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
+  <a class="btn btn-line" href="tel:+33123456789" aria-label="Appeler un conseiller au 01 23 45 67 89"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var form = document.getElementById("lead-form");
+  var steps = form.querySelectorAll(".step");
+  var bars = form.querySelectorAll(".progress span");
+  var counter = document.getElementById("step-count");
+  var current = 1;
+
+  function show(n){
+    current = n;
+    steps.forEach(function(s){ s.hidden = Number(s.dataset.step) !== n; });
+    bars.forEach(function(b, i){ b.classList.toggle("on", i < n); });
+    counter.textContent = "Étape " + n + " sur 3";
+    var first = steps[n - 1].querySelector("input:not([type=hidden]):not([tabindex='-1'])");
+    if (first) first.focus({ preventScroll: true });
+  }
+
+  function setError(input, errEl, msg){
+    errEl.textContent = msg || "";
+    if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+    return !msg;
+  }
+
+  function validateStep(n){
+    if (n === 1){
+      var picked = form.querySelector("input[name=logement]:checked");
+      return setError(null, document.getElementById("err-logement"), picked ? "" : "Choisissez votre type de logement pour continuer.");
+    }
+    if (n === 3){
+      var nom = form.nom, tel = form.tel, cp = form.cp, ok = true;
+      var v = nom.value.trim();
+      ok = setError(nom, document.getElementById("err-nom"), v.length < 2 ? "Indiquez votre nom." : "") && ok;
+      var t = tel.value.replace(/[\s.\-]/g, "");
+      ok = setError(tel, document.getElementById("err-tel"), /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
+      ok = setError(cp, document.getElementById("err-cp"), /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
+      if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); }
+      return ok;
+    }
+    return true;
+  }
+
+  form.addEventListener("click", function(e){
+    if (e.target.closest("[data-next]")){ if (validateStep(current)) show(current + 1); }
+    else if (e.target.closest("[data-prev]")){ show(current - 1); }
+  });
+  form.addEventListener("change", function(e){
+    if (e.target.name === "logement") document.getElementById("err-logement").textContent = "";
+  });
+
+  var range = document.getElementById("surface"), out = document.getElementById("surface-out");
+  range.addEventListener("input", function(){
+    out.textContent = range.value;
+    range.setAttribute("aria-valuetext", range.value + " mètres carrés");
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!validateStep(3)) return;
+    if (form.website.value) return; // honeypot : robot probable, on ignore silencieusement
+
+    var data = {
+      logement: form.querySelector("input[name=logement]:checked").value,
+      surface: Number(range.value),
+      nom: form.nom.value.trim(),
+      tel: form.tel.value.trim(),
+      cp: form.cp.value.trim(),
+      page: location.href
+    };
+
+    // TODO : brancher l'envoi du lead vers le back-office (endpoint HTTPS, sans clé API dans le HTML).
+    // Le serveur doit revalider les champs et appliquer un anti-spam (rate limiting ou Turnstile/hCaptcha).
+    // Exemple :
+    // fetch("https://api.exemple.fr/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+    //   .then(function(r){ if (!r.ok) throw new Error(r.status); confirm(); })
+    //   .catch(function(){ /* afficher un message d'erreur et proposer le téléphone */ });
+    void data;
+    confirm();
+  });
+
+  function confirm(){
+    form.hidden = true;
+    var done = document.getElementById("lead-done");
+    done.hidden = false;
+    done.focus();
+  }
+
+  // Avant / après
+  var ba = document.getElementById("ba"), baRange = document.getElementById("ba-range");
+  baRange.addEventListener("input", function(){
+    ba.style.setProperty("--pos", baRange.value + "%");
+    baRange.setAttribute("aria-valuetext", (100 - baRange.value) + " % après");
+  });
+
+  // CTA mobile : masqué tant que le formulaire est visible
+  var mcta = document.getElementById("mobile-cta"), lead = document.getElementById("etude");
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      mcta.classList.toggle("is-hidden", entries[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(lead);
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
