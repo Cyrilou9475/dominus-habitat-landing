@@ -241,9 +241,9 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 .ba-list{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.6rem}
 .ba-list li{padding-left:1.4rem;position:relative}
 .ba-list li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:2px;background:var(--gold-dark)}
-.ba{position:relative;aspect-ratio:4/3;border-radius:10px;overflow:hidden;--pos:50%;background:#ddd;user-select:none}
+.ba{position:relative;aspect-ratio:1200/954;border-radius:10px;overflow:hidden;--pos:50%;background:#ddd;user-select:none}
 .ba-img{position:absolute;inset:0}
-.ba-img svg,.ba-img img{width:100%;height:100%;object-fit:cover}
+.ba-img img{width:100%;height:100%;object-fit:cover;object-position:center}
 .ba-after{clip-path:inset(0 0 0 var(--pos))}
 .ba-label{position:absolute;top:14px;padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:600;background:rgba(10,31,58,.82);color:#fff}
 .ba-before .ba-label{left:14px}
@@ -557,29 +557,13 @@ html.cookie-open{overflow:hidden}
       </ul>
     </div>
     <div>
-      <!-- TODO : remplacer les deux SVG par de vraies photos (WebP, 1200×900, même cadrage) :
-           <img src="assets/facade-avant.webp" width="1200" height="900" alt="..." loading="lazy" decoding="async"> -->
       <div class="ba" id="ba">
         <div class="ba-img ba-before">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration : façade avant travaux, enduit gris fissuré">
-            <rect width="400" height="300" fill="#cfd6de"/><rect y="250" width="400" height="50" fill="#9aa59a"/>
-            <path d="M60 120L200 40l140 80z" fill="#6b5a52"/><rect x="80" y="118" width="240" height="132" fill="#a9a59c"/>
-            <path d="M120 140l8 22-6 18 9 26M270 128l-6 20 8 16" stroke="#7c776d" stroke-width="2" fill="none"/>
-            <rect x="105" y="150" width="44" height="52" fill="#5f6b78"/><rect x="250" y="150" width="44" height="52" fill="#5f6b78"/>
-            <rect x="180" y="180" width="40" height="70" fill="#6b5a52"/>
-            <path d="M80 230h240" stroke="#8d897f" stroke-width="10" opacity=".5"/>
-          </svg>
+          <img src="assets/avant.webp" width="1200" height="954" alt="Façade avant travaux : enduit gris sali, fissuré et écaillé" loading="lazy" decoding="async">
           <span class="ba-label">Avant</span>
         </div>
         <div class="ba-img ba-after">
-          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration : façade après isolation, enduit clair neuf">
-            <rect width="400" height="300" fill="#cfe0f0"/><rect y="250" width="400" height="50" fill="#8fb08a"/>
-            <path d="M60 120L200 40l140 80z" fill="#164174"/><path d="M52 124L200 38l148 86" stroke="#ecb855" stroke-width="6" fill="none"/>
-            <rect x="76" y="118" width="248" height="132" fill="#f3ece0"/>
-            <rect x="105" y="150" width="44" height="52" fill="#3c5d84"/><rect x="250" y="150" width="44" height="52" fill="#3c5d84"/>
-            <rect x="101" y="202" width="52" height="5" fill="#fff"/><rect x="246" y="202" width="52" height="5" fill="#fff"/>
-            <rect x="180" y="180" width="40" height="70" fill="#164174"/>
-          </svg>
+          <img src="assets/apres.webp" width="1200" height="954" alt="La même façade après isolation par l’extérieur : enduit neuf, clair et uniforme" loading="lazy" decoding="async">
           <span class="ba-label">Après</span>
         </div>
         <div class="ba-handle" aria-hidden="true"></div>
