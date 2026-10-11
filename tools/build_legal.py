@@ -44,7 +44,6 @@ PAGES = {
             ("Destinataires", "Équipe Dominus Habitat et sociétés partenaires intervenant pour la réalisation du devis et des travaux d’isolation."),
             ("Vos droits", "Accès, rectification, suppression, opposition, portabilité : " + EMAIL + ". Réponse sous 30 jours."),
             ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
-            # Dernière ligne, affichée en petit (classe legal-small)
             ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
         ],
         "sections": [
@@ -78,9 +77,6 @@ EXTRA_CSS = """
 .legal-list dt{font-weight:600;color:var(--ink)}
 .legal-list dd{margin:0;color:var(--text);overflow-wrap:anywhere}
 .legal-list a{color:var(--marine)}
-.legal-list .legal-small{padding:14px 0;font-size:.85rem}
-.legal-list .legal-small dt{font-weight:500;color:var(--muted)}
-.legal-list .legal-small dd{color:var(--muted)}
 .legal-section{max-width:820px;margin-top:56px;scroll-margin-top:96px}
 .legal-section:first-child{margin-top:0}
 .legal-section .legal-list{margin-top:1.25rem}
@@ -124,8 +120,7 @@ for slug, page in PAGES.items():
     )
     sections = sections.lstrip("\n")
     rows = "\n".join(
-        f'        <div{" class=\"legal-small\"" if label == "Responsable du traitement" else ""}><dt>{label}</dt><dd>{value}</dd></div>'
-        for label, value in page["rows"]
+        f"        <div><dt>{label}</dt><dd>{value}</dd></div>" for label, value in page["rows"]
     )
     table = f'    <dl class="legal-list">\n{rows}\n    </dl>'
     if sections:
