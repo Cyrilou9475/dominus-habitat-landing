@@ -168,6 +168,11 @@ section{padding:clamp(64px,9vw,112px) 0}
 }
 
 /* ---------- Formulaire ---------- */
+.rge{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(236,184,85,.45)}
+.rge-badge{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center}
+.rge img{flex-shrink:0;height:56px;width:auto;background:#fff;border-radius:6px;padding:4px}
+.rge p{color:#fff;font-size:1.02rem;line-height:1.4}
+.rge strong{color:var(--gold);font-weight:600;white-space:nowrap}
 .lead{background:#fff;color:var(--text);border-radius:10px;padding:clamp(22px,3vw,32px);box-shadow:0 24px 60px -24px rgba(5,15,30,.55)}
 .lead h2{font-size:clamp(1.45rem,2.2vw,1.7rem)}
 .lead-intro{color:var(--muted);margin-top:.35rem;font-size:.98rem}
@@ -209,6 +214,9 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 [hidden]{display:none!important}
 
 /* ---------- Avantages ---------- */
+.ba-wide{aspect-ratio:1200/837}
+.av-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;margin-bottom:clamp(40px,5vw,64px)}
+@media (max-width:900px){.av-head{grid-template-columns:1fr}}
 .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,5vw,56px) clamp(32px,6vw,88px)}
 .benefit{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
 .benefit-icon{width:56px;height:56px;border-radius:50%;background:var(--ivory);display:grid;place-items:center;color:var(--marine)}
@@ -386,6 +394,7 @@ html.cookie-open{overflow:hidden}
         </dl>
       </div>
 
+      <div class="hero-side">
       <div class="lead" id="etude">
         <form id="lead-form" novalidate>
           <div class="lead-head">
@@ -467,15 +476,36 @@ html.cookie-open{overflow:hidden}
           <p>Un conseiller Dominus Habitat vous appelle sous 48 h ouvrées pour préparer votre étude gratuite.</p>
         </div>
       </div>
+      <!-- TODO : logo officiel Qualibat RGE (kit fourni par l'entreprise qualifiée) : remplacer le pictogramme par
+           <img src="assets/qualibat-rge.png" width="…" height="…" alt="Qualibat RGE"> -->
+      <div class="rge">
+        <span class="rge-badge" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M18 3l12 5v9c0 8-5.5 13.5-12 16-6.5-2.5-12-8-12-16V8z"/><path d="M12.5 18l4 4 7-8" stroke-linecap="round"/></svg></span>
+        <p>Travaux réalisés par des entreprises certifiées <strong>RGE Qualibat</strong></p>
+      </div>
+      </div>
     </div>
   </section>
 </div>
 
 <section id="avantages" aria-labelledby="av-title">
   <div class="wrap">
-    <div class="section-head measure">
-      <p class="kicker">Ce que change une ITE</p>
-      <h2 id="av-title">Une maison plus économe, plus belle et plus confortable.</h2>
+    <div class="av-head">
+      <div class="measure">
+        <p class="kicker">Ce que change une ITE</p>
+        <h2 id="av-title">Une maison plus économe, plus belle et plus confortable.</h2>
+      </div>
+      <div class="ba ba-wide">
+        <div class="ba-img ba-before">
+          <img src="assets/avant-2.webp" width="1200" height="837" alt="Maison de ville avant travaux : façade grise, salie et fatiguée" loading="lazy" decoding="async">
+          <span class="ba-label">Avant</span>
+        </div>
+        <div class="ba-img ba-after">
+          <img src="assets/apres-2.webp" width="1200" height="837" alt="La même maison après isolation par l’extérieur : enduit neuf couleur sable" loading="lazy" decoding="async">
+          <span class="ba-label">Après</span>
+        </div>
+        <div class="ba-handle" aria-hidden="true"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Comparer la façade de la maison de ville avant et après travaux" aria-valuetext="50 % après">
+      </div>
     </div>
     <div class="benefits">
       <div class="benefit">
@@ -561,7 +591,7 @@ html.cookie-open{overflow:hidden}
       </ul>
     </div>
     <div>
-      <div class="ba" id="ba">
+      <div class="ba">
         <div class="ba-img ba-before">
           <img src="assets/avant.webp" width="1200" height="954" alt="Façade avant travaux : enduit gris sali, fissuré et écaillé" loading="lazy" decoding="async">
           <span class="ba-label">Avant</span>
@@ -571,7 +601,7 @@ html.cookie-open{overflow:hidden}
           <span class="ba-label">Après</span>
         </div>
         <div class="ba-handle" aria-hidden="true"></div>
-        <input type="range" min="0" max="100" value="50" id="ba-range" aria-label="Comparer la façade avant et après travaux" aria-valuetext="50 % après">
+        <input type="range" min="0" max="100" value="50" aria-label="Comparer la façade avant et après travaux" aria-valuetext="50 % après">
       </div>
     </div>
   </div>
@@ -899,10 +929,12 @@ html.cookie-open{overflow:hidden}
   }
 
   // Avant / après
-  var ba = document.getElementById("ba"), baRange = document.getElementById("ba-range");
-  baRange.addEventListener("input", function(){
-    ba.style.setProperty("--pos", baRange.value + "%");
-    baRange.setAttribute("aria-valuetext", (100 - baRange.value) + " % après");
+  document.querySelectorAll(".ba").forEach(function(ba){
+    var r = ba.querySelector("input[type=range]");
+    r.addEventListener("input", function(){
+      ba.style.setProperty("--pos", r.value + "%");
+      r.setAttribute("aria-valuetext", (100 - r.value) + " % après");
+    });
   });
 
   // CTA mobile : masqué tant que le formulaire est visible

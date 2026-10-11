@@ -123,6 +123,11 @@ section{padding:clamp(64px,9vw,112px) 0}
 }
 
 /* ---------- Formulaire ---------- */
+.rge{display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(236,184,85,.45)}
+.rge-badge{flex-shrink:0;width:48px;height:48px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center}
+.rge img{flex-shrink:0;height:56px;width:auto;background:#fff;border-radius:6px;padding:4px}
+.rge p{color:#fff;font-size:1.02rem;line-height:1.4}
+.rge strong{color:var(--gold);font-weight:600;white-space:nowrap}
 .lead{background:#fff;color:var(--text);border-radius:10px;padding:clamp(22px,3vw,32px);box-shadow:0 24px 60px -24px rgba(5,15,30,.55)}
 .lead h2{font-size:clamp(1.45rem,2.2vw,1.7rem)}
 .lead-intro{color:var(--muted);margin-top:.35rem;font-size:.98rem}
@@ -164,6 +169,9 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 [hidden]{display:none!important}
 
 /* ---------- Avantages ---------- */
+.ba-wide{aspect-ratio:1200/837}
+.av-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center;margin-bottom:clamp(40px,5vw,64px)}
+@media (max-width:900px){.av-head{grid-template-columns:1fr}}
 .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,5vw,56px) clamp(32px,6vw,88px)}
 .benefit{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
 .benefit-icon{width:56px;height:56px;border-radius:50%;background:var(--ivory);display:grid;place-items:center;color:var(--marine)}
