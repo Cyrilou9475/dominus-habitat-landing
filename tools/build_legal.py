@@ -10,7 +10,7 @@ ou du contenu légal ci-dessous :
 import pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://www.dominus-habitat.fr/"  # TODO : domaine définitif (identique à index.html)
+SITE = "https://dominushabitat.com/"
 EMAIL = '<a href="mailto:contact@dominushabitat.com">contact@dominushabitat.com</a>'
 CNIL = '<a href="https://www.cnil.fr" rel="noopener noreferrer">www.cnil.fr</a>'
 TODO = '<span class="todo">[À COMPLÉTER]</span>'
