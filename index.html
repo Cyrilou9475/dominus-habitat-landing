@@ -159,8 +159,9 @@ section{padding:clamp(64px,9vw,112px) 0}
 .hero-points li{display:flex;gap:.6rem;align-items:flex-start;color:var(--on-dark)}
 .hero-points svg{flex-shrink:0;margin-top:.3rem}
 .hero-figures{display:flex;flex-wrap:wrap;gap:20px clamp(16px,2vw,28px);margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.18)}
-.hero-figures dt{white-space:nowrap;font:700 clamp(1.7rem,2.5vw,2.2rem)/1 var(--serif);color:var(--gold)}
+.hero-figures dt{white-space:nowrap;font:700 clamp(1.6rem,2.2vw,2rem)/1 var(--serif);color:var(--gold)}
 .hero-figures dd{margin:.35rem 0 0;color:var(--on-dark-muted);font-size:.95rem}
+@media (min-width:901px) and (max-width:1100px){.hero-figures{display:grid;grid-template-columns:auto auto;justify-content:start;column-gap:32px}.hero-figures div:first-child{grid-column:1/-1}}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
 @media (max-width:480px){
   .hero-points{grid-template-columns:1fr}
@@ -414,7 +415,7 @@ html.cookie-open{overflow:hidden}
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>0 m² perdu à l'intérieur</li>
         </ul>
         <dl class="hero-figures">
-          <div><dt>2 à 4 semaines</dt><dd>Chantier propre et rapide</dd></div>
+          <div><dt>Rapide &amp; propre</dt><dd>chantier</dd></div>
           <div><dt>0 m²</dt><dd>de surface perdue</dd></div>
           <div><dt>10 ans</dt><dd>de garantie décennale</dd></div>
         </dl>
@@ -566,11 +567,11 @@ html.cookie-open{overflow:hidden}
       </div>
       <div class="ba ba-street">
         <div class="ba-img ba-before">
-          <img src="assets/avant-3.webp" width="1200" height="818" alt="Maison individuelle avant travaux : façade salie, traces verdâtres et fissures" loading="lazy" decoding="async">
+          <img src="assets/avant-4.webp" width="1200" height="818" alt="Maison individuelle avant travaux : façade salie, traces verdâtres et fissures" loading="lazy" decoding="async">
           <span class="ba-label">Avant</span>
         </div>
         <div class="ba-img ba-after">
-          <img src="assets/apres-3.webp" width="1200" height="818" alt="La même maison après isolation par l’extérieur : enduit neuf couleur crème" loading="lazy" decoding="async">
+          <img src="assets/apres-4.webp" width="1200" height="818" alt="La même maison après isolation par l’extérieur : enduit neuf couleur crème" loading="lazy" decoding="async">
           <span class="ba-label">Après</span>
         </div>
         <div class="ba-handle" aria-hidden="true"></div>
