@@ -37,7 +37,7 @@ PAGES = {
         "title": "Politique de confidentialité",
         "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
-            ("Données collectées", "Via le formulaire : nom, prénom, téléphone, code postal, type de logement, surface"),
+            ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation)."),
             ("Finalité", "Recontacter le prospect pour établir un devis ITE"),
             ("Base légale", "Intérêt légitime"),
             ("Conservation", "3 ans"),
@@ -82,6 +82,8 @@ EXTRA_CSS = """
 .legal-list .legal-small dt{font-weight:500;color:var(--muted)}
 .legal-list .legal-small dd{color:var(--muted)}
 .legal-section{max-width:820px;margin-top:56px;scroll-margin-top:96px}
+.legal-section:first-child{margin-top:0}
+.legal-section .legal-list{margin-top:1.25rem}
 .legal-section h2{font-size:clamp(1.7rem,3vw,2.1rem);margin-bottom:1rem}
 .legal-section p{max-width:68ch;color:var(--text)}
 .legal-section p+p{margin-top:.8rem}
@@ -120,10 +122,16 @@ for slug, page in PAGES.items():
         + "    </div>"
         for sid, title, paras in page["sections"]
     )
+    sections = sections.lstrip("\n")
     rows = "\n".join(
         f'        <div{" class=\"legal-small\"" if label == "Responsable du traitement" else ""}><dt>{label}</dt><dd>{value}</dd></div>'
         for label, value in page["rows"]
     )
+    table = f'    <dl class="legal-list">\n{rows}\n    </dl>'
+    if sections:
+        body = sections + '\n    <div class="legal-section" id="rgpd">\n      <h2>Synthèse RGPD</h2>\n' + table + "\n    </div>"
+    else:
+        body = table
     html = f"""<!doctype html>
 <html lang="fr">
 <head>
@@ -159,9 +167,7 @@ for slug, page in PAGES.items():
 
 <section class="legal" aria-label="{page["title"]}">
   <div class="wrap">
-    <dl class="legal-list">
-{rows}
-    </dl>{sections}
+{body}
     <p class="legal-back"><a class="btn btn-line" href="index.html">Retour à l’accueil</a></p>
   </div>
 </section>
