@@ -102,9 +102,6 @@ section{padding:clamp(64px,9vw,112px) 0}
 .section-head{margin-bottom:clamp(36px,5vw,56px)}
 .kicker{font-weight:600;color:var(--gold-text);margin-bottom:.75rem;font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.3;letter-spacing:.005em}
 .kicker-light{color:var(--gold)}
-.hero .kicker{font-size:clamp(1.2rem,2.1vw,1.55rem);font-weight:600;line-height:1.35;letter-spacing:.005em;color:#f5cd78;margin-bottom:1.1rem}
-.kicker-abbr{color:#fff;white-space:nowrap}
-.hero .kicker::before{content:"";display:inline-block;vertical-align:middle;width:36px;height:4px;border-radius:2px;background:var(--gold);margin:0 .65rem .15em 0}
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* Focus clavier */
@@ -151,8 +148,13 @@ section{padding:clamp(64px,9vw,112px) 0}
 /* ---------- Hero ---------- */
 .hero{background:var(--marine);color:var(--on-dark);padding:clamp(48px,7vw,88px) 0 calc(var(--cut) + clamp(48px,6vw,72px))}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,64px);align-items:start}
-.hero h1{color:#fff;max-width:18ch}
-.hero-sub{margin-top:1.25rem;font-size:clamp(1.08rem,1.4vw,1.2rem);color:#fff;max-width:56ch}
+.hero h1{color:#fff;text-wrap:wrap;font-size:clamp(2.45rem,4.1vw,3.6rem);line-height:1.05;letter-spacing:-.02em}
+.h1-accent{color:var(--gold);white-space:nowrap}
+@media (max-width:900px){.br-lg{display:none}}
+.hero-badge{display:inline-flex;align-items:center;gap:.55rem;padding:.55rem 1.1rem;margin-bottom:1.4rem;border:1.5px solid rgba(236,184,85,.6);border-radius:999px;background:rgba(236,184,85,.1);color:#f5cd78;font-weight:600;font-size:clamp(.92rem,1.3vw,1.05rem);letter-spacing:.01em}
+.hero-badge svg{flex-shrink:0}
+.hero-sub{margin-top:1.4rem;font-size:clamp(1.1rem,1.5vw,1.28rem);line-height:1.6;color:var(--on-dark);max-width:54ch}
+.hero-sub strong{color:#fff;font-weight:600}
 .hero-points{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem 1.5rem;max-width:560px}
 .hero-points li{display:flex;gap:.6rem;align-items:flex-start;color:var(--on-dark)}
 .hero-points svg{flex-shrink:0;margin-top:.3rem}
@@ -397,14 +399,14 @@ html.cookie-open{overflow:hidden}
   <section class="hero roof-panel" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
       <div>
-        <p class="kicker kicker-light">Isolation thermique par l'extérieur <span class="kicker-abbr">(ITE)</span></p>
-        <h1 id="hero-title">Une façade neuve, une maison qui garde sa chaleur.</h1>
-        <p class="hero-sub">Nous isolons votre maison par l'extérieur et lui redonnons une façade nette, sans toucher à vos pièces.</p>
+        <p class="hero-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>Aides 2026 : votre éligibilité étudiée</p>
+        <h1 id="hero-title">Isolation Thermique<br class="br-lg"> par l'Extérieur <span class="h1-accent">(ITE)</span></h1>
+        <p class="hero-sub">Jusqu'à <strong>-30 % de chauffage</strong>* dès le 1<sup>er</sup> hiver, une façade comme neuve et un bien valorisé. Aides étudiées, pose certifiée RGE, garantie décennale.</p>
         <ul class="hero-points">
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Jusqu'à -30 % de chauffage*</li>
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Confort 4 saisons</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Un bien valorisé</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pose par des équipes certifiées</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Aides étudiées pour vous</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pose certifiée RGE</li>
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Garantie décennale</li>
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>0 m² perdu à l'intérieur</li>
         </ul>
@@ -791,6 +793,7 @@ html.cookie-open{overflow:hidden}
     </div>
     <div class="disclaimer">
       <p>* Les économies de chauffage indiquées (jusqu'à 30 %) sont des ordres de grandeur pour une maison dont les murs n'étaient pas isolés. Le gain réel dépend de la maison, de son état, du mode de chauffage, du climat et des habitudes des occupants ; il n'est pas garanti.</p>
+      <p>Les aides à la rénovation énergétique sont soumises à conditions (ressources du foyer, logement, nature des travaux) et à l'accord des organismes qui les attribuent. Leur montant n'est connu qu'après étude du dossier.</p>
       <p>© <span id="year">2026</span> Dominus Habitat. Tous droits réservés.</p>
     </div>
   </div>
