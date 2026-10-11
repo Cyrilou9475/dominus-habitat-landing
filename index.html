@@ -333,6 +333,21 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
   body{padding-bottom:76px}
 }
 
+/* ---------- Bandeau cookies ---------- */
+.link-btn{background:none;border:0;padding:0;font:inherit;color:var(--text);cursor:pointer;text-align:left}
+.link-btn:hover{text-decoration:underline}
+.cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:80;background:#fff;color:var(--text);border-top:4px solid var(--gold);padding:18px 0 calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 32px -16px rgba(5,15,30,.5)}
+.cookie-banner:focus-visible{outline:3px solid var(--marine);outline-offset:-7px}
+.cookie-in{display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+.cookie-title{font:600 1.35rem/1.2 var(--serif);color:var(--ink);margin-bottom:.2rem}
+.cookie-banner p{max-width:62ch;font-size:.98rem}
+.cookie-banner a{color:var(--marine)}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cookie-actions .btn{min-width:130px}
+.btn-outline{background:#fff;color:var(--marine);border-color:var(--marine)}
+.btn-outline:hover{background:#eef3f9}
+@media (max-width:560px){.cookie-actions{width:100%}.cookie-actions .btn{flex:1;min-width:0}}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
@@ -435,7 +450,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
           <fieldset class="step" data-step="3" hidden>
             <legend>Où vous envoyer votre étude ?</legend>
             <div class="field">
-              <label for="nom">Nom</label>
+              <label for="nom">Nom et prénom</label>
               <input id="nom" name="nom" type="text" autocomplete="name" required maxlength="80" aria-describedby="err-nom">
               <span class="err" id="err-nom"></span>
             </div>
@@ -715,10 +730,11 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
       <div>
         <h2>Contact et informations</h2>
         <ul>
-          <li><a href="tel:+33123456789">01 23 45 67 89</a></li>
+          <li>[TÉLÉPHONE À COMPLÉTER]</li>
           <li><a href="#etude">Étude gratuite</a></li>
           <li><a href="mentions-legales.html">Mentions légales</a></li>
           <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+          <li><button type="button" class="link-btn" data-cookie-settings>Gérer mes cookies</button></li>
         </ul>
       </div>
     </div>
@@ -733,6 +749,83 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
   <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
   <a class="btn btn-line" href="tel:+33123456789" aria-label="Appeler un conseiller au 01 23 45 67 89"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a>
 </div>
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-modal="false" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1" hidden>
+  <div class="wrap cookie-in">
+    <div>
+      <p class="cookie-title" id="cookie-title">Cookies</p>
+      <p id="cookie-text">Ce site utilise le Pixel Meta pour mesurer l'efficacité de nos publicités. <a href="confidentialite.html#cookies">En savoir plus</a></p>
+    </div>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
+      <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Consentement cookies et Pixel Meta : rien n'est chargé ni déposé avant « Accepter ». */
+(function(){
+  "use strict";
+  var PIXEL_ID = "[PIXEL_ID]"; // TODO : identifiant du Pixel Meta (chiffres uniquement), puis relancer tools/build_legal.py et tools/build_headers.py
+  var KEY = "dh-consent";
+  var MAX_AGE = 1000 * 60 * 60 * 24 * 395; // 13 mois, durée maximale recommandée par la CNIL
+  var banner = document.getElementById("cookie-banner");
+
+  function read(){
+    try {
+      var c = JSON.parse(localStorage.getItem(KEY));
+      if (c && (c.v === "granted" || c.v === "denied") && Date.now() - c.t < MAX_AGE) return c.v;
+    } catch (e) {}
+    return null;
+  }
+  function save(v){
+    try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+  }
+
+  function loadPixel(){
+    if (window.fbq || !/^\d+$/.test(PIXEL_ID)) return;
+    var f = window.fbq = function(){ f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+    window._fbq = f; f.push = f; f.loaded = true; f.version = "2.0"; f.queue = [];
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://connect.facebook.net/fr_FR/fbevents.js";
+    document.head.appendChild(s);
+    f("set", "autoConfig", false, PIXEL_ID); // pas de collecte automatique des clics et champs
+    f("init", PIXEL_ID);
+    f("track", "PageView");
+  }
+  function revokePixel(){
+    if (window.fbq) window.fbq("consent", "revoke");
+    ["_fbp", "_fbc"].forEach(function(n){
+      var host = location.hostname.split(".").slice(-2).join(".");
+      document.cookie = n + "=; Max-Age=0; path=/";
+      document.cookie = n + "=; Max-Age=0; path=/; domain=." + host;
+    });
+  }
+
+  function open(focus){ banner.hidden = false; if (focus) banner.focus(); }
+  function close(){ banner.hidden = true; }
+
+  banner.addEventListener("click", function(e){
+    var b = e.target.closest("[data-consent]");
+    if (!b) return;
+    var v = b.getAttribute("data-consent");
+    save(v);
+    if (v === "granted") loadPixel(); else revokePixel();
+    close();
+  });
+  document.addEventListener("click", function(e){
+    if (e.target.closest("[data-cookie-settings]")) open(true);
+  });
+
+  // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
+  window.dhTrackLead = function(){ if (read() === "granted" && window.fbq) window.fbq("track", "Lead"); };
+
+  var choice = read();
+  if (choice === "granted") loadPixel();
+  else if (choice === null) open(false);
+})();
+</script>
 
 <script>
 (function(){
@@ -766,7 +859,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     if (n === 3){
       var nom = form.nom, tel = form.tel, cp = form.cp, ok = true;
       var v = nom.value.trim();
-      ok = setError(nom, document.getElementById("err-nom"), v.length < 2 ? "Indiquez votre nom." : "") && ok;
+      ok = setError(nom, document.getElementById("err-nom"), v.length < 2 ? "Indiquez votre nom et votre prénom." : "") && ok;
       var t = tel.value.replace(/[\s.\-]/g, "");
       ok = setError(tel, document.getElementById("err-tel"), /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
       ok = setError(cp, document.getElementById("err-cp"), /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
@@ -812,6 +905,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     //   .catch(function(){ /* afficher un message d'erreur et proposer le téléphone */ });
     void data;
     confirm();
+    if (window.dhTrackLead) window.dhTrackLead();
   });
 
   function confirm(){

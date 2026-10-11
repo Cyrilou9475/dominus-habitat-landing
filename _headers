@@ -1,6 +1,6 @@
 # Généré par tools/build_headers.py — ne pas éditer la CSP à la main.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-/qhtP1PQzfkASGLfu5x0ZRgDRzPXqCx35u4n7QutRHs='; style-src 'self' https://fonts.googleapis.com 'sha256-8MUjmZ2jThaMU6ReFpj17I01I/MFyfPCKrp0C8nIhKI=' 'sha256-ag+66WjhNFYErz1gw4/Hocw7JTYgJ1JIKtKlZY7MCa4='; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://connect.facebook.net 'sha256-9BQ39u/bYHshR0k2HzVXKEw9/ZiUp5wuZWQakVn+E00=' 'sha256-CWYrNjtHDMgKOF2KxvmSV7VngtODO43mH9PaZ3r+hk0='; style-src 'self' https://fonts.googleapis.com 'sha256-XC1UtoChMd2j1I1tj6MF5FOZJdSy4XiFL4YC2fRmoqs=' 'sha256-aPz6KarzKgiN10pimboFZloiMjzeVVgN8LYRK2cneRw='; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com; connect-src 'self' https://www.facebook.com https://connect.facebook.net; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

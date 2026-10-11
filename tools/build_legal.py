@@ -1,7 +1,9 @@
 """Génère mentions-legales.html et confidentialite.html avec le header, le footer
 et les styles d'index.html.
 
-À relancer après toute modification du header, du footer ou du <style> d'index.html,
+Le bandeau cookies et son script sont aussi repris d'index.html.
+
+À relancer après toute modification du header, du footer, du bandeau cookies ou du <style> d'index.html,
 ou du contenu légal ci-dessous :
     python3 tools/build_legal.py && python3 tools/build_headers.py
 """
@@ -12,6 +14,8 @@ SITE = "https://www.dominus-habitat.fr/"  # TODO : domaine définitif (identique
 EMAIL = '<a href="mailto:contact@dominushabitat.com">contact@dominushabitat.com</a>'
 CNIL = '<a href="https://www.cnil.fr" rel="noopener noreferrer">www.cnil.fr</a>'
 TODO = '<span class="todo">[À COMPLÉTER]</span>'
+
+GOOGLE_DPF = '<a href="https://www.dataprivacyframework.gov" rel="noopener noreferrer">Data Privacy Framework</a>'
 
 PAGES = {
     "mentions-legales": {
@@ -27,19 +31,35 @@ PAGES = {
             ("Téléphone", TODO),
             ("Hébergeur", "GitHub Pages — GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA"),
         ],
+        "sections": [],
     },
     "confidentialite": {
         "title": "Politique de confidentialité",
-        "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation et exercice de vos droits.",
+        "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
-            ("Responsable", "Dominus Consultancy FZCO — Thomas Martin — IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
-            ("Données collectées", "Nom et prénom, téléphone, code postal"),
+            ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
+            ("Données collectées", "Via le formulaire : nom, prénom, téléphone, code postal, type de logement, surface"),
             ("Finalité", "Recontacter le prospect pour établir un devis ITE"),
-            ("Base légale", "Intérêt légitime (demande explicite de l’utilisateur)"),
-            ("Conservation", "3 ans après la dernière prise de contact"),
-            ("Destinataires", "Dominus Consultancy FZCO uniquement, aucune vente ni transmission"),
-            ("Droits (accès, rectification, suppression)", EMAIL),
-            ("Réclamation", "CNIL — " + CNIL),
+            ("Base légale", "Intérêt légitime"),
+            ("Conservation", "3 ans"),
+            ("Destinataires", "Équipe Dominus Habitat uniquement. Aucune vente ni transmission à des tiers."),
+            ("Vos droits", "Accès, rectification, suppression, opposition, portabilité : " + EMAIL + ". Réponse sous 30 jours."),
+            ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
+        ],
+        "sections": [
+            ("stockage", "Stockage des données", [
+                "Les données du formulaire sont transmises par email à " + EMAIL + ". Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
+                "Les serveurs de Google sont situés dans l’Union européenne et aux États-Unis. Google adhère au " + GOOGLE_DPF + " et agit comme sous-traitant dans le cadre de l’accord de traitement des données (DPA) Google Workspace.",
+                "Aucune base de données n’est utilisée sur le site.",
+            ]),
+            ("cookies", "Cookies", [
+                "Ce site utilise le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires. Il n’est déposé qu’après votre consentement.",
+                'Vous pouvez retirer votre consentement à tout moment via le bandeau cookies en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
+                "Meta adhère au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
+            ]),
+            ("securite", "Mesures de sécurité", [
+                "Transmission chiffrée (HTTPS), accès limité aux personnes habilitées, aucun stockage sur le site.",
+            ]),
         ],
     },
 }
@@ -57,6 +77,11 @@ EXTRA_CSS = """
 .legal-list dt{font-weight:600;color:var(--ink)}
 .legal-list dd{margin:0;color:var(--text);overflow-wrap:anywhere}
 .legal-list a{color:var(--marine)}
+.legal-section{max-width:820px;margin-top:56px;scroll-margin-top:96px}
+.legal-section h2{font-size:clamp(1.7rem,3vw,2.1rem);margin-bottom:1rem}
+.legal-section p{max-width:68ch;color:var(--text)}
+.legal-section p+p{margin-top:.8rem}
+.legal-section a,.link-inline{color:var(--marine);text-decoration:underline}
 .todo{background:#fff3d6;color:var(--ink);padding:2px 8px;border-radius:4px;font-weight:500}
 .legal-back{margin-top:40px}
 @media (max-width:640px){.legal-list div{grid-template-columns:1fr}}
@@ -82,8 +107,15 @@ style = block(index, r"<style>.*?</style>").replace("</style>", EXTRA_CSS.lstrip
 header = block(index, r'<header class="site-header">.*?</header>')
 footer = block(index, r'<footer class="site-footer">.*?</footer>')
 mobile = block(index, r'<div class="mobile-cta".*?</a>\s*</div>')
+cookies = block(index, r'<div class="cookie-banner".*?</script>')
 
 for slug, page in PAGES.items():
+    sections = "".join(
+        f'\n    <div class="legal-section" id="{sid}">\n      <h2>{title}</h2>\n'
+        + "".join(f"      <p>{para}</p>\n" for para in paras)
+        + "    </div>"
+        for sid, title, paras in page["sections"]
+    )
     rows = "\n".join(
         f"        <div><dt>{label}</dt><dd>{value}</dd></div>" for label, value in page["rows"]
     )
@@ -124,7 +156,7 @@ for slug, page in PAGES.items():
   <div class="wrap">
     <dl class="legal-list">
 {rows}
-    </dl>
+    </dl>{sections}
     <p class="legal-back"><a class="btn btn-line" href="index.html">Retour à l’accueil</a></p>
   </div>
 </section>
@@ -133,6 +165,8 @@ for slug, page in PAGES.items():
 {localize(footer, slug)}
 
 {localize(mobile, slug)}
+
+{cookies}
 </body>
 </html>
 """

@@ -20,7 +20,8 @@ Aperçu local : `python3 -m http.server` puis http://localhost:8000.
 
 ## À remplacer avant mise en ligne
 
-- [ ] **Téléphone** : `01 23 45 67 89` / `tel:+33123456789` est un faux numéro. Il apparaît dans le header, la FAQ, le CTA final, le footer, le CTA mobile et le JSON-LD (`telephone`).
+- [ ] **Téléphone** : le footer affiche `[TÉLÉPHONE À COMPLÉTER]`. Le faux numéro `01 23 45 67 89` / `tel:+33123456789` reste dans le header, la FAQ, le CTA final, le CTA mobile et le JSON-LD (`telephone`) ; le téléphone des mentions légales est dans `tools/build_legal.py`.
+- [ ] **Pixel Meta** : remplacer `[PIXEL_ID]` dans le script de consentement d'`index.html`, puis lancer `python3 tools/build_legal.py && python3 tools/build_headers.py`. Tant que l'ID n'est pas renseigné, le pixel ne se charge pas. Dans le Gestionnaire d'événements Meta, laisser la « correspondance avancée automatique » désactivée : sinon le pixel lit les champs du formulaire (nom, téléphone), ce que la politique de confidentialité exclut.
 - [ ] **Envoi du formulaire** : voir le `TODO` dans le script de `index.html` (fonction `submit`). Aujourd'hui, la page affiche la confirmation sans rien envoyer. À prévoir côté serveur : revalidation des champs, anti-spam (le honeypot `website` est déjà en place, à compléter par du rate limiting ou Turnstile/hCaptcha), HTTPS, aucune clé API dans le HTML. Ajouter le domaine de l'endpoint dans `connect-src` (`tools/build_headers.py`).
 - [ ] **Avis clients** : les 3 témoignages sont fictifs. Les remplacer par de vrais avis (avec accord écrit) ou un widget d'avis vérifiés. Publier de faux avis est une pratique commerciale trompeuse.
 - [ ] **Photos avant / après** : les deux illustrations SVG du comparateur sont des placeholders. Les remplacer par deux photos WebP au même cadrage (1200×900), avec `width`/`height`, `loading="lazy"` et un `alt` descriptif (exemple en commentaire dans le code).
@@ -48,7 +49,8 @@ Aperçu local : `python3 -m http.server` puis http://localhost:8000.
 - `_headers` fixe une CSP stricte sans `unsafe-inline` : les blocs `<style>` et `<script>` inline sont autorisés par empreinte SHA-256. **Après toute modification d'un bloc `<style>` ou `<script>`, relancer `python3 tools/build_headers.py`**, sinon le navigateur bloquera le style ou le script.
 - `_headers` est lu tel quel par Netlify et Cloudflare Pages. Sur Vercel, reporter les en-têtes dans `vercel.json` ; sur OVH/Apache, dans un `.htaccess`. GitHub Pages ne permet pas de définir d'en-têtes HTTP.
 - `/assets/*` est servi avec un cache d'un an (`immutable`) : quand un fichier change, changer aussi son nom (ex. `logo-dominus-habitat.v2.png`).
-- Aucun script tiers, aucun cookie. Si vous ajoutez des analytics ou un pixel, les charger après consentement et ajouter un bandeau cookies.
+- Cookies : seul le Pixel Meta est utilisé, et il n'est chargé qu'après « Accepter » dans le bandeau. Le choix est gardé 13 mois dans `localStorage` (`dh-consent`). « Gérer mes cookies » (footer, politique de confidentialité) rouvre le bandeau ; un refus après acceptation révoque le pixel et efface les cookies `_fbp`/`_fbc`. Une demande d'étude envoyée déclenche l'événement `Lead`, uniquement avec consentement.
+- Ne pas ajouter d'autre traceur sans mettre à jour le bandeau, la politique de confidentialité et la CSP (`tools/build_headers.py`).
 
 ## Vérifié
 

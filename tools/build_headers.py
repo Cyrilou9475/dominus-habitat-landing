@@ -25,12 +25,13 @@ for page in PAGES:
 
 csp = "; ".join([
     "default-src 'self'",
-    "script-src 'self' " + " ".join(sorted(set(scripts))) if scripts else "script-src 'self'",
+    # connect.facebook.net : Pixel Meta, chargé uniquement après consentement
+    "script-src 'self' https://connect.facebook.net " + " ".join(sorted(set(scripts))),
     "style-src 'self' https://fonts.googleapis.com " + " ".join(sorted(set(styles))),
     "font-src https://fonts.gstatic.com",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://www.facebook.com",
     # TODO : ajouter ici le domaine de l'endpoint d'envoi du formulaire (ex. https://api.exemple.fr)
-    "connect-src 'self'",
+    "connect-src 'self' https://www.facebook.com https://connect.facebook.net",
     "form-action 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",
