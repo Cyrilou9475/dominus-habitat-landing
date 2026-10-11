@@ -1,6 +1,6 @@
 # Généré par tools/build_headers.py — ne pas éditer la CSP à la main.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://connect.facebook.net 'sha256-M7TD1y6yfTppxGJ39FeFZIiggJT6imCiM2r6SRnfqEs=' 'sha256-vm0byw2Uxvny27roZTibFnZvCTSPGKq/jpXbVTCSbQU='; style-src 'self' https://fonts.googleapis.com 'sha256-IEtnUDz5jLIY1aaHxtZDi5iFCP2uRRADAOvMulosxSM=' 'sha256-Wukt2+NoTbpxlvflVMh2/66AJtwpP/xtuHwsvM1tlgs='; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com; connect-src 'self' https://www.facebook.com https://connect.facebook.net; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://connect.facebook.net 'sha256-M7TD1y6yfTppxGJ39FeFZIiggJT6imCiM2r6SRnfqEs=' 'sha256-vm0byw2Uxvny27roZTibFnZvCTSPGKq/jpXbVTCSbQU='; style-src 'self' https://fonts.googleapis.com 'sha256-B7MNyDlYwOMIQb9ei2nyzy4ICWLArX9AVHJm9DDZZdY=' 'sha256-k/Yw5F4kKGxhFBYSon06XcHHHE6OgK5HPXekFSbfUS0='; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com; connect-src 'self' https://www.facebook.com https://connect.facebook.net; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
