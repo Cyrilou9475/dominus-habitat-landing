@@ -889,6 +889,13 @@ html.cookie-open{overflow:hidden}
   form.addEventListener("change", function(e){
     if (e.target.name === "logement") document.getElementById("err-logement").textContent = "";
   });
+  // Étape 1 : un clic ou un appui tactile sur un type de logement passe directement à l'étape 2.
+  // Les clics clavier (flèches, espace : e.detail === 0) ne déclenchent pas l'avance ; « Continuer » reste disponible.
+  form.addEventListener("click", function(e){
+    var r = e.target.closest("input[name=logement]");
+    if (!r || e.detail === 0 || current !== 1) return;
+    setTimeout(function(){ if (current === 1 && validateStep(1)) show(2); }, 180);
+  });
 
   var range = document.getElementById("surface"), out = document.getElementById("surface-out");
   range.addEventListener("input", function(){
