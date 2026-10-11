@@ -158,14 +158,15 @@ section{padding:clamp(64px,9vw,112px) 0}
 .hero-points{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem 1.5rem;max-width:560px}
 .hero-points li{display:flex;gap:.6rem;align-items:flex-start;color:var(--on-dark)}
 .hero-points svg{flex-shrink:0;margin-top:.3rem}
-.hero-figures{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.18)}
-.hero-figures dt{white-space:nowrap;font:700 clamp(1.9rem,3.4vw,2.4rem)/1 var(--serif);color:var(--gold)}
+.hero-figures{display:flex;flex-wrap:wrap;gap:20px clamp(16px,2vw,28px);margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.18)}
+.hero-figures dt{white-space:nowrap;font:700 clamp(1.7rem,2.5vw,2.2rem)/1 var(--serif);color:var(--gold)}
 .hero-figures dd{margin:.35rem 0 0;color:var(--on-dark-muted);font-size:.95rem}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
 @media (max-width:480px){
   .hero-points{grid-template-columns:1fr}
-  .hero-figures{display:grid;grid-template-columns:repeat(3,auto);gap:16px;justify-content:start}
-  .hero-figures dt{font-size:1.5rem}
+  .hero-figures{display:grid;grid-template-columns:auto auto;gap:18px 32px;justify-content:start}
+  .hero-figures div:first-child{grid-column:1/-1}
+  .hero-figures dt{font-size:1.65rem}
   .hero-figures dd{font-size:.85rem}
 }
 
@@ -413,7 +414,7 @@ html.cookie-open{overflow:hidden}
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>0 m² perdu à l'intérieur</li>
         </ul>
         <dl class="hero-figures">
-          <div><dt>2-4 sem.</dt><dd>de chantier</dd></div>
+          <div><dt>2 à 4 semaines</dt><dd>Chantier propre et rapide</dd></div>
           <div><dt>0 m²</dt><dd>de surface perdue</dd></div>
           <div><dt>10 ans</dt><dd>de garantie décennale</dd></div>
         </dl>
