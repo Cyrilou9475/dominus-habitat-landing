@@ -8,11 +8,12 @@ Un seul `index.html` (CSS et JS inline, sans framework ni build), plus les logos
 | Fichier | Rôle |
 |---|---|
 | `index.html` | La landing page |
-| `mentions-legales.html`, `confidentialite.html` | Pages légales (squelettes à compléter) |
+| `mentions-legales.html`, `confidentialite.html` | Pages légales, même header/footer que la landing. **Générées** par `tools/build_legal.py` : modifier le script, pas les fichiers HTML |
 | `assets/logo-monogramme.png` | Monogramme DH, PNG transparent (6 Ko) — header, favicon |
 | `assets/logo-dominus-habitat.png` | Logo complet, PNG transparent (20 Ko) — footer, Open Graph |
 | `_headers` | En-têtes HTTP de sécurité et de cache (format Netlify / Cloudflare Pages) |
 | `tools/build_headers.py` | Régénère `_headers` avec les empreintes CSP des blocs inline |
+| `tools/build_legal.py` | Régénère les pages légales à partir du header, du footer et des styles d'`index.html` |
 | `robots.txt`, `sitemap.xml` | SEO |
 
 Aperçu local : `python3 -m http.server` puis http://localhost:8000.
@@ -23,7 +24,7 @@ Aperçu local : `python3 -m http.server` puis http://localhost:8000.
 - [ ] **Envoi du formulaire** : voir le `TODO` dans le script de `index.html` (fonction `submit`). Aujourd'hui, la page affiche la confirmation sans rien envoyer. À prévoir côté serveur : revalidation des champs, anti-spam (le honeypot `website` est déjà en place, à compléter par du rate limiting ou Turnstile/hCaptcha), HTTPS, aucune clé API dans le HTML. Ajouter le domaine de l'endpoint dans `connect-src` (`tools/build_headers.py`).
 - [ ] **Avis clients** : les 3 témoignages sont fictifs. Les remplacer par de vrais avis (avec accord écrit) ou un widget d'avis vérifiés. Publier de faux avis est une pratique commerciale trompeuse.
 - [ ] **Photos avant / après** : les deux illustrations SVG du comparateur sont des placeholders. Les remplacer par deux photos WebP au même cadrage (1200×900), avec `width`/`height`, `loading="lazy"` et un `alt` descriptif (exemple en commentaire dans le code).
-- [ ] **Liens légaux** : compléter tous les `[à compléter]` de `mentions-legales.html` (raison sociale, SIRET, adresse, hébergeur, directeur de publication, assureur décennal) et de `confidentialite.html` (responsable, sous-traitants, durée de conservation des leads, contact RGPD).
+- [ ] **Pages légales** : contenu renseigné (Dominus Consultancy FZCO). Reste le téléphone `[À COMPLÉTER]` des mentions légales, dans `tools/build_legal.py`.
 - [ ] **Chiffres clés** (section « Pourquoi isoler maintenant ») : vérifier et sourcer précisément avant publication.
   - `+44 %` : cumul des hausses du TRVE électricité de février 2022 à février 2024 (≈ +4 %, +15 %, +10 %, +10 %), source CRE. À confirmer.
   - `20-25 %` des déperditions par les murs : ordre de grandeur ADEME.
@@ -43,6 +44,7 @@ Aperçu local : `python3 -m http.server` puis http://localhost:8000.
 
 ## Sécurité et déploiement
 
+- Après toute modification du header, du footer ou du `<style>` d'`index.html` : `python3 tools/build_legal.py && python3 tools/build_headers.py`, pour que les pages légales restent identiques.
 - `_headers` fixe une CSP stricte sans `unsafe-inline` : les blocs `<style>` et `<script>` inline sont autorisés par empreinte SHA-256. **Après toute modification d'un bloc `<style>` ou `<script>`, relancer `python3 tools/build_headers.py`**, sinon le navigateur bloquera le style ou le script.
 - `_headers` est lu tel quel par Netlify et Cloudflare Pages. Sur Vercel, reporter les en-têtes dans `vercel.json` ; sur OVH/Apache, dans un `.htaccess`. GitHub Pages ne permet pas de définir d'en-têtes HTTP.
 - `/assets/*` est servi avec un cache d'un an (`immutable`) : quand un fichier change, changer aussi son nom (ex. `logo-dominus-habitat.v2.png`).
