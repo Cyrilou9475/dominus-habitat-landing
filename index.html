@@ -34,7 +34,7 @@
   "url": "https://www.dominus-habitat.fr/",
   "logo": "https://www.dominus-habitat.fr/assets/logo-dominus-habitat.png",
   "image": "https://www.dominus-habitat.fr/assets/logo-dominus-habitat.png",
-  "telephone": "+33123456789",
+  "email": "contact@dominushabitat.com",
   "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
   "address": { "@type": "PostalAddress", "addressCountry": "FR" }
 }
@@ -133,17 +133,13 @@ section{padding:clamp(64px,9vw,112px) 0}
 .nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
 .nav a{text-decoration:none;font-weight:500;color:var(--text);padding:6px 0;border-bottom:2px solid transparent}
 .nav a:hover{border-bottom-color:var(--gold)}
-.header-tel{display:flex;flex-direction:column;text-decoration:none;line-height:1.15;font-weight:600;color:var(--marine);white-space:nowrap}
-.header-tel small{font-weight:400;color:var(--muted);font-size:.8rem}
-@media (max-width:1060px){.nav{display:none}.header-tel{margin-left:auto}}
+@media (max-width:1060px){.nav{display:none}.header-cta{margin-left:auto}}
 @media (max-width:560px){
   .header-in{gap:12px;min-height:64px}
   .brand img{width:44px}
   .brand-name{font-size:.8rem}
-  .header-tel small{display:none}
   .header-cta{display:none}
 }
-@media (max-width:380px){.brand-name{display:none}}
 
 /* ---------- Diagonale du toit ---------- */
 /* Le parent porte l'or, l'enfant marine est découpé un liseré plus haut : la diagonale monte de gauche à droite comme le toit du logo. */
@@ -308,6 +304,8 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 .cta-final{background:var(--marine);color:var(--on-dark);padding:calc(var(--cut) + clamp(56px,7vw,96px)) 0 clamp(64px,8vw,104px);text-align:center}
 .cta-final h2{color:#fff;max-width:24ch;margin:0 auto}
 .cta-final p{max-width:52ch;margin:1.1rem auto 0;color:var(--on-dark)}
+.cta-mail{font-size:.98rem}
+.cta-mail a{color:var(--gold)}
 .cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:2rem}
 
 /* ---------- Footer ---------- */
@@ -328,7 +326,6 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 @media (max-width:900px){
   .mobile-cta{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);border-top:1px solid var(--line);transition:transform .2s ease}
   .mobile-cta .btn-gold{flex:1}
-  .mobile-cta .btn-line{flex:0 0 auto;padding-inline:14px}
   .mobile-cta.is-hidden{transform:translateY(110%)}
   body{padding-bottom:76px}
 }
@@ -336,17 +333,17 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 /* ---------- Bandeau cookies ---------- */
 .link-btn{background:none;border:0;padding:0;font:inherit;color:var(--text);cursor:pointer;text-align:left}
 .link-btn:hover{text-decoration:underline}
-.cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:80;background:#fff;color:var(--text);border-top:4px solid var(--gold);padding:18px 0 calc(18px + env(safe-area-inset-bottom));box-shadow:0 -12px 32px -16px rgba(5,15,30,.5)}
-.cookie-banner:focus-visible{outline:3px solid var(--marine);outline-offset:-7px}
-.cookie-in{display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
-.cookie-title{font:600 1.35rem/1.2 var(--serif);color:var(--ink);margin-bottom:.2rem}
-.cookie-banner p{max-width:62ch;font-size:.98rem}
-.cookie-banner a{color:var(--marine)}
-.cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
-.cookie-actions .btn{min-width:130px}
+.cookie-banner{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(10,31,58,.68);overscroll-behavior:contain}
+.cookie-box{width:100%;max-width:500px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;color:var(--text);border-top:5px solid var(--gold);border-radius:12px;padding:clamp(24px,4vw,36px);box-shadow:0 30px 80px -20px rgba(5,15,30,.6)}
+.cookie-box:focus{outline:none}
+.cookie-box .cookie-title{font:600 1.75rem/1.15 var(--serif);color:var(--ink);margin-bottom:.75rem}
+.cookie-box p{font-size:1rem;color:var(--text)}
+.cookie-box a{color:var(--marine)}
+.cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem}
+html.cookie-open{overflow:hidden}
 .btn-outline{background:#fff;color:var(--marine);border-color:var(--marine)}
 .btn-outline:hover{background:#eef3f9}
-@media (max-width:560px){.cookie-actions{width:100%}.cookie-actions .btn{flex:1;min-width:0}}
+@media (max-width:360px){.cookie-actions{grid-template-columns:1fr}}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -372,8 +369,6 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <!-- TODO : numéro de téléphone réel (ici + footer + CTA + JSON-LD) -->
-    <a class="header-tel" href="tel:+33123456789"><small>Un conseiller vous répond</small>01 23 45 67 89</a>
     <a class="btn btn-gold header-cta" href="#etude">Étude gratuite</a>
   </div>
 </header>
@@ -645,7 +640,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
       </div>
       <div class="guarantee">
         <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20v-3a12 12 0 0 1 24 0v3"/><rect x="4" y="20" width="6" height="9" rx="2"/><rect x="26" y="20" width="6" height="9" rx="2"/><path d="M29 29c0 3-4 4-9 4"/></svg>
-        <h3>SAV et suivi</h3><p>Un interlocuteur dédié avant, pendant et après le chantier, joignable par téléphone.</p>
+        <h3>SAV et suivi</h3><p>Un interlocuteur dédié avant, pendant et après le chantier, joignable par email.</p>
       </div>
     </div>
   </div>
@@ -683,7 +678,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     <div>
       <p class="kicker">Questions fréquentes</p>
       <h2 id="faq-title">Vos questions sur l'isolation par l'extérieur.</h2>
-      <p class="lede">Une autre question ? Un conseiller vous répond au <a href="tel:+33123456789">01 23 45 67 89</a>.</p>
+      <p class="lede">Une autre question ? Écrivez-nous à <a href="mailto:contact@dominushabitat.com">contact@dominushabitat.com</a>.</p>
     </div>
     <div>
       <details><summary>Combien de temps durent les travaux ?</summary><p>Pour une maison individuelle, comptez en général une à deux semaines de chantier, selon la surface de façade, l'accès et la météo. La date de début et la durée prévue sont fixées avec vous lors de la visite technique.</p></details>
@@ -703,8 +698,8 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
       <p>Étude gratuite et sans engagement. Un conseiller vous rappelle pour préparer la visite technique.</p>
       <div class="cta-actions">
         <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
-        <a class="btn btn-ghost" href="tel:+33123456789">Parler à un conseiller</a>
       </div>
+      <p class="cta-mail">Une question ? Écrivez-nous à <a href="mailto:contact@dominushabitat.com">contact@dominushabitat.com</a></p>
     </div>
   </section>
 </div>
@@ -730,7 +725,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
       <div>
         <h2>Contact et informations</h2>
         <ul>
-          <li>[TÉLÉPHONE À COMPLÉTER]</li>
+          <li><a href="mailto:contact@dominushabitat.com">contact@dominushabitat.com</a></li>
           <li><a href="#etude">Étude gratuite</a></li>
           <li><a href="mentions-legales.html">Mentions légales</a></li>
           <li><a href="confidentialite.html">Politique de confidentialité</a></li>
@@ -747,15 +742,12 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 
 <div class="mobile-cta" id="mobile-cta">
   <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
-  <a class="btn btn-line" href="tel:+33123456789" aria-label="Appeler un conseiller au 01 23 45 67 89"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a>
 </div>
 
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-modal="false" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1" hidden>
-  <div class="wrap cookie-in">
-    <div>
-      <p class="cookie-title" id="cookie-title">Cookies</p>
-      <p id="cookie-text">Ce site utilise le Pixel Meta pour mesurer l'efficacité de nos publicités. <a href="confidentialite.html#cookies">En savoir plus</a></p>
-    </div>
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
+    <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
+    <p id="cookie-text">Ce site utilise le Pixel Meta pour mesurer l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="confidentialite.html#cookies">En savoir plus</a></p>
     <div class="cookie-actions">
       <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
       <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
@@ -771,6 +763,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
   var KEY = "dh-consent";
   var MAX_AGE = 1000 * 60 * 60 * 24 * 395; // 13 mois, durée maximale recommandée par la CNIL
   var banner = document.getElementById("cookie-banner");
+  var box = banner.querySelector(".cookie-box");
 
   function read(){
     try {
@@ -803,8 +796,24 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     });
   }
 
-  function open(focus){ banner.hidden = false; if (focus) banner.focus(); }
-  function close(){ banner.hidden = true; }
+  // Modale bloquante : le reste de la page est rendu inerte (ni clic, ni tabulation) jusqu'au choix.
+  // Pas de fermeture par Échap ni par clic sur le fond.
+  function setInert(on){
+    Array.prototype.forEach.call(document.body.children, function(el){
+      if (el !== banner && el.tagName !== "SCRIPT") { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
+    });
+  }
+  function open(){
+    banner.hidden = false;
+    document.documentElement.classList.add("cookie-open");
+    setInert(true);
+    box.focus();
+  }
+  function close(){
+    banner.hidden = true;
+    document.documentElement.classList.remove("cookie-open");
+    setInert(false);
+  }
 
   banner.addEventListener("click", function(e){
     var b = e.target.closest("[data-consent]");
@@ -815,7 +824,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     close();
   });
   document.addEventListener("click", function(e){
-    if (e.target.closest("[data-cookie-settings]")) open(true);
+    if (e.target.closest("[data-cookie-settings]")) open();
   });
 
   // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
@@ -823,7 +832,8 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 
   var choice = read();
   if (choice === "granted") loadPixel();
-  else if (choice === null) open(false);
+  // Les pages légales (data-cookie-prompt="manual") restent lisibles : la modale n'y s'ouvre que via « Gérer mes cookies ».
+  else if (choice === null && document.body.getAttribute("data-cookie-prompt") !== "manual") open();
 })();
 </script>
 
@@ -902,7 +912,7 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
     // Exemple :
     // fetch("https://api.exemple.fr/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
     //   .then(function(r){ if (!r.ok) throw new Error(r.status); confirm(); })
-    //   .catch(function(){ /* afficher un message d'erreur et proposer le téléphone */ });
+    //   .catch(function(){ /* afficher un message d'erreur et proposer l'email contact@dominushabitat.com */ });
     void data;
     confirm();
     if (window.dhTrackLead) window.dhTrackLead();

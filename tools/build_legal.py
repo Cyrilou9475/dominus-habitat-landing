@@ -37,14 +37,15 @@ PAGES = {
         "title": "Politique de confidentialité",
         "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
-            ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
             ("Données collectées", "Via le formulaire : nom, prénom, téléphone, code postal, type de logement, surface"),
             ("Finalité", "Recontacter le prospect pour établir un devis ITE"),
             ("Base légale", "Intérêt légitime"),
             ("Conservation", "3 ans"),
-            ("Destinataires", "Équipe Dominus Habitat uniquement. Aucune vente ni transmission à des tiers."),
+            ("Destinataires", "Équipe Dominus Habitat et sociétés partenaires intervenant pour la réalisation du devis et des travaux d’isolation."),
             ("Vos droits", "Accès, rectification, suppression, opposition, portabilité : " + EMAIL + ". Réponse sous 30 jours."),
             ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
+            # Dernière ligne, affichée en petit (classe legal-small)
+            ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
         ],
         "sections": [
             ("stockage", "Stockage des données", [
@@ -54,7 +55,7 @@ PAGES = {
             ]),
             ("cookies", "Cookies", [
                 "Ce site utilise le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires. Il n’est déposé qu’après votre consentement.",
-                'Vous pouvez retirer votre consentement à tout moment via le bandeau cookies en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
+                'Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
                 "Meta adhère au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
             ]),
             ("securite", "Mesures de sécurité", [
@@ -77,6 +78,9 @@ EXTRA_CSS = """
 .legal-list dt{font-weight:600;color:var(--ink)}
 .legal-list dd{margin:0;color:var(--text);overflow-wrap:anywhere}
 .legal-list a{color:var(--marine)}
+.legal-list .legal-small{padding:14px 0;font-size:.85rem}
+.legal-list .legal-small dt{font-weight:500;color:var(--muted)}
+.legal-list .legal-small dd{color:var(--muted)}
 .legal-section{max-width:820px;margin-top:56px;scroll-margin-top:96px}
 .legal-section h2{font-size:clamp(1.7rem,3vw,2.1rem);margin-bottom:1rem}
 .legal-section p{max-width:68ch;color:var(--text)}
@@ -117,7 +121,8 @@ for slug, page in PAGES.items():
         for sid, title, paras in page["sections"]
     )
     rows = "\n".join(
-        f"        <div><dt>{label}</dt><dd>{value}</dd></div>" for label, value in page["rows"]
+        f'        <div{" class=\"legal-small\"" if label == "Responsable du traitement" else ""}><dt>{label}</dt><dd>{value}</dd></div>'
+        for label, value in page["rows"]
     )
     html = f"""<!doctype html>
 <html lang="fr">
@@ -137,7 +142,7 @@ for slug, page in PAGES.items():
 <!-- Généré par tools/build_legal.py : modifier le script, pas ce fichier. -->
 {style}
 </head>
-<body>
+<body data-cookie-prompt="manual">
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 {localize(header, slug)}
