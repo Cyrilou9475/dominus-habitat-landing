@@ -160,14 +160,12 @@ section{padding:clamp(64px,9vw,112px) 0}
 .hero-points svg{flex-shrink:0;margin-top:.3rem}
 .hero-figures{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;align-items:end;column-gap:clamp(24px,3.4vw,48px);margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.18)}
 .hero-figures dt{white-space:nowrap;font:700 clamp(1.8rem,2.6vw,2.3rem)/1 var(--serif);color:var(--gold)}
-.hero-figures dt.fig-text{font-size:clamp(1.2rem,1.8vw,1.55rem);line-height:1.15}
 .hero-figures dd{margin:.35rem 0 0;color:var(--on-dark-muted);font-size:.95rem}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
 @media (max-width:480px){
   .hero-points{grid-template-columns:1fr}
   .hero-figures{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:14px}
   .hero-figures dt{font-size:1.5rem}
-  .hero-figures dt.fig-text{font-size:1.02rem;white-space:normal}
   .hero-figures dd{font-size:.82rem}
 }
 
@@ -421,7 +419,7 @@ html.cookie-open{overflow:hidden}
           <li><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5l4 4 8-9" fill="none" stroke="#ecb855" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>0 m² perdu à l'intérieur</li>
         </ul>
         <dl class="hero-figures">
-          <div><dt class="fig-text">Résultat garanti</dt><dd>chantier rapide et propre</dd></div>
+          <div><dt>24 h</dt><dd>rappel par un conseiller</dd></div>
           <div><dt>0 m²</dt><dd>de surface perdue</dd></div>
           <div><dt>10 ans</dt><dd>de garantie décennale</dd></div>
         </dl>
@@ -511,7 +509,7 @@ html.cookie-open{overflow:hidden}
         <div class="done" id="lead-done" hidden tabindex="-1" aria-live="polite">
           <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="27" fill="#f7f4ee"/><path d="M17 29l7 7 15-16" fill="none" stroke="#164174" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <h2>Merci, votre demande est bien reçue.</h2>
-          <p>Un conseiller Dominus Habitat vous appelle sous 48 h ouvrées pour préparer votre étude gratuite.</p>
+          <p>Un conseiller Dominus Habitat vous rappelle sous 24 h ouvrées pour préparer votre étude gratuite.</p>
         </div>
       </div>
       <div class="rge">
@@ -969,11 +967,14 @@ html.cookie-open{overflow:hidden}
   form.addEventListener("change", function(e){
     if (e.target.name === "logement") document.getElementById("err-logement").textContent = "";
   });
-  // Étape 1 : un clic ou un appui tactile sur un type de logement passe directement à l'étape 2.
-  // Les clics clavier (flèches, espace : e.detail === 0) ne déclenchent pas l'avance ; « Continuer » reste disponible.
+  // Étape 1 : un clic ou un appui tactile sur un type de logement passe directement à l'étape 2
+  // (y compris sur l'option déjà cochée). Au clavier (flèches, espace), le choix change sans avancer :
+  // on ignore les « clics » qui suivent de près une touche. « Continuer » reste disponible.
+  var lastKey = 0;
+  form.addEventListener("keydown", function(){ lastKey = Date.now(); });
   form.addEventListener("click", function(e){
-    var r = e.target.closest("input[name=logement]");
-    if (!r || e.detail === 0 || current !== 1) return;
+    if (!e.target.closest("input[name=logement]") || current !== 1) return;
+    if (Date.now() - lastKey < 500) return;
     setTimeout(function(){ if (current === 1 && validateStep(1)) show(2); }, 180);
   });
 
@@ -1026,10 +1027,10 @@ html.cookie-open{overflow:hidden}
 
   // Déroulé : chaque étape apparaît (fondu + glissement) quand elle entre à l'écran,
   // avec 150 ms de décalage entre les étapes (délais dans le CSS).
-  var steps = document.querySelector("#deroule .steps");
+  var stepList = document.querySelector("#deroule .steps");
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (steps && "IntersectionObserver" in window && !reduce) {
-    steps.classList.add("reveal");
+  if (stepList && "IntersectionObserver" in window && !reduce) {
+    stepList.classList.add("reveal");
     var stepsObs = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (!entry.isIntersecting) return;
@@ -1037,7 +1038,7 @@ html.cookie-open{overflow:hidden}
         stepsObs.unobserve(entry.target);
       });
     }, { threshold: 0.25, rootMargin: "0px 0px -8% 0px" });
-    steps.querySelectorAll("li").forEach(function(li){ stepsObs.observe(li); });
+    stepList.querySelectorAll("li").forEach(function(li){ stepsObs.observe(li); });
   }
 
   // CTA mobile : masqué tant que le formulaire est visible
