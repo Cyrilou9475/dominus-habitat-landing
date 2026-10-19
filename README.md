@@ -30,6 +30,7 @@ Aperçu local : `python3 -m http.server` puis http://localhost:8000.
   - `+44 %` : cumul des hausses du TRVE électricité de février 2022 à février 2024 (≈ +4 %, +15 %, +10 %, +10 %), source CRE. À confirmer.
   - `20-25 %` des déperditions par les murs : ordre de grandeur ADEME.
   - `8 sur 10` Français préoccupés par leur facture : **chiffre à remplacer par un sondage précis et daté**, ou à retirer.
+- [ ] **Photos des isolants** (`assets/isolant-pse.webp`, `assets/isolant-laine.webp`) : images générées par IA (Canva), conservées en basse résolution (200 px agrandis à 900 px). À remplacer par des photos nettes d'au moins 900×900 px, **sous de nouveaux noms** de fichier (cache) ; le cadrage se règle avec `object-position` dans `.insulant>img`.
 - [ ] **Domaine** : `dominushabitat.com` (fichier `CNAME` pour GitHub Pages). DNS à configurer : 4 enregistrements A sur `@` vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, et un CNAME `www` vers `cyrilou9475.github.io`, en « DNS only » sur Cloudflare. Puis cocher « Enforce HTTPS » dans Settings → Pages.
 - [ ] **Zone desservie** : `areaServed` du JSON-LD vaut `Île-de-France` par défaut.
 - [ ] **Délai de rappel** : l'écran de confirmation promet un appel « sous 48 h ouvrées », à ajuster.
