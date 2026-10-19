@@ -376,19 +376,25 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 @media (max-width:760px){.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
 
 /* ---------- CTA mobile ---------- */
+/* ---------- Bandeau France Rénov' (obligatoire, fixe, non masquable) ---------- */
+:root{--renov-h:72px}
+.renov-banner{position:fixed;left:0;right:0;bottom:0;z-index:110;background:#fff;color:#000;border-top:1px solid #bdbdbd;box-shadow:0 -4px 16px rgba(0,0,0,.12);padding:10px 16px calc(10px + env(safe-area-inset-bottom));text-align:center;font-size:15px;line-height:1.4}
+.renov-banner p{margin:0 auto;max-width:1100px}
+.renov-banner a{color:#000;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+body{padding-bottom:var(--renov-h)}
 .mobile-cta{display:none}
 @media (max-width:900px){
-  .mobile-cta{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);border-top:1px solid var(--line);transition:transform .2s ease}
+  .mobile-cta{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:var(--renov-h);z-index:60;padding:10px 16px;background:rgba(255,255,255,.98);border-top:1px solid var(--line);transition:transform .2s ease}
   .mobile-cta .btn-gold{flex:1}
   .mobile-cta.is-hidden{transform:translateY(110%)}
-  body{padding-bottom:76px}
+  body{padding-bottom:calc(76px + var(--renov-h))}
 }
 
 /* ---------- Bandeau cookies ---------- */
 .link-btn{background:none;border:0;padding:0;font:inherit;color:var(--text);cursor:pointer;text-align:left}
 .link-btn:hover{text-decoration:underline}
-.cookie-banner{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(10,31,58,.68);overscroll-behavior:contain}
-.cookie-box{width:100%;max-width:500px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;color:var(--text);border-top:5px solid var(--gold);border-radius:12px;padding:clamp(24px,4vw,36px);box-shadow:0 30px 80px -20px rgba(5,15,30,.6)}
+.cookie-banner{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px 16px calc(16px + var(--renov-h));background:rgba(10,31,58,.68);overscroll-behavior:contain}
+.cookie-box{width:100%;max-width:500px;max-height:calc(100vh - 32px - var(--renov-h));overflow:auto;background:#fff;color:var(--text);border-top:5px solid var(--gold);border-radius:12px;padding:clamp(24px,4vw,36px);box-shadow:0 30px 80px -20px rgba(5,15,30,.6)}
 .cookie-box:focus{outline:none}
 .cookie-box .cookie-title{font:700 1.5rem/1.2 var(--serif);color:var(--ink);margin-bottom:.75rem}
 .cookie-box p{font-size:1rem;color:var(--text)}
@@ -848,6 +854,21 @@ html.cookie-open{overflow:hidden}
   <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
 </div>
 
+<div class="renov-banner" id="renov-banner" role="note" data-no-inert>
+  <p>Avant de vous engager, le service public vous informe gratuitement pour préparer et sécuriser votre projet : <a href="https://www.france-renov.gouv.fr" target="_blank" rel="noopener">www.france-renov.gouv.fr</a></p>
+</div>
+<script>
+/* Hauteur réelle du bandeau France Rénov' (varie selon le retour à la ligne) : sert à poser la barre CTA mobile au-dessus et à réserver la place en bas de page. */
+(function(){
+  var b = document.getElementById("renov-banner");
+  if (!b) return;
+  function set(){ document.documentElement.style.setProperty("--renov-h", Math.ceil(b.getBoundingClientRect().height) + "px"); }
+  set();
+  window.addEventListener("resize", set);
+  if ("ResizeObserver" in window) new ResizeObserver(set).observe(b);
+})();
+</script>
+
 <div class="cookie-banner" id="cookie-banner" hidden>
   <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
     <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
@@ -904,7 +925,7 @@ html.cookie-open{overflow:hidden}
   // Pas de fermeture par Échap ni par clic sur le fond.
   function setInert(on){
     Array.prototype.forEach.call(document.body.children, function(el){
-      if (el !== banner && el.tagName !== "SCRIPT") { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
+      if (el !== banner && el.tagName !== "SCRIPT" && !el.hasAttribute("data-no-inert")) { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
     });
   }
   function open(){
