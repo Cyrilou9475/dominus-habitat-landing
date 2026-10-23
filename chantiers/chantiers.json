@@ -175,8 +175,8 @@
         "duree": null,
         "annee": 2026
       },
-      "accord_client": false,
-      "publie": false,
+      "accord_client": true,
+      "publie": true,
       "photos": {
         "avant": [
           {
@@ -367,7 +367,7 @@
           }
         ]
       },
-      "_note": "Photos complètes. Reste à obtenir l'accord du client, puis accord_client et publie à true."
+      "_note": "Publié : accord du client reçu."
     }
   ]
 }
