@@ -26,8 +26,79 @@
       "accord_client": true,
       "publie": true,
       "photos": {
-        "avant": [],
-        "pendant": [],
+        "avant": [
+          {
+            "fichier": "avant-1-facade-rue.jpg",
+            "alt": "Façade sur rue avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi ancien fissuré",
+            "flou": [
+              [
+                0,
+                1780,
+                175,
+                160
+              ]
+            ],
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Rue"
+          },
+          {
+            "fichier": "avant-2-pignon-pac.jpg",
+            "alt": "Pignon avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi d'origine et pompe à chaleur installée",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          },
+          {
+            "fichier": "avant-3-arriere.jpg",
+            "alt": "Façade arrière avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi ancien avec reprises et fissures",
+            "focal": [
+              0.5,
+              0.42
+            ],
+            "vue": "Arrière"
+          }
+        ],
+        "pendant": [
+          {
+            "fichier": "pendant-1-facade-rue.jpg",
+            "alt": "Chantier d'isolation par l'extérieur en cours, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants fixés sur la façade",
+            "flou": [
+              [
+                70,
+                1355,
+                290,
+                70
+              ]
+            ],
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Rue"
+          },
+          {
+            "fichier": "pendant-2-pignon.jpg",
+            "alt": "Pose de l'isolant sur le pignon, maison individuelle dans le Nord (59) : panneaux isolants chevillés et début d'enduit",
+            "flou": [
+              [
+                70,
+                1355,
+                290,
+                70
+              ]
+            ],
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          }
+        ],
         "apres": [
           {
             "fichier": "apres-1-facade-rue.jpg",
@@ -80,9 +151,7 @@
           }
         ]
       },
-      "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées.",
-      "apres_seul": true,
-      "_apres_seul_doc": "Chantier photographié après travaux seulement : publié avec la mention « photos avant travaux non disponibles ». Dès que des photos avant / pendant existent, les ajouter et retirer apres_seul."
+      "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées."
     }
   ]
 }
