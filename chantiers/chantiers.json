@@ -178,52 +178,177 @@
       "accord_client": false,
       "publie": false,
       "photos": {
-        "avant": [],
-        "pendant": [
+        "avant": [
           {
-            "fichier": "pendant-1-pignon.jpg",
-            "alt": "Chantier d'isolation par l'extérieur en cours, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants sur le pignon",
-            "flou": [
-              [
-                60,
-                1080,
-                265,
-                55
-              ]
-            ],
+            "fichier": "avant-1-facade-rue.jpg",
+            "alt": "Façade sur rue avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi d'origine sali, porte d'entrée et fenêtres",
             "focal": [
               0.5,
               0.5
             ],
-            "vue": "Pignon"
-          },
-          {
-            "fichier": "pendant-2-rue.jpg",
-            "alt": "Pose de l'isolant sur la façade côté rue, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants chevillés",
+            "vue": "Rue",
             "flou": [
               [
-                60,
-                1080,
-                265,
-                55
+                61,
+                1369,
+                387,
+                84
+              ]
+            ]
+          },
+          {
+            "fichier": "avant-2-cote.jpg",
+            "alt": "Côté de la maison avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi ancien noirci par l'humidité",
+            "focal": [
+              0.55,
+              0.5
+            ],
+            "vue": "Côté",
+            "flou": [
+              [
+                61,
+                1866,
+                367,
+                101
               ],
               [
-                1425,
-                930,
-                80,
-                45
+                170,
+                1890,
+                340,
+                70
               ]
-            ],
+            ]
+          },
+          {
+            "fichier": "avant-3-annexe.jpg",
+            "alt": "Annexe avant isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit écaillé",
             "focal": [
-              0.62,
+              0.5,
+              0.5
+            ],
+            "vue": "Annexe",
+            "flou": [
+              [
+                61,
+                1369,
+                387,
+                84
+              ]
+            ]
+          },
+          {
+            "fichier": "avant-4-pignon.jpg",
+            "alt": "Pignon avant isolation par l'extérieur, maison individuelle dans le Nord (59) : crépi ancien et annexe à l'enduit dégradé",
+            "focal": [
+              0.55,
+              0.5
+            ],
+            "vue": "Pignon",
+            "flou": [
+              [
+                61,
+                1866,
+                367,
+                101
+              ]
+            ]
+          }
+        ],
+        "pendant": [
+          {
+            "fichier": "pendant-1-facade-rue.jpg",
+            "alt": "Chantier d'isolation par l'extérieur en cours, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants sur la façade",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Rue",
+            "flou": [
+              [
+                48,
+                1074,
+                304,
+                65
+              ],
+              [
+                1030,
+                280,
+                140,
+                130
+              ]
+            ]
+          },
+          {
+            "fichier": "pendant-2-vue-ensemble.jpg",
+            "alt": "Vue d'ensemble du chantier d'isolation par l'extérieur, maison individuelle dans le Nord (59) : échafaudage et isolant posé",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Vue d'ensemble",
+            "flou": [
+              [
+                48,
+                1074,
+                304,
+                65
+              ]
+            ]
+          },
+          {
+            "fichier": "pendant-3-rue.jpg",
+            "alt": "Chantier d'isolation par l'extérieur vu de la rue, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants",
+            "focal": [
+              0.6,
               0.55
             ],
-            "vue": "Rue"
+            "vue": "Depuis la rue",
+            "flou": [
+              [
+                48,
+                1074,
+                304,
+                65
+              ],
+              [
+                1420,
+                925,
+                95,
+                60
+              ]
+            ]
           }
         ],
         "apres": [
           {
-            "fichier": "apres-1-annexe.jpg",
+            "fichier": "apres-1-facade-rue.jpg",
+            "alt": "Façade sur rue après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair, porte d'entrée et fenêtres",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Rue"
+          },
+          {
+            "fichier": "apres-2-vue-ensemble.jpg",
+            "alt": "Vue d'ensemble de la maison après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Vue d'ensemble"
+          },
+          {
+            "fichier": "apres-3-arriere-annexe.jpg",
+            "alt": "Façade arrière et annexe après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Arrière"
+          },
+          {
+            "fichier": "apres-4-annexe.jpg",
             "alt": "Annexe isolée par l'extérieur après travaux, maison individuelle dans le Nord (59) : enduit gris clair et descente d'eaux pluviales",
             "focal": [
               0.5,
@@ -232,17 +357,17 @@
             "vue": "Annexe"
           },
           {
-            "fichier": "apres-2-pignon-grille.jpg",
-            "alt": "Façade après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair, fenêtres reprises et grille de ventilation",
+            "fichier": "apres-5-detail-grille.jpg",
+            "alt": "Détail après travaux, maison individuelle dans le Nord (59) : grille de ventilation et enduit gris clair",
             "focal": [
               0.5,
-              0.4
+              0.5
             ],
-            "vue": "Pignon"
+            "vue": "Détail"
           }
         ]
       },
-      "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true."
+      "_note": "Photos complètes. Reste à obtenir l'accord du client, puis accord_client et publie à true."
     }
   ]
 }
