@@ -673,7 +673,11 @@ def home_section(items):
 def update_index(index, items):
     """Section d'accueil, lien d'en-tête et de pied de page, script du carrousel : tout entre marqueurs."""
     section = home_section(items)
-    index = re.sub(r"<!-- chantiers:start -->.*?<!-- chantiers:end -->", "<!-- chantiers:start -->\n" + section + "\n<!-- chantiers:end -->", index, flags=re.S)
+    # La section se place entre « Avantages » et « Pourquoi isoler maintenant »
+    index = re.sub(r"<!-- chantiers:start -->.*?<!-- chantiers:end -->\n*", "", index, flags=re.S)
+    anchor = '<section class="alt" aria-labelledby="why-title">'
+    assert anchor in index
+    index = index.replace(anchor, "<!-- chantiers:start -->\n" + section + "\n<!-- chantiers:end -->\n\n" + anchor, 1)
     if 'class="header-link"' not in index:
         index = index.replace('<a class="btn btn-gold header-cta" href="#etude">', '<a class="header-link" href="/nos-chantiers/">Nos chantiers</a>\n    <a class="btn btn-gold header-cta" href="#etude">', 1)
     if 'href="/nos-chantiers/">Nos chantiers</a></li>' not in index:

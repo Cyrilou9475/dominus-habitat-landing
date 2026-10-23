@@ -368,6 +368,135 @@
         ]
       },
       "_note": "Publié : accord du client reçu."
+    },
+    {
+      "reference": "003",
+      "slug": "isolation-exterieure-nord-59-fourmies-003",
+      "departement": {
+        "code": "59",
+        "nom": "Nord"
+      },
+      "commune": "Fourmies",
+      "afficher_commune": false,
+      "type_logement": "Maison individuelle",
+      "travaux": "ite",
+      "titre_court": "Rénovation de façade",
+      "resume": "Isolation thermique par l'extérieur d'une maison individuelle : panneaux isolants fixés sur les façades puis enduit de finition clair, soubassement en briques conservé.",
+      "caracteristiques": {
+        "type_isolation": "Isolation thermique par l'extérieur (ITE) sous enduit",
+        "materiau": null,
+        "epaisseur": null,
+        "finition": "Enduit de finition clair",
+        "surface_m2": null,
+        "duree": null,
+        "annee": 2026
+      },
+      "accord_client": false,
+      "publie": false,
+      "photos": {
+        "avant": [],
+        "pendant": [
+          {
+            "fichier": "pendant-1-facade-rue.jpg",
+            "alt": "Chantier d'isolation par l'extérieur en cours, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants sur la façade côté rue",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Rue",
+            "flou": [
+              [
+                1115,
+                670,
+                240,
+                390
+              ]
+            ]
+          },
+          {
+            "fichier": "pendant-2-pignon.jpg",
+            "alt": "Pose de l'isolant sur la façade et le pignon, maison individuelle dans le Nord (59) : panneaux isolants chevillés et échafaudage",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon",
+            "flou": [
+              [
+                880,
+                890,
+                280,
+                520
+              ]
+            ]
+          },
+          {
+            "fichier": "pendant-3-angle.jpg",
+            "alt": "Chantier d'isolation par l'extérieur vu en angle, maison individuelle dans le Nord (59) : panneaux isolants et échafaudage",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Angle",
+            "flou": [
+              [
+                270,
+                1100,
+                240,
+                340
+              ]
+            ]
+          }
+        ],
+        "apres": [
+          {
+            "fichier": "apres-1-facade-rue.jpg",
+            "alt": "Façade sur rue après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit clair, fenêtres et volets",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Rue"
+          },
+          {
+            "fichier": "apres-2-rue-angle.jpg",
+            "alt": "Façade et pignon après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit clair et bardage conservé",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Angle"
+          },
+          {
+            "fichier": "apres-3-pignon.jpg",
+            "alt": "Pignon après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit clair et soubassement en briques conservé",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          },
+          {
+            "fichier": "apres-4-facade-cour.jpg",
+            "alt": "Autre façade après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit clair, porte et fenêtres",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Cour"
+          },
+          {
+            "fichier": "apres-5-detail.jpg",
+            "alt": "Détail du pignon après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit lisse et soubassement",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Détail"
+          }
+        ]
+      },
+      "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true."
     }
   ]
 }
