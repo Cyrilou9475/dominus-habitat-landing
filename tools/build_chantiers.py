@@ -137,7 +137,7 @@ def card(c, priority=False, heading="h3"):
         for i, p in enumerate(c["_pictures"]["apres"][:3]):
             label = p.get("vue") or "Après"  # étiquette courte (Rue, Arrière, Détail) ; la couleur or signale « après »
             tiles.append(f'<li class="step step-apres"><button type="button" class="step-open" data-label="{esc(label)}" aria-label="Agrandir : {esc(label)}">{picture(p, "(max-width:640px) 92vw, (max-width:900px) 60vw, 380px", priority and i == 0)}</button><span class="step-tag">{esc(label)}</span></li>')
-        note = '<p class="steps-note">Photos après travaux. Photos avant travaux non disponibles pour ce chantier.</p>'
+        note = ""
     else:
         for i, (step, label, _) in enumerate(STEPS):
             photos = c["_pictures"][step]
@@ -524,8 +524,6 @@ def page_fiche(index, c, others, out_root):
     crumbs = breadcrumb_html(crumbs_items)
 
     galleries = []
-    if c.get("apres_seul"):
-        galleries.append('<p class="steps-note steps-note-wide">Ce chantier a été photographié après travaux. Les photos avant travaux ne sont pas disponibles.</p>')
     for step, label, legend in STEPS:
         if c.get("apres_seul") and step != "apres":
             continue
@@ -564,7 +562,7 @@ def page_fiche(index, c, others, out_root):
 {apercu}
 <section class="fiche" aria-label="Photos du chantier">
   <div class="wrap" data-gallery data-chantier="{esc(c['slug'])}">
-    <p class="fiche-intro">{esc(c['type_logement'])}, {esc(c['titre_court'].lower())}. {"Façade terminée, photographiée sur le chantier à la fin des travaux." if c.get("apres_seul") else "Chaque étape est photographiée sur le chantier : l'état initial, la pose de l'isolant et la façade terminée."}</p>
+    <p class="fiche-intro">{esc(c['type_logement'])}, {esc(c['titre_court'].lower())}. {"" if c.get("apres_seul") else "Chaque étape est photographiée sur le chantier : l'état initial, la pose de l'isolant et la façade terminée."}</p>
     {''.join(galleries)}
   </div>
 </section>
