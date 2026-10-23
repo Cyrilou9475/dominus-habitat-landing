@@ -135,7 +135,7 @@ def card(c, priority=False, heading="h3"):
     if c.get("apres_seul"):
         # Trois vues après travaux (rue, arrière, détail) à la place des trois étapes, avec la mention
         for i, p in enumerate(c["_pictures"]["apres"][:3]):
-            label = f"Après · {p['vue']}" if p.get("vue") else "Après"
+            label = p.get("vue") or "Après"  # étiquette courte (Rue, Arrière, Détail) ; la couleur or signale « après »
             tiles.append(f'<li class="step step-apres"><button type="button" class="step-open" data-label="{esc(label)}" aria-label="Agrandir : {esc(label)}">{picture(p, "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 0)}</button><span class="step-tag">{esc(label)}</span></li>')
         note = '<p class="steps-note">Photos après travaux. Photos avant travaux non disponibles pour ce chantier.</p>'
     else:
