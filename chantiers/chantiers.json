@@ -152,6 +152,97 @@
         ]
       },
       "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées."
+    },
+    {
+      "reference": "002",
+      "slug": "isolation-exterieure-nord-59-fourmies-002",
+      "departement": {
+        "code": "59",
+        "nom": "Nord"
+      },
+      "commune": "Fourmies",
+      "afficher_commune": false,
+      "type_logement": "Maison individuelle",
+      "travaux": "ite",
+      "titre_court": "Rénovation de façade",
+      "resume": "Isolation thermique par l'extérieur d'une maison individuelle : panneaux isolants fixés sur les façades puis enduit de finition gris clair, y compris sur l'annexe.",
+      "caracteristiques": {
+        "type_isolation": "Isolation thermique par l'extérieur (ITE) sous enduit",
+        "materiau": null,
+        "epaisseur": null,
+        "finition": "Enduit de finition gris clair",
+        "surface_m2": null,
+        "duree": null,
+        "annee": 2026
+      },
+      "accord_client": false,
+      "publie": false,
+      "photos": {
+        "avant": [],
+        "pendant": [
+          {
+            "fichier": "pendant-1-pignon.jpg",
+            "alt": "Chantier d'isolation par l'extérieur en cours, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants sur le pignon",
+            "flou": [
+              [
+                60,
+                1080,
+                265,
+                55
+              ]
+            ],
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          },
+          {
+            "fichier": "pendant-2-rue.jpg",
+            "alt": "Pose de l'isolant sur la façade côté rue, maison individuelle dans le Nord (59) : échafaudage et panneaux isolants chevillés",
+            "flou": [
+              [
+                60,
+                1080,
+                265,
+                55
+              ],
+              [
+                1425,
+                930,
+                80,
+                45
+              ]
+            ],
+            "focal": [
+              0.62,
+              0.55
+            ],
+            "vue": "Rue"
+          }
+        ],
+        "apres": [
+          {
+            "fichier": "apres-1-annexe.jpg",
+            "alt": "Annexe isolée par l'extérieur après travaux, maison individuelle dans le Nord (59) : enduit gris clair et descente d'eaux pluviales",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Annexe"
+          },
+          {
+            "fichier": "apres-2-pignon-grille.jpg",
+            "alt": "Façade après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair, fenêtres reprises et grille de ventilation",
+            "focal": [
+              0.5,
+              0.4
+            ],
+            "vue": "Pignon"
+          }
+        ]
+      },
+      "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true."
     }
   ]
 }

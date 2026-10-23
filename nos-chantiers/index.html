@@ -545,7 +545,7 @@ html.cookie-open{overflow:hidden}
   <div class="wrap">
     <div class="liste-bar">
       
-      <p id="compteur" class="compteur" aria-live="polite">1 chantier</p>
+      <p id="compteur" class="compteur" aria-live="polite" hidden></p>
     </div>
     
     <div id="grille" class="chantier-grid"><article class="chantier-card" data-gallery data-chantier="isolation-exterieure-nord-59-fourmies-001" data-departement="59" data-travaux="ite">
@@ -905,7 +905,6 @@ html.cookie-open{overflow:hidden}
   function apply(push){
     var d = form.departement.value, t = form.travaux.value, n = 0;
     cards.forEach(function(c){ var ok = (!d || c.dataset.departement === d) && (!t || c.dataset.travaux === t); c.hidden = !ok; if (ok) n++; });
-    count.textContent = n + (n > 1 ? " chantiers" : " chantier");
     empty.hidden = n > 0;
     if (push){ var p = new URLSearchParams(); if (d) p.set("departement", d); if (t) p.set("travaux", t); history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p : "")); }
   }

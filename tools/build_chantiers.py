@@ -292,7 +292,6 @@ FILTERS_JS = r"""<script>
   function apply(push){
     var d = form.departement.value, t = form.travaux.value, n = 0;
     cards.forEach(function(c){ var ok = (!d || c.dataset.departement === d) && (!t || c.dataset.travaux === t); c.hidden = !ok; if (ok) n++; });
-    count.textContent = n + (n > 1 ? " chantiers" : " chantier");
     empty.hidden = n > 0;
     if (push){ var p = new URLSearchParams(); if (d) p.set("departement", d); if (t) p.set("travaux", t); history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p : "")); }
   }
@@ -494,7 +493,7 @@ def page_liste(index, items, out_dir, *, dept=None, page=1, pages_total=1, all_d
   <div class="wrap">
     <div class="liste-bar">
       {filtres}
-      <p id="compteur" class="compteur" aria-live="polite">{n} chantier{'s' if n > 1 else ''}</p>
+      <p id="compteur" class="compteur" aria-live="polite" hidden></p>
     </div>
     {dept_links}
     <div id="grille" class="chantier-grid">{grid}</div>
