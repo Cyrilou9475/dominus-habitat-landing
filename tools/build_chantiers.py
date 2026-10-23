@@ -136,12 +136,12 @@ def card(c, priority=False, heading="h3"):
         # Trois vues après travaux (rue, arrière, détail) à la place des trois étapes, avec la mention
         for i, p in enumerate(c["_pictures"]["apres"][:3]):
             label = p.get("vue") or "Après"  # étiquette courte (Rue, Arrière, Détail) ; la couleur or signale « après »
-            tiles.append(f'<li class="step step-apres"><button type="button" class="step-open" data-label="{esc(label)}" aria-label="Agrandir : {esc(label)}">{picture(p, "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 0)}</button><span class="step-tag">{esc(label)}</span></li>')
+            tiles.append(f'<li class="step step-apres"><button type="button" class="step-open" data-label="{esc(label)}" aria-label="Agrandir : {esc(label)}">{picture(p, "(max-width:640px) 92vw, (max-width:900px) 60vw, 380px", priority and i == 0)}</button><span class="step-tag">{esc(label)}</span></li>')
         note = '<p class="steps-note">Photos après travaux. Photos avant travaux non disponibles pour ce chantier.</p>'
     else:
         for i, (step, label, _) in enumerate(STEPS):
             photos = c["_pictures"][step]
-            pic = picture(photos[0], "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 2) if photos else placeholder(label)
+            pic = picture(photos[0], "(max-width:640px) 92vw, (max-width:900px) 60vw, 380px", priority and i == 2) if photos else placeholder(label)
             tiles.append(
                 f'<li class="step step-{step}"><button type="button" class="step-open" data-label="{label}" aria-label="Agrandir : {label}">{pic}</button>'
                 f'<span class="step-tag">{label}</span></li>'
@@ -410,6 +410,17 @@ def ld(obj):
     return f'<script type="application/ld+json">{json.dumps(obj, ensure_ascii=False)}</script>\n'
 
 
+def page_slim(crumbs, h1, sub):
+    """Titre compact (liste des chantiers) : les chantiers apparaissent tout de suite, sans défiler."""
+    return f"""<div class="page-slim">
+  <div class="wrap">
+    {crumbs}
+    <h1>{h1}</h1>
+    <p class="slim-sub">{esc(sub)}</p>
+  </div>
+</div>"""
+
+
 def page_hero(crumbs, kicker, h1, lede, cta=True):
     btn = f'<p class="hero-actions"><a class="btn btn-gold" href="/#etude" data-cta="hero">Demander mon étude gratuite{ARROW}</a></p>' if cta else ""
     return f"""<div class="roof-bottom">
@@ -460,7 +471,7 @@ def page_liste(index, items, out_dir, *, dept=None, page=1, pages_total=1, all_d
     canonical = SITE.rstrip("/") + base + (f"page/{page}/" if page > 1 else "")
     crumbs = breadcrumb_html(crumbs_items)
     opts_d = "".join(f'<option value="{d["code"]}">{esc(d["nom"])} ({d["code"]})</option>' for d in all_depts)
-    filtres = "" if dept else f"""<form id="filtres" class="filtres" aria-label="Filtrer les chantiers">
+    filtres = "" if (dept or len(all_depts) < 2) else f"""<form id="filtres" class="filtres" aria-label="Filtrer les chantiers">
       <div class="field"><label for="f-dep">Département</label><select id="f-dep" name="departement"><option value="">Tous</option>{opts_d}</select></div>
       <div class="field"><label for="f-tr">Type de travaux</label><select id="f-tr" name="travaux"><option value="">Tous</option>{''.join(f'<option value="{k}">{esc(v)}</option>' for k, v in TRAVAUX.items())}</select></div>
       <noscript><button type="submit" class="btn btn-line">Filtrer</button></noscript>
@@ -477,14 +488,14 @@ def page_liste(index, items, out_dir, *, dept=None, page=1, pages_total=1, all_d
     dept_links = ""
     if not dept and dept_pages:
         dept_links = '<p class="dept-links">Par département : ' + ", ".join(f'<a href="/nos-chantiers/{d["slug"]}/">{esc(d["nom"])} ({d["code"]})</a>' for d in dept_pages) + "</p>"
-    body = page_hero(crumbs, "Nos réalisations", h1, lede) + f"""
-<section class="chantiers-liste" aria-labelledby="liste-titre">
+    sub = REASSURANCE if not dept else lede
+    body = page_slim(crumbs, h1, sub) + f"""
+<section class="chantiers-liste liste-top" aria-label="Liste des chantiers">
   <div class="wrap">
-    <div class="liste-head">
-      <h2 id="liste-titre" class="h2-like">{esc(REASSURANCE)}</h2>
+    <div class="liste-bar">
+      {filtres}
       <p id="compteur" class="compteur" aria-live="polite">{n} chantier{'s' if n > 1 else ''}</p>
     </div>
-    {filtres}
     {dept_links}
     <div id="grille" class="chantier-grid">{grid}</div>
     <p id="vide" class="vide" {'hidden' if n else ''}>Aucun chantier ne correspond à ces critères pour le moment. <a href="{base}">Voir tous les chantiers</a> ou <a href="/#etude">demander votre étude gratuite</a>.</p>

@@ -396,6 +396,14 @@ html.cookie-open{overflow:hidden}
 .page-hero :focus-visible{outline-color:var(--gold)}
 .page-hero .hero-sub{max-width:62ch}
 .hero-actions{margin-top:1.6rem}.hero-actions.center{text-align:center;margin-top:2rem}
+.page-slim{background:var(--marine);color:var(--on-dark);padding:clamp(22px,3vw,34px) 0}
+.page-slim .crumbs{margin-bottom:.6rem}
+.page-slim h1{color:#fff;font-size:clamp(1.7rem,3vw,2.3rem);line-height:1.15;max-width:none}
+.page-slim .slim-sub{color:var(--on-dark-muted);margin:.5rem 0 0;max-width:70ch;font-size:1rem}
+.chantiers-liste.liste-top{padding:clamp(16px,2.4vw,28px) 0 clamp(48px,6vw,80px)}
+.liste-bar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-bottom:16px}
+.liste-bar:not(:has(.filtres)){justify-content:flex-start;margin-bottom:10px}
+.liste-bar .filtres{margin:0;padding:0;border:0;background:transparent}
 .crumbs{font-size:.92rem;margin-bottom:1.2rem}
 .crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem .5rem;padding:0;margin:0;color:var(--on-dark-muted)}
 .crumbs li+li::before{content:"/";margin-right:.5rem;opacity:.6}
@@ -403,15 +411,19 @@ html.cookie-open{overflow:hidden}
 .crumbs [aria-current]{color:var(--gold)}
 #realisations,.chantiers-liste,.fiche,.carac,.similaires,.lp-chantiers,.lp-args{padding:clamp(56px,8vw,96px) 0}
 .chantier-carousel{position:relative}
-.chantier-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*24px)/3);column-gap:24px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0;padding:4px 4px 12px;margin:-4px -4px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chantier-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;column-gap:24px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0;padding:4px 4px 12px;margin:-4px -4px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .chantier-track::-webkit-scrollbar{display:none}
 .chantier-track:focus-visible{outline:3px solid var(--marine);outline-offset:2px}
 .chantier-track>.chantier-card{scroll-snap-align:start}
-@media (max-width:1100px){.chantier-track{grid-auto-columns:calc((100% - 24px)/2)}}
-@media (max-width:760px){.chantier-track{grid-auto-columns:86%;column-gap:14px}}
-.chantier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-@media (max-width:1100px){.chantier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.chantier-grid{grid-template-columns:1fr}}
+@media (max-width:900px){.chantier-track{grid-auto-columns:92%;column-gap:14px}}
+.chantier-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.chantier-grid .chantier-steps,.chantier-track .chantier-steps{gap:12px;padding:14px 14px 0}
+.chantier-grid .step-tag,.chantier-track .step-tag{font-size:.85rem;padding:5px 12px}
+.chantier-grid .chantier-body,.chantier-track .chantier-body{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 24px;padding:16px 20px 20px}
+.chantier-grid .chantier-body h2,.chantier-track .chantier-body h3{flex:1 1 100%;font-size:1.4rem}
+.chantier-grid .chantier-place,.chantier-grid .chantier-kind,.chantier-track .chantier-place,.chantier-track .chantier-kind{margin:0}
+.chantier-grid .chantier-body .btn,.chantier-track .chantier-body .btn{margin-top:0;margin-left:auto}
+@media (max-width:640px){.chantier-grid{gap:20px}.chantier-grid .chantier-body .btn,.chantier-track .chantier-body .btn{margin-left:0}}
 .chantier-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(5,15,30,.25);transition:transform .2s ease,box-shadow .2s ease}
 .chantier-card:hover{transform:translateY(-2px);box-shadow:0 18px 40px -20px rgba(5,15,30,.35)}
 .chantier-card[hidden]{display:none}
@@ -504,6 +516,7 @@ html.cookie-open{overflow:hidden}
 @media (max-width:900px){.lp-args .benefits{grid-template-columns:1fr}}
 .lp-args .benefit{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px}
 .lp-args .benefit h3{margin-bottom:.5rem}
+@media (max-width:640px){.chantier-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chantier-steps>.step:first-child{grid-column:1/-1}.chantier-steps .step-tag::before{content:none!important}}
 @media (prefers-reduced-motion:reduce){.chantier-card,.btn-arrow{transition:none}.chantier-track{scroll-behavior:auto}}
 /* chantiers:end */
 </style>
