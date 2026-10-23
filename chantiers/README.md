@@ -18,6 +18,7 @@ python3 tools/build_chantiers.py && python3 tools/build_legal.py && python3 tool
 | `type_logement`, `travaux`, `titre_court` | Texte des cartes. `travaux` : `ite` (seule valeur pour l'instant) |
 | `resume` | Deux ou trois phrases en haut de la fiche |
 | `caracteristiques` | Ne renseigner que ce qui est connu : un champ `null` n'est pas affiché |
+| `apres_seul` | `true` pour un chantier photographié après travaux seulement : publié avec la mention « photos avant travaux non disponibles », 3 vues « après » (`vue` : Rue, Arrière, Détail) à la place des 3 étapes |
 | `accord_client` | Accord écrit du client pour publier les photos (oui / non) |
 | `publie` | Interrupteur de publication |
 | `photos.avant` / `pendant` / `apres` | Listes de photos : `fichier` (dans `sources/<slug>/`), `alt` (texte alternatif unique), `flou` (zones à flouter `[x, y, largeur, hauteur]` en pixels de l'original : numéro de maison, plaque, visage, boîte aux lettres), `focal` (point d'intérêt `[x, y]` entre 0 et 1 pour le recadrage 4:3) |

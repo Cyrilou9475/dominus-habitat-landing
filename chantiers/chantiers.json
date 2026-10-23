@@ -49,7 +49,8 @@
             "focal": [
               0.5,
               0.55
-            ]
+            ],
+            "vue": "Rue"
           },
           {
             "fichier": "apres-4-arriere.jpg",
@@ -57,7 +58,8 @@
             "focal": [
               0.5,
               0.42
-            ]
+            ],
+            "vue": "Arrière"
           },
           {
             "fichier": "apres-3-pignon-fenetre.jpg",
@@ -73,11 +75,14 @@
             "focal": [
               0.5,
               0.5
-            ]
+            ],
+            "vue": "Détail"
           }
         ]
       },
-      "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées."
+      "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées.",
+      "apres_seul": true,
+      "_apres_seul_doc": "Chantier photographié après travaux seulement : publié avec la mention « photos avant travaux non disponibles ». Dès que des photos avant / pendant existent, les ajouter et retirer apres_seul."
     }
   ]
 }

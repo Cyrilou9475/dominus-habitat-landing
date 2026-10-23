@@ -50,7 +50,8 @@ def load():
     for c in data["chantiers"]:
         missing = []
         for step, _, _ in STEPS:
-            if not c["photos"].get(step):
+            # apres_seul : chantier photographié après travaux seulement, publié avec une mention honnête
+            if not c["photos"].get(step) and not (c.get("apres_seul") and step != "apres"):
                 missing.append(f"photos « {step} »")
         if not c.get("accord_client"):
             missing.append("accord du client pour la publication")
@@ -98,7 +99,7 @@ def process_photo(c, step, n, photo, assets_dir):
         out.save(assets_dir / f"{base}-{w}.webp", quality=78, method=6)
         out.save(assets_dir / f"{base}-{w}.jpg", quality=82, optimize=True, progressive=True)
     rel = f"/assets/chantiers/{c['slug']}/{base}"
-    return {"base": rel, "widths": widths, "alt": photo["alt"], "step": step}
+    return {"base": rel, "widths": widths, "alt": photo["alt"], "step": step, "vue": photo.get("vue")}
 
 
 def picture(p, sizes, priority=False, cls=""):
@@ -130,17 +131,25 @@ ARROW = '<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill=
 def card(c, priority=False, heading="h3"):
     """Dossier de chantier : les trois étapes côte à côte, puis le texte et le bouton."""
     tiles = []
-    for i, (step, label, _) in enumerate(STEPS):
-        photos = c["_pictures"][step]
-        pic = picture(photos[0], "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 2) if photos else placeholder(label)
-        tiles.append(
-            f'<li class="step step-{step}"><button type="button" class="step-open" data-label="{label}" aria-label="Agrandir : {label}">{pic}</button>'
-            f'<span class="step-tag">{label}</span></li>'
-        )
+    note = ""
+    if c.get("apres_seul"):
+        # Trois vues après travaux (rue, arrière, détail) à la place des trois étapes, avec la mention
+        for i, p in enumerate(c["_pictures"]["apres"][:3]):
+            label = f"Après · {p['vue']}" if p.get("vue") else "Après"
+            tiles.append(f'<li class="step step-apres"><button type="button" class="step-open" data-label="{esc(label)}" aria-label="Agrandir : {esc(label)}">{picture(p, "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 0)}</button><span class="step-tag">{esc(label)}</span></li>')
+        note = '<p class="steps-note">Photos après travaux. Photos avant travaux non disponibles pour ce chantier.</p>'
+    else:
+        for i, (step, label, _) in enumerate(STEPS):
+            photos = c["_pictures"][step]
+            pic = picture(photos[0], "(max-width:760px) 28vw, (max-width:1200px) 15vw, 200px", priority and i == 2) if photos else placeholder(label)
+            tiles.append(
+                f'<li class="step step-{step}"><button type="button" class="step-open" data-label="{label}" aria-label="Agrandir : {label}">{pic}</button>'
+                f'<span class="step-tag">{label}</span></li>'
+            )
     apercu = '<span class="apercu-tag">Aperçu : non publié</span>' if not c["_publiable"] else ""
     return f"""<article class="chantier-card" data-gallery data-chantier="{esc(c['slug'])}" data-departement="{c['departement']['code']}" data-travaux="{esc(c['travaux'])}">
   {apercu}
-  <ol class="chantier-steps" aria-label="Avant, pendant, après">{''.join(tiles)}</ol>
+  <ol class="chantier-steps{' steps-apres-seul' if c.get('apres_seul') else ''}" aria-label="{'Après travaux' if c.get('apres_seul') else 'Avant, pendant, après'}">{''.join(tiles)}</ol>{note}
   <div class="chantier-body">
     <{heading}>{esc(c['travaux_label'])}</{heading}>
     <p class="chantier-place">{PIN}<span>{esc(c['lieu_long'])}</span></p>
@@ -502,7 +511,11 @@ def page_fiche(index, c, others, out_root):
     crumbs = breadcrumb_html(crumbs_items)
 
     galleries = []
+    if c.get("apres_seul"):
+        galleries.append('<p class="steps-note steps-note-wide">Ce chantier a été photographié après travaux. Les photos avant travaux ne sont pas disponibles.</p>')
     for step, label, legend in STEPS:
+        if c.get("apres_seul") and step != "apres":
+            continue
         pics = c["_pictures"][step]
         if pics:
             figs = "".join(f'<figure class="gal-item"><button type="button" class="step-open" data-label="{label} · photo {k + 1}" aria-label="Agrandir la photo {label.lower()} {k + 1}">{picture(p, "(max-width:760px) 100vw, (max-width:1200px) 50vw, 580px", priority=(step == "apres" and k == 0))}</button><figcaption>{esc(p["alt"])}</figcaption></figure>' for k, p in enumerate(pics))
@@ -538,7 +551,7 @@ def page_fiche(index, c, others, out_root):
 {apercu}
 <section class="fiche" aria-label="Photos du chantier">
   <div class="wrap" data-gallery data-chantier="{esc(c['slug'])}">
-    <p class="fiche-intro">{esc(c['type_logement'])}, {esc(c['titre_court'].lower())}. Chaque étape est photographiée sur le chantier : l'état initial, la pose de l'isolant et la façade terminée.</p>
+    <p class="fiche-intro">{esc(c['type_logement'])}, {esc(c['titre_court'].lower())}. {"Façade terminée, photographiée sur le chantier à la fin des travaux." if c.get("apres_seul") else "Chaque étape est photographiée sur le chantier : l'état initial, la pose de l'isolant et la façade terminée."}</p>
     {''.join(galleries)}
   </div>
 </section>
