@@ -173,7 +173,7 @@
         "finition": "Enduit de finition gris clair",
         "surface_m2": null,
         "duree": null,
-        "annee": 2026
+        "annee": null
       },
       "accord_client": true,
       "publie": true,
@@ -389,7 +389,7 @@
         "finition": "Enduit de finition clair",
         "surface_m2": null,
         "duree": null,
-        "annee": 2026
+        "annee": null
       },
       "accord_client": false,
       "publie": false,
@@ -497,6 +497,129 @@
         ]
       },
       "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true."
+    },
+    {
+      "reference": "004",
+      "slug": "isolation-exterieure-pas-de-calais-62-004",
+      "departement": {
+        "code": "62",
+        "nom": "Pas-de-Calais"
+      },
+      "commune": "Montreuil",
+      "afficher_commune": false,
+      "type_logement": "Maison",
+      "travaux": "ite",
+      "titre_court": "Rénovation de façade",
+      "resume": "Isolation thermique par l'extérieur d'une maison : panneaux isolants fixés sur les façades et le pignon, puis enduit de finition clair, menuiseries et pompes à chaleur conservées.",
+      "caracteristiques": {
+        "type_isolation": "Isolation thermique par l'extérieur (ITE) sous enduit",
+        "materiau": null,
+        "epaisseur": null,
+        "finition": "Enduit de finition clair",
+        "surface_m2": null,
+        "duree": null,
+        "annee": null
+      },
+      "accord_client": false,
+      "publie": false,
+      "photos": {
+        "avant": [],
+        "pendant": [
+          {
+            "fichier": "pendant-1-facade.jpg",
+            "alt": "Chantier d'isolation par l'extérieur en cours, maison dans le Pas-de-Calais (62) : panneaux isolants chevillés et échafaudage",
+            "focal": [
+              0.5,
+              0.4
+            ],
+            "vue": "Façade"
+          },
+          {
+            "fichier": "pendant-2-pignon.jpg",
+            "alt": "Pose des panneaux isolants sur le pignon, maison dans le Pas-de-Calais (62) : échafaudage et isolant gris",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          },
+          {
+            "fichier": "pendant-3-angle.jpg",
+            "alt": "Isolant posé sur le pignon, maison dans le Pas-de-Calais (62) : panneaux isolants et échafaudage",
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Angle"
+          },
+          {
+            "fichier": "pendant-4-enduit.jpg",
+            "alt": "Application de la sous-couche d'enduit sur l'isolant, maison dans le Pas-de-Calais (62) : échafaudage en place",
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Enduit"
+          },
+          {
+            "fichier": "pendant-5-long-pan.jpg",
+            "alt": "Long pan isolé avec sa sous-couche d'enduit, maison dans le Pas-de-Calais (62) : travaux en cours",
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Long pan"
+          }
+        ],
+        "apres": [
+          {
+            "fichier": "apres-1-facade.jpg",
+            "alt": "Façade après isolation par l'extérieur, maison dans le Pas-de-Calais (62) : enduit clair, fenêtre et porte-fenêtre",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Façade"
+          },
+          {
+            "fichier": "apres-2-pignon.jpg",
+            "alt": "Pignon après isolation par l'extérieur, maison dans le Pas-de-Calais (62) : enduit clair et pompes à chaleur",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Pignon"
+          },
+          {
+            "fichier": "apres-3-angle.jpg",
+            "alt": "Angle de la maison après isolation par l'extérieur, maison dans le Pas-de-Calais (62) : enduit clair et porte-fenêtre",
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Angle"
+          },
+          {
+            "fichier": "apres-4-entree.jpg",
+            "alt": "Entrée après isolation par l'extérieur, maison dans le Pas-de-Calais (62) : enduit clair et encadrements repris",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "vue": "Entrée"
+          },
+          {
+            "fichier": "apres-5-long-pan.jpg",
+            "alt": "Long pan après isolation par l'extérieur, maison dans le Pas-de-Calais (62) : enduit clair et menuiseries blanches",
+            "focal": [
+              0.5,
+              0.45
+            ],
+            "vue": "Long pan"
+          }
+        ]
+      },
+      "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true. Chantier 003 (Nord) laissé de côté à la demande."
     }
   ]
 }
