@@ -28,8 +28,8 @@ csp = "; ".join([
     # connect.facebook.net : Pixel Meta, chargé uniquement après consentement
     # www.googletagmanager.com : gtag (GA4 + Google Ads), chargé uniquement après consentement
     "script-src 'self' https://connect.facebook.net https://www.googletagmanager.com " + " ".join(sorted(set(scripts))),
-    "style-src 'self' https://fonts.googleapis.com " + " ".join(sorted(set(styles))),
-    "font-src https://fonts.gstatic.com",
+    "style-src 'self' " + " ".join(sorted(set(styles))),
+    "font-src 'self'",
     "img-src 'self' data: https://www.facebook.com https://www.googletagmanager.com https://*.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://www.google.fr",
     # crm.dominusconsultancy.com : envoi des demandes d'étude au CRM Dominus (source « Formulaire web »)
     "connect-src 'self' https://www.facebook.com https://connect.facebook.net https://crm.dominusconsultancy.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://googleads.g.doubleclick.net https://www.google.com",

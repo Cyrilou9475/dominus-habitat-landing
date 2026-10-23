@@ -134,9 +134,8 @@ for slug, page in PAGES.items():
 <meta name="theme-color" content="#164174">
 <meta name="color-scheme" content="light">
 <link rel="icon" type="image/png" href="assets/logo-monogramme.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Jost:wght@400;500;600&display=swap">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/source-serif-4-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jost-latin.woff2">
 <!-- Généré par tools/build_legal.py : modifier le script, pas ce fichier. -->
 {style}
 </head>

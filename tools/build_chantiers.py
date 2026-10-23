@@ -350,9 +350,8 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
 <meta property="og:image" content="{og}">
 <meta name="twitter:card" content="{'summary_large_image' if og_image else 'summary'}">
 <link rel="icon" type="image/png" href="/assets/logo-monogramme.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Jost:wght@400;500;600&display=swap">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/source-serif-4-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/jost-latin.woff2">
 {extra_head}<!-- Généré par tools/build_chantiers.py : modifier le script ou chantiers/chantiers.json, pas ce fichier. -->
 {style}
 </head>
