@@ -106,6 +106,7 @@ footer = block(index, r'<footer class="site-footer">.*?</footer>')
 mobile = block(index, r'<div class="mobile-cta".*?</a>\s*</div>')
 renov = block(index, r'<div class="renov-banner".*?</script>')
 cookies = block(index, r'<div class="cookie-banner".*?</script>')
+aides = localize(block(index, r'<!-- aides:start -->.*?<!-- aides:end -->'), '')
 
 for slug, page in PAGES.items():
     sections = "".join(
@@ -168,6 +169,8 @@ for slug, page in PAGES.items():
 {localize(mobile, slug)}
 
 {renov}
+
+{aides}
 
 {cookies}
 </body>
