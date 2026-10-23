@@ -52,20 +52,16 @@
             ]
           },
           {
-            "fichier": "apres-2-pignon-garage.jpg",
-            "alt": "Pignon et entrée de garage après isolation par l'extérieur, maison individuelle dans le Nord (59)",
+            "fichier": "apres-4-arriere.jpg",
+            "alt": "Façade arrière après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair sur deux niveaux",
             "focal": [
               0.5,
-              0.45
+              0.42
             ]
           },
           {
             "fichier": "apres-3-pignon-fenetre.jpg",
-            "alt": "Détail du pignon isolé : appui de fenêtre et grille de ventilation conservée, maison individuelle dans le Nord (59)",
-            "focal": [
-              0.5,
-              0.5
-            ],
+            "alt": "Pignon isolé après travaux : appui de fenêtre repris et grille de ventilation conservée, maison individuelle dans le Nord (59)",
             "flou": [
               [
                 60,
@@ -73,18 +69,15 @@
                 210,
                 58
               ]
-            ]
-          },
-          {
-            "fichier": "apres-4-arriere.jpg",
-            "alt": "Façade arrière après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair sur deux niveaux",
+            ],
             "focal": [
               0.5,
-              0.42
+              0.5
             ]
           }
         ]
-      }
+      },
+      "_selection": "Photos écartées : apres-2-pignon-garage.jpg (sacs poubelle et garage encombré au premier plan). Les photos écartées restent dans sources/, non publiées."
     }
   ]
 }
