@@ -37,8 +37,8 @@ PAGES = {
         "title": "Politique de confidentialité",
         "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
-            ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation)."),
-            ("Finalité", "Recontacter le prospect pour établir un devis ITE"),
+            ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation). Avec votre demande sont enregistrés la page d’origine et, le cas échéant, les paramètres de la campagne publicitaire qui vous a amené sur le site (utm, gclid, fbclid)."),
+            ("Finalité", "Recontacter le prospect pour établir un devis ITE ; mesurer l’efficacité des campagnes publicitaires"),
             ("Base légale", "Intérêt légitime"),
             ("Conservation", "3 ans"),
             ("Destinataires", "Équipe Dominus Habitat et sociétés partenaires intervenant pour la réalisation du devis et des travaux d’isolation."),
@@ -48,14 +48,14 @@ PAGES = {
         ],
         "sections": [
             ("stockage", "Stockage des données", [
-                "Les données du formulaire sont transmises par email à " + EMAIL + ". Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
+                "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et à " + EMAIL + ". Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
                 "Les serveurs de Google sont situés dans l’Union européenne et aux États-Unis. Google adhère au " + GOOGLE_DPF + " et agit comme sous-traitant dans le cadre de l’accord de traitement des données (DPA) Google Workspace.",
-                "Aucune base de données n’est utilisée sur le site.",
+                "Le site lui-même ne stocke aucune donnée : il transmet la demande à notre CRM.",
             ]),
             ("cookies", "Cookies", [
-                "Ce site utilise le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires. Il n’est déposé qu’après votre consentement.",
+                "Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude). Le mode de consentement de Google (Consent Mode v2) est réglé sur « refusé » par défaut.",
                 'Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
-                "Meta adhère au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
+                "Meta et Google adhèrent au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
             ]),
             ("securite", "Mesures de sécurité", [
                 "Transmission chiffrée (HTTPS), accès limité aux personnes habilitées, aucun stockage sur le site.",
@@ -66,11 +66,6 @@ PAGES = {
 
 EXTRA_CSS = """
 /* ---------- Pages légales ---------- */
-.page-hero{background:var(--marine);color:var(--on-dark);padding:clamp(48px,7vw,80px) 0 calc(var(--cut) + clamp(32px,4vw,48px))}
-.page-hero h1{color:#fff;font-size:clamp(2.2rem,4.6vw,3.4rem)}
-.page-hero .kicker a{color:var(--gold);text-decoration:none}
-.page-hero .kicker a:hover{text-decoration:underline}
-.page-hero :focus-visible{outline-color:var(--gold)}
 .legal{padding:clamp(48px,7vw,88px) 0}
 .legal-list{max-width:820px;margin:0;border-top:2px solid var(--marine)}
 .legal-list div{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:8px 32px;padding:20px 0;border-bottom:1px solid var(--line)}

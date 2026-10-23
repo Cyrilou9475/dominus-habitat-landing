@@ -14,15 +14,33 @@ Un seul `index.html` (CSS et JS inline, sans framework ni build), plus les logos
 | `_headers` | En-têtes HTTP de sécurité et de cache (format Netlify / Cloudflare Pages) |
 | `tools/build_headers.py` | Régénère `_headers` avec les empreintes CSP des blocs inline |
 | `tools/build_legal.py` | Régénère les pages légales à partir du header, du footer et des styles d'`index.html` |
-| `robots.txt`, `sitemap.xml` | SEO |
+| `chantiers/chantiers.json`, `chantiers/sources/<slug>/` | Données et photos d'origine de la rubrique « Nos chantiers » (voir `chantiers/README.md`) |
+| `tools/build_chantiers.py` | **Génère** la rubrique : photos optimisées (`assets/chantiers/`), `nos-chantiers/`, fiches, pages de département, `lp/isolation-exterieure/`, section d'accueil, `sitemap.xml`. Modifier le script ou les données, pas les pages générées |
+| `robots.txt`, `sitemap.xml` | SEO (`sitemap.xml` est généré par `tools/build_chantiers.py`) |
 
 Aperçu local : `python3 -m http.server` puis http://localhost:8000.
+
+## Rubrique « Nos chantiers »
+
+Ajouter un chantier = une entrée dans `chantiers/chantiers.json` + ses photos dans `chantiers/sources/<slug>/`, puis :
+
+```
+python3 tools/build_chantiers.py && python3 tools/build_legal.py && python3 tools/build_headers.py
+```
+
+Rien n'est publié sans les trois étapes (avant, pendant, après), l'accord écrit du client et `publie: true`. Le script liste ce qui manque.
+Maquette locale avec les chantiers non publiés : `python3 tools/build_chantiers.py --apercu /tmp/apercu` (ne jamais mettre en ligne).
+
+Mesure et envoi des demandes : bloc `DH_CONFIG` dans le script `<!-- mesure:start -->` d'`index.html` (adresse de la source « Formulaire web » du CRM,
+identifiants GA4 et Google Ads). Rien ne se déclenche avant le consentement (Consent Mode v2 refusé par défaut). Test A/B : `?v=b` sur la page publicitaire.
 
 ## À remplacer avant mise en ligne
 
 - [ ] **Téléphone** : la landing n'affiche plus aucun numéro (contact par formulaire et contact@dominushabitat.com). Seul le téléphone des mentions légales reste `[À COMPLÉTER]`, dans `tools/build_legal.py`.
 - [ ] **Pixel Meta** : remplacer `[PIXEL_ID]` dans le script de consentement d'`index.html`, puis lancer `python3 tools/build_legal.py && python3 tools/build_headers.py`. Tant que l'ID n'est pas renseigné, le pixel ne se charge pas. Dans le Gestionnaire d'événements Meta, laisser la « correspondance avancée automatique » désactivée : sinon le pixel lit les champs du formulaire (nom, téléphone), ce que la politique de confidentialité exclut.
-- [ ] **Envoi du formulaire** : voir le `TODO` dans le script de `index.html` (fonction `submit`). Aujourd'hui, la page affiche la confirmation sans rien envoyer. À prévoir côté serveur : revalidation des champs, anti-spam (le honeypot `website` est déjà en place, à compléter par du rate limiting ou Turnstile/hCaptcha), HTTPS, aucune clé API dans le HTML. Ajouter le domaine de l'endpoint dans `connect-src` (`tools/build_headers.py`).
+- [ ] **Envoi du formulaire** : renseigner `DH_CONFIG.leadEndpoint` (adresse de la source « Formulaire web » du CRM Dominus) dans `index.html`, puis relancer les trois scripts. Tant qu'elle est vide, la page affiche la confirmation sans rien envoyer (message dans la console). Le CRM revalide, dédoublonne et limite le débit ; le honeypot `website` reste côté page.
+- [ ] **Mesure** : `DH_CONFIG.ga4`, `DH_CONFIG.adsId`, `DH_CONFIG.adsLabel` ; `adsEnhanced` seulement après validation de la politique de confidentialité. API de conversions Meta : à brancher côté CRM (jeton Meta nécessaire).
+- [ ] **Nos chantiers** : photos AVANT et PENDANT du chantier de Fourmies (59), accord écrit du client, caractéristiques connues (isolant, épaisseur, surface, durée) ; preuves de certification (RGE, Qualibat, décennale) pour activer le bloc de confiance (`CERTIFICATIONS` dans `tools/build_chantiers.py`). Désactiver le filigrane « Galaxy S26+ » de l'appareil photo pour les prochaines prises.
 - [ ] **Avis clients** : les 3 témoignages sont fictifs. Les remplacer par de vrais avis (avec accord écrit) ou un widget d'avis vérifiés. Publier de faux avis est une pratique commerciale trompeuse.
 - [ ] **Photos avant / après** : les deux illustrations SVG du comparateur sont des placeholders. Les remplacer par deux photos WebP au même cadrage (1200×900), avec `width`/`height`, `loading="lazy"` et un `alt` descriptif (exemple en commentaire dans le code).
 - [ ] **Pages légales** : contenu renseigné (Dominus Consultancy FZCO). Reste le téléphone `[À COMPLÉTER]` des mentions légales, dans `tools/build_legal.py`.

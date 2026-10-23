@@ -34,7 +34,7 @@
   "logo": "https://dominushabitat.com/assets/logo-dominus-habitat.png",
   "image": "https://dominushabitat.com/assets/logo-dominus-habitat.png",
   "email": "contact@dominushabitat.com",
-  "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
+  "areaServed": [{ "@type": "AdministrativeArea", "name": "Nord" }, { "@type": "AdministrativeArea", "name": "Hauts-de-France" }],
   "address": { "@type": "PostalAddress", "addressCountry": "FR" }
 }
 </script>
@@ -393,6 +393,125 @@ html.cookie-open{overflow:hidden}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+/* chantiers:start ---------- Nos chantiers (généré avec tools/build_chantiers.py) ---------- */
+.header-link{margin-left:auto;font-weight:500;color:var(--marine);text-decoration:none;padding:10px 4px;white-space:nowrap}
+.header-link:hover,.header-link[aria-current=page]{text-decoration:underline;text-underline-offset:4px}
+.header-link+.header-cta{margin-left:0}
+@media (max-width:420px){.header-link{font-size:.9rem}}
+.page-hero{background:var(--marine);color:var(--on-dark);padding:clamp(48px,7vw,80px) 0 calc(var(--cut) + clamp(32px,4vw,48px))}
+.page-hero h1{color:#fff;font-size:clamp(2.1rem,4.4vw,3.3rem);max-width:22ch}
+.page-hero .kicker a{color:var(--gold);text-decoration:none}
+.page-hero .kicker a:hover{text-decoration:underline}
+.page-hero :focus-visible{outline-color:var(--gold)}
+.page-hero .hero-sub{max-width:62ch}
+.hero-actions{margin-top:1.6rem}.hero-actions.center{text-align:center;margin-top:2rem}
+.crumbs{font-size:.92rem;margin-bottom:1.2rem}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem .5rem;padding:0;margin:0;color:var(--on-dark-muted)}
+.crumbs li+li::before{content:"/";margin-right:.5rem;opacity:.6}
+.crumbs a{color:#fff;text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.crumbs [aria-current]{color:var(--gold)}
+#realisations,.chantiers-liste,.fiche,.carac,.similaires,.lp-chantiers,.lp-args{padding:clamp(56px,8vw,96px) 0}
+.chantier-carousel{position:relative}
+.chantier-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*24px)/3);column-gap:24px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0;padding:4px 4px 12px;margin:-4px -4px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chantier-track::-webkit-scrollbar{display:none}
+.chantier-track:focus-visible{outline:3px solid var(--marine);outline-offset:2px}
+.chantier-track>.chantier-card{scroll-snap-align:start}
+@media (max-width:1100px){.chantier-track{grid-auto-columns:calc((100% - 24px)/2)}}
+@media (max-width:760px){.chantier-track{grid-auto-columns:86%;column-gap:14px}}
+.chantier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:1100px){.chantier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.chantier-grid{grid-template-columns:1fr}}
+.chantier-card{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(5,15,30,.25);transition:transform .2s ease,box-shadow .2s ease}
+.chantier-card:hover{transform:translateY(-2px);box-shadow:0 18px 40px -20px rgba(5,15,30,.35)}
+.chantier-card[hidden]{display:none}
+.apercu-tag,.apercu-band{background:#fff3d6;color:var(--ink);font-weight:600;font-size:.82rem;padding:6px 12px;text-align:center}
+.apercu-band{margin:0;padding:12px var(--gutter);border-bottom:1px solid #ecd9a6}
+.chantier-steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:10px 10px 0;margin:0;position:relative;counter-reset:etape}
+.chantier-steps::after{content:"";position:absolute;left:14%;right:14%;top:calc(10px + 100% * .75 * .33 - 1px);display:none}
+.step{position:relative;display:flex;flex-direction:column;gap:6px}
+.step-open{display:block;width:100%;padding:0;border:0;background:var(--ivory);border-radius:8px;overflow:hidden;cursor:zoom-in;aspect-ratio:4/3}
+.step-open:focus-visible{outline:3px solid var(--marine);outline-offset:2px}
+.step-open picture,.step-open img{display:block;width:100%;height:100%;object-fit:cover}
+.step-tag{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--ink);color:#fff;line-height:1.3}
+.step-pendant .step-tag,.step-tag-pendant{background:var(--marine)}
+.step-apres .step-tag,.step-tag-apres{background:var(--gold);color:var(--ink)}
+.step+.step .step-tag::before{content:"→";font-weight:500;letter-spacing:0;margin-left:-6px;margin-right:2px;opacity:.9}
+.step+.step .step-tag{margin-left:0}
+.step-missing{display:grid;place-items:center;width:100%;height:100%;aspect-ratio:4/3;background:repeating-linear-gradient(135deg,var(--ivory) 0 10px,#eee8db 10px 20px);color:var(--muted);font-size:.82rem;font-weight:500;border-radius:8px;text-align:center;padding:8px}
+.step-missing-wide{aspect-ratio:auto;padding:28px;border:1px dashed var(--line)}
+.chantier-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.chantier-body h2,.chantier-body h3{font-size:1.15rem;line-height:1.25}
+.chantier-place{display:flex;align-items:center;gap:6px;color:var(--marine);font-weight:500;font-size:.95rem;margin:0}
+.chantier-place .pin{flex-shrink:0;color:var(--gold-dark)}
+.chantier-kind{color:var(--muted);font-size:.95rem;margin:0 0 .6rem}
+.chantier-body .btn{margin-top:auto;align-self:flex-start;min-height:44px}
+.carousel-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}
+.carousel-nav[hidden]{display:none}
+.carousel-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;color:var(--marine);display:grid;place-items:center;cursor:pointer}
+.carousel-btn:hover{border-color:var(--marine)}
+.carousel-dots{display:flex;gap:6px}
+.carousel-dots [role=tab]{width:12px;height:12px;padding:0;border-radius:50%;border:0;background:var(--line);cursor:pointer;position:relative}
+.carousel-dots [role=tab]::after{content:"";position:absolute;inset:-16px}
+.carousel-dots [aria-selected=true]{background:var(--gold-dark)}
+.more{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-top:28px}
+.reassurance{color:var(--muted)}
+.lightbox{border:0;padding:0;background:#fff;color:var(--text);border-radius:12px;width:min(1100px,calc(100vw - 24px));max-height:calc(100vh - 24px);box-shadow:0 30px 80px -20px rgba(5,15,30,.6)}
+.lightbox::backdrop{background:rgba(10,31,58,.78)}
+.lightbox-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.lightbox-title{font-weight:600;margin:0}
+.lightbox-close{width:44px;height:44px;border:0;background:var(--ivory);border-radius:50%;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--ink)}
+.lightbox-figure{margin:0;padding:12px 16px 0}
+.lightbox-figure picture,.lightbox-figure img{display:block;width:100%;height:auto;max-height:70vh;object-fit:contain;border-radius:8px;background:var(--ivory)}
+.lightbox-figure figcaption{font-size:.9rem;color:var(--muted);margin-top:8px}
+.lightbox-nav{display:flex;justify-content:space-between;gap:12px;padding:12px 16px 16px}
+.lightbox-nav .btn{min-height:44px}
+.liste-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:20px}
+.compteur{color:var(--muted);font-weight:500;margin:0}
+.filtres{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--ivory);margin-bottom:24px}
+.filtres .field{margin:0;min-width:200px}
+.filtres select{width:100%;min-height:48px;padding:10px 14px;border:2px solid var(--line);border-radius:var(--radius);font:inherit;background:#fff;color:var(--text)}
+.filtres select:focus-visible{outline:none;border-color:var(--marine);box-shadow:0 0 0 3px rgba(22,65,116,.35)}
+.dept-links{color:var(--muted);margin:0 0 20px}.dept-links a{color:var(--marine)}
+.vide{padding:32px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted)}
+.vide a{color:var(--marine)}
+.pagination ol{list-style:none;display:flex;justify-content:center;gap:8px;padding:0;margin:32px 0 0}
+.pagination a{display:grid;place-items:center;min-width:44px;min-height:44px;border:2px solid var(--line);border-radius:var(--radius);text-decoration:none;color:var(--marine);font-weight:600}
+.pagination a[aria-current]{background:var(--marine);border-color:var(--marine);color:#fff}
+.fiche-intro{color:var(--muted);max-width:68ch;margin-bottom:2rem}
+.gal{margin-top:2.4rem;border:0;box-shadow:none;background:transparent;border-radius:0;overflow:visible}
+.gal:hover{transform:none;box-shadow:none}
+.gal h2{display:flex;align-items:center;gap:12px;font-size:clamp(1.3rem,2vw,1.6rem);margin-bottom:1rem}
+.gal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.gal-grid{grid-template-columns:1fr}}
+.gal-item{margin:0}
+.gal-item .step-open{border-radius:10px;border:1px solid var(--line)}
+.gal-item figcaption{font-size:.9rem;color:var(--muted);margin-top:8px}
+.carac{background:var(--ivory)}
+.carac-list{max-width:820px;margin:1.25rem 0 0;border-top:2px solid var(--marine)}
+.carac-list div{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:8px 32px;padding:16px 0;border-bottom:1px solid var(--line)}
+.carac-list dt{font-weight:600;color:var(--ink)}.carac-list dd{margin:0}
+@media (max-width:640px){.carac-list div{grid-template-columns:1fr}}
+.chantier-cta{background:var(--marine);color:var(--on-dark);text-align:center;padding:clamp(56px,7vw,88px) 0}
+.chantier-cta h2{color:#fff}.chantier-cta p{max-width:52ch;margin:1rem auto 1.6rem}
+.chantier-cta :focus-visible{outline-color:var(--gold)}
+.lp-hero{padding-bottom:calc(var(--cut) + clamp(32px,4vw,56px))}
+.lp-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:900px){.lp-grid{grid-template-columns:1fr}}
+.lp-form .field{margin-top:.9rem}
+.choices-inline{border:0;padding:0;margin:1rem 0 0}
+.choices-inline legend{font-weight:500;font-size:.96rem;margin-bottom:6px;padding:0}
+.choices-inline label{display:inline-flex;align-items:center;gap:8px;margin:4px 16px 4px 0;min-height:44px;font-weight:500}
+.choices-inline input{width:22px;height:22px;accent-color:var(--marine)}
+.consent-check{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted);margin:1rem 0}
+.consent-check input{width:22px;height:22px;flex-shrink:0;accent-color:var(--marine);margin-top:1px}
+.consent-check a{color:var(--marine)}
+.btn-block{width:100%;margin-top:.6rem}
+.lp-args .benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:2rem}
+@media (max-width:900px){.lp-args .benefits{grid-template-columns:1fr}}
+.lp-args .benefit{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:24px}
+.lp-args .benefit h3{margin-bottom:.5rem}
+@media (prefers-reduced-motion:reduce){.chantier-card,.btn-arrow{transition:none}.chantier-track{scroll-behavior:auto}}
+/* chantiers:end */
 </style>
 </head>
 <body>
@@ -404,6 +523,7 @@ html.cookie-open{overflow:hidden}
       <img src="assets/logo-monogramme.png" width="240" height="183" alt="">
       <span class="brand-name"><b>DOMINUS</b><span>HABITAT</span></span>
     </a>
+    <a class="header-link" href="/nos-chantiers/">Nos chantiers</a>
     <a class="btn btn-gold header-cta" href="#etude">Étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a>
   </div>
 </header>
@@ -499,10 +619,12 @@ html.cookie-open{overflow:hidden}
               <label for="website">Ne pas remplir ce champ</label>
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
+            <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="page_origine"><input type="hidden" name="variante">
             <div class="step-actions">
               <button type="button" class="btn btn-line" data-prev>Retour</button>
               <button type="submit" class="btn btn-gold">Recevoir mon étude</button>
             </div>
+            <p class="err" id="err-envoi" role="alert"></p>
             <p class="consent">En envoyant ce formulaire, vous acceptez d'être recontacté par Dominus Habitat au sujet de votre projet. Vos données ne sont ni vendues ni cédées. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
           </fieldset>
           <ul class="trust">
@@ -735,6 +857,10 @@ html.cookie-open{overflow:hidden}
   </div>
 </section>
 
+<!-- chantiers:start -->
+
+<!-- chantiers:end -->
+
 <section id="avis" aria-labelledby="avis-title">
   <div class="wrap">
     <div class="section-head measure">
@@ -809,6 +935,7 @@ html.cookie-open{overflow:hidden}
           <li><a href="#deroule">Déroulé</a></li>
           <li><a href="#avis">Avis</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="/nos-chantiers/">Nos chantiers</a></li>
         </ul>
       </div>
       <div>
@@ -834,10 +961,108 @@ html.cookie-open{overflow:hidden}
   <a class="btn btn-gold" href="#etude">Demander mon étude gratuite</a>
 </div>
 
+<!-- mesure:start -->
+<script>
+/* Mesure (GA4, Google Ads, Pixel Meta via le bandeau) et envoi des demandes au CRM.
+   Rien ne se déclenche avant le consentement : Consent Mode v2 « refusé » par défaut, gtag chargé seulement après « Accepter ». */
+(function(){
+  "use strict";
+  var CFG = window.DH_CONFIG = {
+    leadEndpoint: "",   // TODO : adresse de la source « Formulaire web » du CRM Dominus (Sources > Formulaire web), ex. https://crm.dominusconsultancy.com/api/sources/xxx/yyy
+    ga4: "",            // TODO : identifiant GA4, ex. G-XXXXXXXXXX
+    adsId: "",          // TODO : identifiant Google Ads, ex. AW-XXXXXXXXX
+    adsLabel: "",       // TODO : étiquette de la conversion « Lead »
+    adsEnhanced: false  // conversions améliorées (téléphone haché par Google) : à activer après validation de la politique de confidentialité
+  };
+  var ATTR_KEY = "dh-attribution", ATTR = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
+  var granted = false, loaded = false, viewed = false;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+  gtag("consent", "default", { ad_storage: "denied", analytics_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
+  gtag("js", new Date());
+
+  // Attribution : paramètres publicitaires de l'arrivée sur le site et page d'origine, gardés le temps de la session
+  function attribution(){
+    var saved = null;
+    try { saved = JSON.parse(sessionStorage.getItem(ATTR_KEY)); } catch (e) {}
+    var q = new URLSearchParams(location.search), fresh = {}, has = false;
+    ATTR.forEach(function(k){ var v = q.get(k); if (v){ fresh[k] = v.slice(0, 200); has = true; } });
+    var out = saved || {};
+    if (has) ATTR.forEach(function(k){ if (fresh[k]) out[k] = fresh[k]; });
+    if (!out.page_origine) out.page_origine = location.pathname + location.search;
+    try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(out)); } catch (e) {}
+    return out;
+  }
+  var attr = attribution();
+  var v = new URLSearchParams(location.search).get("v");
+  window.DH_VARIANTE = v === "b" ? "b" : "a";
+  // Test A/B : ?v=b remplace les textes marqués data-ab (titre, bouton) ; la variante accompagne chaque événement et le lead
+  if (window.DH_VARIANTE === "b") document.querySelectorAll("[data-ab]").forEach(function(el){
+    var t = el.getAttribute("data-b"); if (!t) return;
+    var arrow = el.querySelector("svg"); el.textContent = t; if (arrow) el.appendChild(arrow);
+  });
+  document.querySelectorAll("form").forEach(function(form){
+    Object.keys(attr).forEach(function(k){ var i = form.querySelector('input[name="' + k + '"]'); if (i) i.value = attr[k]; });
+    var vi = form.querySelector("input[name=variante]"); if (vi) vi.value = window.DH_VARIANTE;
+  });
+
+  function loadGtag(){
+    var id = CFG.ga4 || CFG.adsId;
+    if (loaded || !id) return;
+    loaded = true;
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+    if (CFG.ga4) gtag("config", CFG.ga4, { anonymize_ip: true });
+    if (CFG.adsId) gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced });
+  }
+  window.dhOnConsent = function(choice){
+    granted = choice === "granted";
+    var s = granted ? "granted" : "denied";
+    gtag("consent", "update", { ad_storage: s, analytics_storage: s, ad_user_data: s, ad_personalization: s });
+    if (granted){ loadGtag(); if (document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); } }
+  };
+  window.dhEvent = function(name, params){
+    if (!granted) return;
+    gtag("event", name, Object.assign({ page_path: location.pathname, variante: window.DH_VARIANTE }, params || {}));
+  };
+  window.dhLead = function(lead){
+    if (!granted) return;
+    if (CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
+    window.dhEvent("generate_lead", { logement: lead && lead.logement });
+    if (CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
+    if (window.fbq) window.fbq("track", "Lead");
+  };
+  window.dhSendLead = function(data){
+    var payload = Object.assign({}, attr, data, {
+      form_name: document.body.dataset.lp ? "Page publicitaire " + document.body.dataset.lp : "Site dominushabitat.com",
+      variante: window.DH_VARIANTE
+    });
+    if (!CFG.leadEndpoint){ console.info("Envoi du lead non configuré (DH_CONFIG.leadEndpoint)."); return Promise.resolve({ ok: true, simule: true }); }
+    var ctrl = "AbortController" in window ? new AbortController() : null;
+    if (ctrl) setTimeout(function(){ ctrl.abort(); }, 10000);
+    return fetch(CFG.leadEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: ctrl && ctrl.signal, keepalive: true })
+      .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json().catch(function(){ return { ok: true }; }); });
+  };
+  // Événements : clics sur les boutons d'action et le téléphone, premier champ touché du formulaire
+  document.addEventListener("click", function(e){
+    var cta = e.target.closest("[data-cta]");
+    if (cta) window.dhEvent("cta_click", { cta: cta.dataset.cta, texte: (cta.textContent || "").trim().slice(0, 60) });
+    if (e.target.closest('a[href^="tel:"]')) window.dhEvent("phone_click", {});
+  });
+  var started = false;
+  document.addEventListener("focusin", function(e){
+    if (!started && e.target.closest("form#lead-form")){ started = true; window.dhEvent("form_start", {}); }
+  });
+})();
+</script>
+<!-- mesure:end -->
+
 <div class="cookie-banner" id="cookie-banner" hidden>
   <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
     <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
-    <p id="cookie-text">Ce site utilise le Pixel Meta pour mesurer l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="confidentialite.html#cookies">En savoir plus</a></p>
+    <p id="cookie-text">Ce site utilise le Pixel Meta, Google Analytics et le suivi des conversions Google Ads pour mesurer son audience et l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="confidentialite.html#cookies">En savoir plus</a></p>
     <div class="cookie-actions">
       <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
       <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
@@ -911,6 +1136,7 @@ html.cookie-open{overflow:hidden}
     var v = b.getAttribute("data-consent");
     save(v);
     if (v === "granted") loadPixel(); else revokePixel();
+    if (window.dhOnConsent) window.dhOnConsent(v);
     close();
   });
   document.addEventListener("click", function(e){
@@ -918,10 +1144,10 @@ html.cookie-open{overflow:hidden}
   });
 
   // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
-  window.dhTrackLead = function(){ if (read() === "granted" && window.fbq) window.fbq("track", "Lead"); };
 
   var choice = read();
   if (choice === "granted") loadPixel();
+  if (choice && window.dhOnConsent) window.dhOnConsent(choice);
   // Les pages légales (data-cookie-prompt="manual") restent lisibles : la modale n'y s'ouvre que via « Gérer mes cookies ».
   else if (choice === null && document.body.getAttribute("data-cookie-prompt") !== "manual") open();
 })();
@@ -1007,15 +1233,12 @@ html.cookie-open{overflow:hidden}
       page: location.href
     };
 
-    // TODO : brancher l'envoi du lead vers le back-office (endpoint HTTPS, sans clé API dans le HTML).
-    // Le serveur doit revalider les champs et appliquer un anti-spam (rate limiting ou Turnstile/hCaptcha).
-    // Exemple :
-    // fetch("https://api.exemple.fr/leads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
-    //   .then(function(r){ if (!r.ok) throw new Error(r.status); confirm(); })
-    //   .catch(function(){ /* afficher un message d'erreur et proposer l'email contact@dominushabitat.com */ });
-    void data;
-    confirm();
-    if (window.dhTrackLead) window.dhTrackLead();
+    // Envoi au CRM Dominus (source « Formulaire web », adresse dans DH_CONFIG.leadEndpoint) ; le CRM revalide et dédoublonne.
+    var btn = form.querySelector("button[type=submit]"), errEnvoi = document.getElementById("err-envoi");
+    btn.disabled = true; errEnvoi.textContent = "";
+    var send = window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true });
+    send.then(function(){ confirm(); if (window.dhLead) window.dhLead(data); })
+      .catch(function(){ btn.disabled = false; errEnvoi.textContent = "L'envoi a échoué. Réessayez dans un instant ou écrivez-nous à contact@dominushabitat.com."; });
   });
 
   function confirm(){
@@ -1061,5 +1284,8 @@ html.cookie-open{overflow:hidden}
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
 </script>
+<!-- chantiers-js:start -->
+
+<!-- chantiers-js:end -->
 </body>
 </html>

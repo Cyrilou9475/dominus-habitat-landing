@@ -6,7 +6,7 @@
 import base64, hashlib, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "mentions-legales.html", "confidentialite.html"]
+PAGES = sorted(str(f.relative_to(ROOT)) for f in ROOT.rglob("*.html") if ".git" not in f.parts and "node_modules" not in f.parts)
 
 
 def hashes(tag, html):
@@ -26,12 +26,13 @@ for page in PAGES:
 csp = "; ".join([
     "default-src 'self'",
     # connect.facebook.net : Pixel Meta, chargé uniquement après consentement
-    "script-src 'self' https://connect.facebook.net " + " ".join(sorted(set(scripts))),
+    # www.googletagmanager.com : gtag (GA4 + Google Ads), chargé uniquement après consentement
+    "script-src 'self' https://connect.facebook.net https://www.googletagmanager.com " + " ".join(sorted(set(scripts))),
     "style-src 'self' https://fonts.googleapis.com " + " ".join(sorted(set(styles))),
     "font-src https://fonts.gstatic.com",
-    "img-src 'self' data: https://www.facebook.com",
-    # TODO : ajouter ici le domaine de l'endpoint d'envoi du formulaire (ex. https://api.exemple.fr)
-    "connect-src 'self' https://www.facebook.com https://connect.facebook.net",
+    "img-src 'self' data: https://www.facebook.com https://www.googletagmanager.com https://*.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://www.google.fr",
+    # crm.dominusconsultancy.com : envoi des demandes d'étude au CRM Dominus (source « Formulaire web »)
+    "connect-src 'self' https://www.facebook.com https://connect.facebook.net https://crm.dominusconsultancy.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://googleads.g.doubleclick.net https://www.google.com",
     "form-action 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",

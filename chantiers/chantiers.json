@@ -1,0 +1,90 @@
+{
+  "_doc": "Un chantier = une entrée. Voir chantiers/README.md. Rien n'est publié sans les trois étapes (avant, pendant, apres) ET accord_client = true ET publie = true.",
+  "chantiers": [
+    {
+      "reference": "001",
+      "slug": "isolation-exterieure-nord-59-fourmies-001",
+      "departement": {
+        "code": "59",
+        "nom": "Nord"
+      },
+      "commune": "Fourmies",
+      "afficher_commune": false,
+      "type_logement": "Maison individuelle",
+      "travaux": "ite",
+      "titre_court": "Rénovation de façade",
+      "resume": "Isolation thermique par l'extérieur d'une maison individuelle mitoyenne : façade sur rue, pignon côté garage et façade arrière isolés, puis recouverts d'un enduit de finition gris clair. Appuis de fenêtre et encadrements repris, grille de ventilation du vide sanitaire conservée.",
+      "caracteristiques": {
+        "type_isolation": "Isolation thermique par l'extérieur (ITE) sous enduit",
+        "materiau": null,
+        "epaisseur": null,
+        "finition": "Enduit de finition gris clair",
+        "surface_m2": null,
+        "duree": null,
+        "annee": 2026
+      },
+      "accord_client": false,
+      "publie": false,
+      "photos": {
+        "avant": [],
+        "pendant": [],
+        "apres": [
+          {
+            "fichier": "apres-1-facade-rue.jpg",
+            "alt": "Façade sur rue après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair, porte d'entrée et fenêtres blanches",
+            "flou": [
+              [
+                800,
+                1060,
+                160,
+                170
+              ],
+              [
+                80,
+                1350,
+                275,
+                70
+              ]
+            ],
+            "focal": [
+              0.5,
+              0.55
+            ]
+          },
+          {
+            "fichier": "apres-2-pignon-garage.jpg",
+            "alt": "Pignon et entrée de garage après isolation par l'extérieur, maison individuelle dans le Nord (59)",
+            "focal": [
+              0.5,
+              0.45
+            ]
+          },
+          {
+            "fichier": "apres-3-pignon-fenetre.jpg",
+            "alt": "Détail du pignon isolé : appui de fenêtre et grille de ventilation conservée, maison individuelle dans le Nord (59)",
+            "focal": [
+              0.5,
+              0.5
+            ],
+            "flou": [
+              [
+                60,
+                1012,
+                210,
+                58
+              ]
+            ]
+          },
+          {
+            "fichier": "apres-4-arriere.jpg",
+            "alt": "Façade arrière après isolation par l'extérieur, maison individuelle dans le Nord (59) : enduit gris clair sur deux niveaux",
+            "focal": [
+              0.5,
+              0.42
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
