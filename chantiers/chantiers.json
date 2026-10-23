@@ -23,8 +23,8 @@
         "duree": null,
         "annee": 2026
       },
-      "accord_client": false,
-      "publie": false,
+      "accord_client": true,
+      "publie": true,
       "photos": {
         "avant": [],
         "pendant": [],
