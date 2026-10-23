@@ -42,12 +42,13 @@ identifiants GA4 et Google Ads). Rien ne se déclenche avant le consentement (Co
 - [ ] **Mesure** : `DH_CONFIG.ga4`, `DH_CONFIG.adsId`, `DH_CONFIG.adsLabel` ; `adsEnhanced` seulement après validation de la politique de confidentialité. API de conversions Meta : à brancher côté CRM (jeton Meta nécessaire).
 - [ ] **Nos chantiers** : photos AVANT et PENDANT du chantier de Fourmies (59), accord écrit du client, caractéristiques connues (isolant, épaisseur, surface, durée) ; preuves de certification (RGE, Qualibat, décennale) pour activer le bloc de confiance (`CERTIFICATIONS` dans `tools/build_chantiers.py`). Désactiver le filigrane « Galaxy S26+ » de l'appareil photo pour les prochaines prises.
 - [ ] **Avis clients** : les 3 témoignages sont fictifs. Les remplacer par de vrais avis (avec accord écrit) ou un widget d'avis vérifiés. Publier de faux avis est une pratique commerciale trompeuse.
-- [ ] **Photos avant / après** : les deux illustrations SVG du comparateur sont des placeholders. Les remplacer par deux photos WebP au même cadrage (1200×900), avec `width`/`height`, `loading="lazy"` et un `alt` descriptif (exemple en commentaire dans le code).
+- [x] **Photos avant / après** : les trois comparateurs utilisent de vraies photos (`assets/avant*.webp`, `assets/apres*.webp`). Pour changer une photo, lui donner un **nouveau nom** de fichier : GitHub Pages et les navigateurs gardent l'ancienne image en cache si le nom ne change pas.
 - [ ] **Pages légales** : contenu renseigné (Dominus Consultancy FZCO). Reste le téléphone `[À COMPLÉTER]` des mentions légales, dans `tools/build_legal.py`.
 - [ ] **Chiffres clés** (section « Pourquoi isoler maintenant ») : vérifier et sourcer précisément avant publication.
   - `+44 %` : cumul des hausses du TRVE électricité de février 2022 à février 2024 (≈ +4 %, +15 %, +10 %, +10 %), source CRE. À confirmer.
   - `20-25 %` des déperditions par les murs : ordre de grandeur ADEME.
   - `8 sur 10` Français préoccupés par leur facture : **chiffre à remplacer par un sondage précis et daté**, ou à retirer.
+- [ ] **Photos des isolants** (`assets/isolant-pse.webp`, `assets/isolant-laine.webp`) : images générées par IA (Canva), conservées en basse résolution (200 px agrandis à 900 px). À remplacer par des photos nettes d'au moins 900×900 px, **sous de nouveaux noms** de fichier (cache) ; le cadrage se règle avec `object-position` dans `.insulant>img`.
 - [ ] **Domaine** : `dominushabitat.com` (fichier `CNAME` pour GitHub Pages). DNS à configurer : 4 enregistrements A sur `@` vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, et un CNAME `www` vers `cyrilou9475.github.io`, en « DNS only » sur Cloudflare. Puis cocher « Enforce HTTPS » dans Settings → Pages.
 - [ ] **Zone desservie** : `areaServed` du JSON-LD vaut `Île-de-France` par défaut.
 - [ ] **Délai de rappel** : l'écran de confirmation promet un appel « sous 48 h ouvrées », à ajuster.

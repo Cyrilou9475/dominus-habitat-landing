@@ -1,7 +1,7 @@
 """Génère mentions-legales.html et confidentialite.html avec le header, le footer
 et les styles d'index.html.
 
-Le bandeau cookies et son script sont aussi repris d'index.html.
+Le bandeau cookies, le bandeau France Rénov' et leurs scripts sont aussi repris d'index.html.
 
 À relancer après toute modification du header, du footer, du bandeau cookies ou du <style> d'index.html,
 ou du contenu légal ci-dessous :
@@ -104,6 +104,7 @@ style = block(index, r"<style>.*?</style>").replace("</style>", EXTRA_CSS.lstrip
 header = block(index, r'<header class="site-header">.*?</header>')
 footer = block(index, r'<footer class="site-footer">.*?</footer>')
 mobile = block(index, r'<div class="mobile-cta".*?</a>\s*</div>')
+renov = block(index, r'<div class="renov-banner".*?</script>')
 cookies = block(index, r'<div class="cookie-banner".*?</script>')
 
 for slug, page in PAGES.items():
@@ -165,6 +166,8 @@ for slug, page in PAGES.items():
 {localize(footer, slug)}
 
 {localize(mobile, slug)}
+
+{renov}
 
 {cookies}
 </body>
