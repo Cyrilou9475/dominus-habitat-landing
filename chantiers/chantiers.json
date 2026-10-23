@@ -520,8 +520,8 @@
         "duree": null,
         "annee": null
       },
-      "accord_client": false,
-      "publie": false,
+      "accord_client": true,
+      "publie": true,
       "photos": {
         "avant": [],
         "pendant": [
@@ -619,7 +619,7 @@
           }
         ]
       },
-      "_note": "Brouillon : photos avant à ajouter, accord du client à obtenir, puis accord_client et publie à true. Chantier 003 (Nord) laissé de côté à la demande."
+      "_note": "Publié sans photos « avant » (étape non affichée). Accord du client : confirmé par le dirigeant."
     }
   ]
 }
