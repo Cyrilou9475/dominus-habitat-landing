@@ -438,11 +438,12 @@ html.cookie-open{overflow:hidden}
 .chantier-track::-webkit-scrollbar{display:none}
 .chantier-track:focus-visible{outline:3px solid var(--marine);outline-offset:2px}
 .chantier-track>.chantier-card{scroll-snap-align:start}
+.chantier-track{align-items:start}
 @media (max-width:900px){.chantier-track{grid-auto-columns:92%;column-gap:14px}}
 .chantier-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
 .chantier-grid .chantier-steps,.chantier-track .chantier-steps{gap:12px;padding:14px 14px 0}
 .chantier-grid .step-tag,.chantier-track .step-tag{font-size:.85rem;padding:5px 12px}
-.chantier-grid .chantier-body,.chantier-track .chantier-body{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 24px;padding:16px 20px 20px}
+.chantier-grid .chantier-body,.chantier-track .chantier-body{flex-direction:row;flex-wrap:wrap;align-items:center;align-content:flex-start;justify-content:space-between;gap:6px 24px;padding:16px 20px 20px}
 .chantier-grid .chantier-body h2,.chantier-track .chantier-body h3{flex:1 1 100%;font-size:1.4rem}
 .chantier-grid .chantier-place,.chantier-grid .chantier-kind,.chantier-track .chantier-place,.chantier-track .chantier-kind{margin:0}
 .chantier-grid .chantier-body .btn,.chantier-track .chantier-body .btn{margin-top:0;margin-left:auto}
