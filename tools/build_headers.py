@@ -32,7 +32,8 @@ csp = "; ".join([
     "font-src 'self'",
     "img-src 'self' data: https://www.facebook.com https://www.googletagmanager.com https://*.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://www.google.fr",
     # crm.dominusconsultancy.com : envoi des demandes d'étude au CRM Dominus (source « Formulaire web »)
-    "connect-src 'self' https://www.facebook.com https://connect.facebook.net https://crm.dominusconsultancy.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://googleads.g.doubleclick.net https://www.google.com",
+    # formspree.io : envoi de chaque demande par email à contact@dominushabitat.com (DH_CONFIG.emailEndpoint)
+    "connect-src 'self' https://www.facebook.com https://connect.facebook.net https://crm.dominusconsultancy.com https://formspree.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://googleads.g.doubleclick.net https://www.google.com",
     "form-action 'self'",
     "frame-ancestors 'none'",
     "base-uri 'self'",

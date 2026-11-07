@@ -706,6 +706,7 @@ html.cookie-open{overflow:hidden}
   "use strict";
   var CFG = window.DH_CONFIG = {
     leadEndpoint: "",   // TODO : adresse de la source « Formulaire web » du CRM Dominus (Sources > Formulaire web), ex. https://crm.dominusconsultancy.com/api/sources/xxx/yyy
+    emailEndpoint: "",  // TODO : adresse du formulaire Formspree qui envoie chaque demande à contact@dominushabitat.com, ex. https://formspree.io/f/xxxxxxxx
     ga4: "",            // TODO : identifiant GA4, ex. G-XXXXXXXXXX
     adsId: "",          // TODO : identifiant Google Ads, ex. AW-XXXXXXXXX
     adsLabel: "",       // TODO : étiquette de la conversion « Lead »
@@ -776,11 +777,27 @@ html.cookie-open{overflow:hidden}
       form_name: document.body.dataset.lp ? "Page publicitaire " + document.body.dataset.lp : "Site dominushabitat.com",
       variante: window.DH_VARIANTE
     });
-    if (!CFG.leadEndpoint){ console.info("Envoi du lead non configuré (DH_CONFIG.leadEndpoint)."); return Promise.resolve({ ok: true, simule: true }); }
-    var ctrl = "AbortController" in window ? new AbortController() : null;
-    if (ctrl) setTimeout(function(){ ctrl.abort(); }, 10000);
-    return fetch(CFG.leadEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), signal: ctrl && ctrl.signal, keepalive: true })
-      .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json().catch(function(){ return { ok: true }; }); });
+    // Chaque demande part vers l'email (contact@) ET vers le CRM, en parallèle. Elle n'est considérée comme perdue
+    // que si les deux envois échouent : si l'un tombe en panne, l'autre garde la demande.
+    function post(url, body){
+      var ctrl = "AbortController" in window ? new AbortController() : null;
+      if (ctrl) setTimeout(function(){ ctrl.abort(); }, 10000);
+      return fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(body), signal: ctrl && ctrl.signal, keepalive: true })
+        .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return true; });
+    }
+    var envois = [];
+    if (CFG.emailEndpoint){
+      var mail = Object.assign({ _subject: "Nouvelle demande d'étude ITE : " + (data.nom || "") + " (" + (data.cp || "") + ")" }, payload);
+      envois.push({ nom: "email", p: post(CFG.emailEndpoint, mail) });
+    }
+    if (CFG.leadEndpoint) envois.push({ nom: "CRM", p: post(CFG.leadEndpoint, payload) });
+    if (!envois.length){ console.info("Envoi du lead non configuré (DH_CONFIG.emailEndpoint, DH_CONFIG.leadEndpoint)."); return Promise.resolve({ ok: true, simule: true }); }
+    return Promise.all(envois.map(function(e){
+      return e.p.then(function(){ return true; }, function(err){ console.warn("Envoi vers " + e.nom + " échoué :", err && err.message); return false; });
+    })).then(function(res){
+      if (!res.some(Boolean)) throw new Error("Aucun envoi n'a abouti");
+      return { ok: true };
+    });
   };
   // Événements : clics sur les boutons d'action et le téléphone, premier champ touché du formulaire
   document.addEventListener("click", function(e){
@@ -810,7 +827,7 @@ html.cookie-open{overflow:hidden}
 /* Consentement cookies et Pixel Meta : rien n'est chargé ni déposé avant « Accepter ». */
 (function(){
   "use strict";
-  var PIXEL_ID = "[PIXEL_ID]"; // TODO : identifiant du Pixel Meta (chiffres uniquement), puis relancer tools/build_legal.py et tools/build_headers.py
+  var PIXEL_ID = "1124082836889923"; // Pixel Meta de Dominus Habitat (modifier ici, puis relancer tools/build_legal.py et tools/build_headers.py)
   var KEY = "dh-consent";
   var MAX_AGE = 1000 * 60 * 60 * 24 * 395; // 13 mois, durée maximale recommandée par la CNIL
   var banner = document.getElementById("cookie-banner");
@@ -835,6 +852,7 @@ html.cookie-open{overflow:hidden}
     s.async = true; s.src = "https://connect.facebook.net/fr_FR/fbevents.js";
     document.head.appendChild(s);
     f("set", "autoConfig", false, PIXEL_ID); // pas de collecte automatique des clics et champs
+    f("consent", "grant"); // le chargement n'a lieu qu'après « Accepter » : consentement donné
     f("init", PIXEL_ID);
     f("track", "PageView");
   }
