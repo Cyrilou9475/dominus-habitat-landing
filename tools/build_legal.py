@@ -48,7 +48,7 @@ PAGES = {
         ],
         "sections": [
             ("stockage", "Stockage des données", [
-                "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et à " + EMAIL + ". Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
+                "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et, en parallèle, à " + EMAIL + " par l’intermédiaire du service d’envoi de formulaires Formspree (Formspree Inc., États-Unis), qui agit comme sous-traitant. Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
                 "Les serveurs de Google sont situés dans l’Union européenne et aux États-Unis. Google adhère au " + GOOGLE_DPF + " et agit comme sous-traitant dans le cadre de l’accord de traitement des données (DPA) Google Workspace.",
                 "Le site lui-même ne stocke aucune donnée : il transmet la demande à notre CRM.",
             ]),
