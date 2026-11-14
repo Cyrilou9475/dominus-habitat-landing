@@ -38,10 +38,10 @@ PAGES = {
         "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
             ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation). Avec votre demande sont enregistrés la page d’origine et, le cas échéant, les paramètres de la campagne publicitaire qui vous a amené sur le site (utm, gclid, fbclid)."),
-            ("Finalité", "Recontacter le prospect pour établir un devis ITE ; mesurer l’efficacité des campagnes publicitaires"),
-            ("Base légale", "Intérêt légitime"),
+            ("Finalité", "Rappeler le demandeur pour étudier son projet d’isolation et, avec son accord, le mettre en relation avec une entreprise partenaire certifiée RGE chargée de la visite technique, du devis et des travaux ; mesurer l’efficacité des campagnes publicitaires"),
+            ("Base légale", "Mesures précontractuelles prises à votre demande (rappel et étude du projet) ; consentement pour la transmission de vos coordonnées à l’entreprise partenaire ; consentement pour les cookies de mesure et de publicité"),
             ("Conservation", "3 ans"),
-            ("Destinataires", "Équipe Dominus Habitat et sociétés partenaires intervenant pour la réalisation du devis et des travaux d’isolation."),
+            ("Destinataires", "Équipe Dominus Habitat ; avec votre accord, une seule entreprise partenaire certifiée RGE, qui réalise la visite technique, le devis et les travaux et vous recontacte à ce titre. Dominus Habitat est rémunérée par cette entreprise lorsque des travaux sont signés."),
             ("Vos droits", "Accès, rectification, suppression, opposition, portabilité : " + EMAIL + ". Réponse sous 30 jours."),
             ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
             ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),

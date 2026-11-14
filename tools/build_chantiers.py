@@ -453,24 +453,24 @@ CTA_BAND = """<section class="chantier-cta" aria-labelledby="cta-chantiers">
 # ---------------------------------------------------------------------------
 # Pages
 # ---------------------------------------------------------------------------
-INTRO = "Nos chantiers, notre savoir-faire en images."
-SOUS_TITRE = "De la préparation des façades aux dernières finitions, découvrez les étapes de nos réalisations en isolation thermique par l'extérieur : l'état initial, la pose de l'isolant, la façade terminée."
-REASSURANCE = "Des chantiers réels, des travaux visibles, un savoir-faire à découvrir."
+INTRO = "Des chantiers réalisés par nos entreprises partenaires."
+SOUS_TITRE = "De la préparation des façades aux dernières finitions, découvrez les étapes de chantiers d'isolation thermique par l'extérieur réalisés par des entreprises certifiées RGE partenaires de Dominus Habitat : l'état initial, la pose de l'isolant, la façade terminée."
+REASSURANCE = "Des chantiers réels, réalisés par nos entreprises partenaires certifiées RGE."
 
 
 def page_liste(index, items, out_dir, *, dept=None, page=1, pages_total=1, all_depts=(), dept_pages=()):
     if dept:
         base = f"/nos-chantiers/{dept['slug']}/"
         title = f"Isolation thermique par l'extérieur en {dept['nom']} ({dept['code']}) : chantiers réalisés | Dominus Habitat"
-        description = f"Nos chantiers d'isolation thermique par l'extérieur dans le {dept['nom']} ({dept['code']}) : façades avant, pendant et après travaux, maisons individuelles rénovées. Étude gratuite."
+        description = f"Chantiers d'isolation thermique par l'extérieur réalisés par nos entreprises partenaires dans le {dept['nom']} ({dept['code']}) : façades avant, pendant et après travaux, maisons individuelles rénovées. Étude gratuite."
         h1 = f"Isolation thermique par l'extérieur en {esc(dept['nom'])} <span class=\"h1-accent\">({dept['code']})</span>"
         lede = f"Maisons isolées par l'extérieur dans le {dept['nom']} : chaque chantier est présenté en trois étapes, de la façade d'origine à la finition."
         crumbs_items = [("Accueil", "/"), ("Nos chantiers", "/nos-chantiers/"), (f"{dept['nom']} ({dept['code']})", base)]
     else:
         base = "/nos-chantiers/"
         title = "Nos chantiers d'isolation thermique par l'extérieur (ITE) | Dominus Habitat"
-        description = "Chantiers réels d'isolation de façade avant, pendant et après travaux : maisons individuelles et maisons de ville rénovées par Dominus Habitat. Étude gratuite."
-        h1 = INTRO.replace("savoir-faire", '<span class="h1-accent">savoir-faire</span>')
+        description = "Chantiers réels d'isolation de façade avant, pendant et après travaux : maisons individuelles et maisons de ville rénovées par des entreprises RGE partenaires de Dominus Habitat. Étude gratuite."
+        h1 = INTRO.replace("entreprises partenaires", '<span class="h1-accent">entreprises partenaires</span>')
         lede = SOUS_TITRE
         crumbs_items = [("Accueil", "/"), ("Nos chantiers", base)]
     canonical = SITE.rstrip("/") + base + (f"page/{page}/" if page > 1 else "")
@@ -560,7 +560,7 @@ def page_fiche(index, c, others, out_root):
 
     similar = [o for o in others if o["slug"] != c["slug"]]
     similar.sort(key=lambda o: (o["departement"]["code"] != c["departement"]["code"], o["reference"]))
-    similar_html = f'<section class="similaires" aria-labelledby="sim-titre"><div class="wrap"><h2 id="sim-titre">Chantiers similaires</h2>{carousel(similar[:3], "Chantiers similaires")}<p class="more"><a class="btn btn-line" href="/nos-chantiers/">Voir toutes nos réalisations{ARROW}</a></p></div></section>' if similar else ""
+    similar_html = f'<section class="similaires" aria-labelledby="sim-titre"><div class="wrap"><h2 id="sim-titre">Chantiers similaires</h2>{carousel(similar[:3], "Chantiers similaires")}<p class="more"><a class="btn btn-line" href="/nos-chantiers/">Voir tous les chantiers{ARROW}</a></p></div></section>' if similar else ""
 
     apercu = '<p class="apercu-band">Aperçu : ce chantier n\'est pas publié (' + esc(", ".join(c["_manque"])) + ").</p>" if not c["_publiable"] else ""
     body = page_hero(crumbs, f"Chantier {c['reference']} · {c['type_logement']}", h1, c["resume"]) + f"""
@@ -595,11 +595,11 @@ def page_lp(index, items, out_root):
       <div>
         <p class="kicker kicker-light">Isolation thermique par l'extérieur</p>
         <h1 data-ab="titre" data-a="Une façade neuve qui garde la chaleur de votre maison." data-b="Isolez votre maison par l'extérieur, sans perdre un mètre carré.">Une façade neuve qui garde la chaleur <span class="h1-accent">de votre maison.</span></h1>
-        <p class="hero-sub">Étude gratuite et sans engagement : un conseiller étudie votre façade et vous rappelle. Vous restez chez vous pendant les travaux.</p>
+        <p class="hero-sub">Étude gratuite et sans engagement : un conseiller vous rappelle sous 24 h ouvrées, étudie votre projet et vous met en relation avec une entreprise certifiée RGE.</p>
         <ul class="hero-points">
           <li>{PIN} Chantiers visibles avant, pendant et après</li>
           <li>{PIN} Aucune surface habitable perdue</li>
-          <li>{PIN} Un seul interlocuteur, de l'étude à la réception</li>
+          <li>{PIN} Entreprises partenaires certifiées RGE</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</a></p>
       </div>
@@ -615,16 +615,16 @@ def page_lp(index, items, out_root):
             <label><input type="radio" name="logement" value="Maison de ville"> Maison de ville</label>
             <span class="err" id="err-logement" role="alert"></span>
           </fieldset>
-          <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être recontacté par Dominus Habitat au sujet de mon projet. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
+          <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="page_origine"><input type="hidden" name="variante">
           <button type="submit" class="btn btn-gold btn-block" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</button>
           <p class="err" id="err-envoi" role="alert"></p>
-          <p class="consent">Sans engagement. Vos données ne sont ni vendues ni cédées.</p>
+          <p class="consent">Sans engagement. Vos coordonnées ne sont transmises qu'à une seule entreprise partenaire et ne servent à rien d'autre.</p>
         </form>
         <div class="done" id="lead-done" hidden tabindex="-1" aria-live="polite">
           <h2>Merci, votre demande est bien reçue.</h2>
-          <p>Un conseiller Dominus Habitat vous rappelle pour préparer votre étude gratuite.</p>
+          <p>Un conseiller Dominus Habitat vous rappelle sous 24 h ouvrées pour préparer votre étude gratuite.</p>
         </div>
       </div>
     </div>
@@ -632,10 +632,10 @@ def page_lp(index, items, out_root):
 </div>
 <section class="lp-chantiers" aria-labelledby="lp-ch">
   <div class="wrap">
-    <p class="kicker">Nos réalisations</p>
+    <p class="kicker">Chantiers partenaires</p>
     <h2 id="lp-ch">{esc(INTRO)}</h2>
     <p class="lede">{esc(REASSURANCE)}</p>
-    {strip or '<p class="vide">Les photos de nos chantiers arrivent très prochainement.</p>'}
+    {strip or '<p class="vide">Les photos des chantiers arrivent très prochainement.</p>'}
   </div>
 </section>
 <section class="alt lp-args" aria-labelledby="lp-args">
@@ -644,7 +644,7 @@ def page_lp(index, items, out_root):
     <div class="benefits">
       <div class="benefit"><h3>Une façade neuve et protégée</h3><p>L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte. Fissures et murs fatigués disparaissent.</p></div>
       <div class="benefit"><h3>Aucune surface perdue</h3><p>Tout se passe dehors : vos pièces gardent leur taille et vous continuez à vivre normalement pendant le chantier.</p></div>
-      <div class="benefit"><h3>Un seul interlocuteur</h3><p>Étude, visite technique, déclaration en mairie, pose et réception : nous suivons votre chantier de bout en bout.</p></div>
+      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et vos aides possibles, puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
     </div>
     <p class="hero-actions center"><a class="btn btn-gold" href="#lp-form" data-cta="lp-bas">Demander mon étude gratuite{ARROW}</a></p>
   </div>
@@ -663,12 +663,12 @@ def home_section(items):
     return f"""<section id="realisations" aria-labelledby="real-title">
   <div class="wrap">
     <div class="section-head measure">
-      <p class="kicker">Nos réalisations</p>
+      <p class="kicker">Chantiers partenaires</p>
       <h2 id="real-title">{esc(INTRO)}</h2>
       <p class="lede">{esc(SOUS_TITRE)}</p>
     </div>
-    {carousel(items[:3], "Nos réalisations : trois chantiers avant, pendant, après")}
-    <p class="more"><span class="reassurance">{esc(REASSURANCE)}</span><a class="btn btn-line" href="/nos-chantiers/" data-cta="voir-realisations">Voir toutes nos réalisations{ARROW}</a></p>
+    {carousel(items[:3], "Chantiers partenaires : trois chantiers avant, pendant, après")}
+    <p class="more"><span class="reassurance">{esc(REASSURANCE)}</span><a class="btn btn-line" href="/nos-chantiers/" data-cta="voir-realisations">Voir tous les chantiers{ARROW}</a></p>
   </div>
 </section>
 {LIGHTBOX}"""
