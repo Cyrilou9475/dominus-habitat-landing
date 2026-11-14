@@ -676,6 +676,11 @@ html.cookie-open{overflow:hidden}
               <span class="err" id="err-tel"></span>
             </div>
             <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email">
+              <span class="err" id="err-email"></span>
+            </div>
+            <div class="field">
               <label for="cp">Code postal</label>
               <input id="cp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" required maxlength="5" aria-describedby="err-cp">
               <span class="err" id="err-cp"></span>
@@ -1364,11 +1369,12 @@ html.cookie-open{overflow:hidden}
       return setError(null, document.getElementById("err-logement"), picked ? "" : "Choisissez votre type de logement pour continuer.");
     }
     if (n === 3){
-      var nom = form.nom, tel = form.tel, cp = form.cp, ok = true;
+      var nom = form.nom, tel = form.tel, email = form.email, cp = form.cp, ok = true;
       var v = nom.value.trim();
       ok = setError(nom, document.getElementById("err-nom"), v.length < 2 ? "Indiquez votre nom et votre prénom." : "") && ok;
       var t = tel.value.replace(/[\s.\-]/g, "");
       ok = setError(tel, document.getElementById("err-tel"), /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
+      ok = setError(email, document.getElementById("err-email"), /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()) ? "" : "Indiquez une adresse email valide, par exemple nom@exemple.fr.") && ok;
       ok = setError(cp, document.getElementById("err-cp"), /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
       if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); }
       return ok;
@@ -1410,6 +1416,7 @@ html.cookie-open{overflow:hidden}
       surface: Number(range.value),
       nom: form.nom.value.trim(),
       tel: form.tel.value.trim(),
+      email: form.email.value.trim(),
       cp: form.cp.value.trim(),
       page: location.href
     };

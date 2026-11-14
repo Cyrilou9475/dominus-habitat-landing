@@ -571,9 +571,10 @@ html.cookie-open{overflow:hidden}
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Quatre questions, moins d'une minute.</p>
+          <p class="lead-intro">Cinq questions, moins d'une minute.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
+          <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
           <div class="field"><label for="lp-cp">Code postal</label><input id="lp-cp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" required maxlength="5" aria-describedby="err-cp"><span class="err" id="err-cp"></span></div>
           <fieldset class="choices-inline"><legend>Type de logement</legend>
             <label><input type="radio" name="logement" value="Maison individuelle" required> Maison individuelle</label>
@@ -1055,12 +1056,13 @@ html.cookie-open{overflow:hidden}
     ok = setError(form.prenom, "err-prenom", form.prenom.value.trim().length < 2 ? "Indiquez votre prénom." : "") && ok;
     var t = form.tel.value.replace(/[\s.\-]/g, "");
     ok = setError(form.tel, "err-tel", /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
+    ok = setError(form.email, "err-email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim()) ? "" : "Indiquez une adresse email valide, par exemple nom@exemple.fr.") && ok;
     ok = setError(form.cp, "err-cp", /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(form.cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
     var picked = form.querySelector("input[name=logement]:checked");
     ok = setError(null, "err-logement", picked ? "" : "Choisissez votre type de logement.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))
