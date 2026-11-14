@@ -377,6 +377,12 @@ body{padding-bottom:var(--renov-h)}
 .cookie-box p{font-size:1rem;color:var(--text)}
 .cookie-box a{color:var(--marine)}
 .cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem}
+.cookie-actions[hidden],.cookie-more[hidden],.cookie-custom[hidden]{display:none}
+.cookie-more{width:100%;margin-top:12px}
+.cookie-opt{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer}
+.cookie-opt input{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:var(--marine)}
+.cookie-opt strong{display:block;color:var(--ink)}
+.cookie-opt span span{display:block;font-size:.92rem;color:var(--text)}
 html.cookie-open{overflow:hidden}
 .btn-outline{background:#fff;color:var(--marine);border-color:var(--marine)}
 .btn-outline:hover{background:#eef3f9}
@@ -577,7 +583,7 @@ html.cookie-open{overflow:hidden}
     <div class="legal-section" id="cookies">
       <h2>Cookies</h2>
       <p>Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude). Le mode de consentement de Google (Consent Mode v2) est réglé sur « refusé » par défaut.</p>
-      <p>Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.</p>
+      <p>Vous pouvez tout accepter, tout refuser, ou choisir finalité par finalité (mesure d’audience, publicité) avec le bouton « Personnaliser mes choix ». Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.</p>
       <p>Meta et Google adhèrent au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.</p>
     </div>
     <div class="legal-section" id="securite">
@@ -689,9 +695,18 @@ html.cookie-open{overflow:hidden}
   <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
     <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
     <p id="cookie-text">Ce site utilise le Pixel Meta, Google Analytics et le suivi des conversions Google Ads pour mesurer son audience et l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="confidentialite.html#cookies">En savoir plus</a></p>
-    <div class="cookie-actions">
+    <div class="cookie-actions" data-cookie-main>
       <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
       <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
+    </div>
+    <button type="button" class="btn btn-line cookie-more" data-cookie-custom-open>Personnaliser mes choix</button>
+    <div class="cookie-custom" hidden>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-audience><span><strong>Mesure d’audience</strong><span>Google Analytics : pages vues, clics et demandes d’étude, pour améliorer le site.</span></span></label>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-ads><span><strong>Publicité</strong><span>Pixel Meta et suivi des conversions Google Ads : mesurer l’efficacité de nos publicités.</span></span></label>
+      <div class="cookie-actions">
+        <button type="button" class="btn btn-outline" data-cookie-custom-back>Retour</button>
+        <button type="button" class="btn btn-gold" data-cookie-custom-save>Enregistrer</button>
+      </div>
     </div>
   </div>
 </div>
@@ -706,15 +721,20 @@ html.cookie-open{overflow:hidden}
   var banner = document.getElementById("cookie-banner");
   var box = banner.querySelector(".cookie-box");
 
+  // Choix mémorisé : { audience, ads } (mesure d'audience / publicité). Les anciens choix « granted » / « denied » sont repris tels quels.
   function read(){
     try {
       var c = JSON.parse(localStorage.getItem(KEY));
-      if (c && (c.v === "granted" || c.v === "denied") && Date.now() - c.t < MAX_AGE) return c.v;
+      if (c && Date.now() - c.t < MAX_AGE){
+        if (c.v === "granted") return { audience: true, ads: true };
+        if (c.v === "denied") return { audience: false, ads: false };
+        if (typeof c.a === "boolean" && typeof c.p === "boolean") return { audience: c.a, ads: c.p };
+      }
     } catch (e) {}
     return null;
   }
-  function save(v){
-    try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+  function save(c){
+    try { localStorage.setItem(KEY, JSON.stringify({ a: !!c.audience, p: !!c.ads, t: Date.now() })); } catch (e) {}
   }
 
   function loadPixel(){
@@ -745,7 +765,17 @@ html.cookie-open{overflow:hidden}
       if (el !== banner && el.tagName !== "SCRIPT" && !el.hasAttribute("data-no-inert")) { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
     });
   }
+  var mainActions = banner.querySelector("[data-cookie-main]");
+  var moreBtn = banner.querySelector("[data-cookie-custom-open]");
+  var customPanel = banner.querySelector(".cookie-custom");
+  var cbAudience = banner.querySelector("[data-cookie-audience]");
+  var cbAds = banner.querySelector("[data-cookie-ads]");
+  function showCustom(on){
+    mainActions.hidden = on; moreBtn.hidden = on; customPanel.hidden = !on;
+    if (on){ var cur = read() || { audience: false, ads: false }; cbAudience.checked = cur.audience; cbAds.checked = cur.ads; }
+  }
   function open(){
+    showCustom(false);
     banner.hidden = false;
     document.documentElement.classList.add("cookie-open");
     setInert(true);
@@ -757,14 +787,19 @@ html.cookie-open{overflow:hidden}
     setInert(false);
   }
 
-  banner.addEventListener("click", function(e){
-    var b = e.target.closest("[data-consent]");
-    if (!b) return;
-    var v = b.getAttribute("data-consent");
-    save(v);
-    if (v === "granted") loadPixel(); else revokePixel();
-    if (window.dhOnConsent) window.dhOnConsent(v);
+  function choose(c){
+    save(c);
+    if (c.ads) loadPixel(); else revokePixel();
+    if (window.dhOnConsent) window.dhOnConsent(c);
     close();
+  }
+  banner.addEventListener("click", function(e){
+    var t = e.target;
+    var b = t.closest("[data-consent]");
+    if (b){ var all = b.getAttribute("data-consent") === "granted"; choose({ audience: all, ads: all }); return; }
+    if (t.closest("[data-cookie-custom-open]")) showCustom(true);
+    else if (t.closest("[data-cookie-custom-back]")) showCustom(false);
+    else if (t.closest("[data-cookie-custom-save]")) choose({ audience: cbAudience.checked, ads: cbAds.checked });
   });
   document.addEventListener("click", function(e){
     if (e.target.closest("[data-cookie-settings]")) open();
@@ -773,7 +808,7 @@ html.cookie-open{overflow:hidden}
   // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
 
   var choice = read();
-  if (choice === "granted") loadPixel();
+  if (choice && choice.ads) loadPixel();
   if (choice && window.dhOnConsent) window.dhOnConsent(choice);
   // Les pages légales (data-cookie-prompt="manual") restent lisibles : la modale n'y s'ouvre que via « Gérer mes cookies ».
   else if (choice === null && document.body.getAttribute("data-cookie-prompt") !== "manual") open();

@@ -398,6 +398,12 @@ body{padding-bottom:var(--renov-h)}
 .cookie-box p{font-size:1rem;color:var(--text)}
 .cookie-box a{color:var(--marine)}
 .cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem}
+.cookie-actions[hidden],.cookie-more[hidden],.cookie-custom[hidden]{display:none}
+.cookie-more{width:100%;margin-top:12px}
+.cookie-opt{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer}
+.cookie-opt input{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:var(--marine)}
+.cookie-opt strong{display:block;color:var(--ink)}
+.cookie-opt span span{display:block;font-size:.92rem;color:var(--text)}
 html.cookie-open{overflow:hidden}
 .btn-outline{background:#fff;color:var(--marine);border-color:var(--marine)}
 .btn-outline:hover{background:#eef3f9}
@@ -718,7 +724,7 @@ html.cookie-open{overflow:hidden}
     adsEnhanced: false  // conversions améliorées (téléphone haché par Google) : à activer après validation de la politique de confidentialité
   };
   var ATTR_KEY = "dh-attribution", ATTR = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
-  var granted = false, loaded = false, viewed = false;
+  var consent = { audience: false, ads: false }, loaded = false, viewed = false, cfgGa = false, cfgAds = false;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
@@ -752,30 +758,35 @@ html.cookie-open{overflow:hidden}
 
   function loadGtag(){
     var id = CFG.ga4 || CFG.adsId;
-    if (loaded || !id) return;
-    loaded = true;
-    var s = document.createElement("script");
-    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-    document.head.appendChild(s);
-    if (CFG.ga4) gtag("config", CFG.ga4, { anonymize_ip: true });
-    if (CFG.adsId) gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced });
+    if (!id) return;
+    if (!loaded){
+      loaded = true;
+      var s = document.createElement("script");
+      s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+      document.head.appendChild(s);
+    }
+    // Chaque outil n'est configuré que si sa finalité a été acceptée : audience pour GA4, publicité pour Google Ads
+    if (consent.audience && CFG.ga4 && !cfgGa){ cfgGa = true; gtag("config", CFG.ga4, { anonymize_ip: true }); }
+    if (consent.ads && CFG.adsId && !cfgAds){ cfgAds = true; gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced }); }
   }
   window.dhOnConsent = function(choice){
-    granted = choice === "granted";
-    var s = granted ? "granted" : "denied";
-    gtag("consent", "update", { ad_storage: s, analytics_storage: s, ad_user_data: s, ad_personalization: s });
-    if (granted){ loadGtag(); if (document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); } }
+    if (typeof choice === "string") choice = { audience: choice === "granted", ads: choice === "granted" };
+    consent = { audience: !!choice.audience, ads: !!choice.ads };
+    var a = consent.audience ? "granted" : "denied", p = consent.ads ? "granted" : "denied";
+    gtag("consent", "update", { ad_storage: p, analytics_storage: a, ad_user_data: p, ad_personalization: p });
+    if (consent.audience || consent.ads) loadGtag();
+    if (consent.audience && document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); }
   };
   window.dhEvent = function(name, params){
-    if (!granted) return;
+    if (!consent.audience) return;
     gtag("event", name, Object.assign({ page_path: location.pathname, variante: window.DH_VARIANTE }, params || {}));
   };
   window.dhLead = function(lead){
-    if (!granted) return;
-    if (CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
+    if (!consent.audience && !consent.ads) return;
+    if (consent.ads && CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
     window.dhEvent("generate_lead", { logement: lead && lead.logement });
-    if (CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
-    if (window.fbq) window.fbq("track", "Lead");
+    if (consent.ads && CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
+    if (consent.ads && window.fbq) window.fbq("track", "Lead");
   };
   window.dhSendLead = function(data){
     var payload = Object.assign({}, attr, data, {
@@ -821,9 +832,18 @@ html.cookie-open{overflow:hidden}
   <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
     <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
     <p id="cookie-text">Ce site utilise le Pixel Meta, Google Analytics et le suivi des conversions Google Ads pour mesurer son audience et l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="/confidentialite.html#cookies">En savoir plus</a></p>
-    <div class="cookie-actions">
+    <div class="cookie-actions" data-cookie-main>
       <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
       <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
+    </div>
+    <button type="button" class="btn btn-line cookie-more" data-cookie-custom-open>Personnaliser mes choix</button>
+    <div class="cookie-custom" hidden>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-audience><span><strong>Mesure d’audience</strong><span>Google Analytics : pages vues, clics et demandes d’étude, pour améliorer le site.</span></span></label>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-ads><span><strong>Publicité</strong><span>Pixel Meta et suivi des conversions Google Ads : mesurer l’efficacité de nos publicités.</span></span></label>
+      <div class="cookie-actions">
+        <button type="button" class="btn btn-outline" data-cookie-custom-back>Retour</button>
+        <button type="button" class="btn btn-gold" data-cookie-custom-save>Enregistrer</button>
+      </div>
     </div>
   </div>
 </div>
@@ -838,15 +858,20 @@ html.cookie-open{overflow:hidden}
   var banner = document.getElementById("cookie-banner");
   var box = banner.querySelector(".cookie-box");
 
+  // Choix mémorisé : { audience, ads } (mesure d'audience / publicité). Les anciens choix « granted » / « denied » sont repris tels quels.
   function read(){
     try {
       var c = JSON.parse(localStorage.getItem(KEY));
-      if (c && (c.v === "granted" || c.v === "denied") && Date.now() - c.t < MAX_AGE) return c.v;
+      if (c && Date.now() - c.t < MAX_AGE){
+        if (c.v === "granted") return { audience: true, ads: true };
+        if (c.v === "denied") return { audience: false, ads: false };
+        if (typeof c.a === "boolean" && typeof c.p === "boolean") return { audience: c.a, ads: c.p };
+      }
     } catch (e) {}
     return null;
   }
-  function save(v){
-    try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+  function save(c){
+    try { localStorage.setItem(KEY, JSON.stringify({ a: !!c.audience, p: !!c.ads, t: Date.now() })); } catch (e) {}
   }
 
   function loadPixel(){
@@ -877,7 +902,17 @@ html.cookie-open{overflow:hidden}
       if (el !== banner && el.tagName !== "SCRIPT" && !el.hasAttribute("data-no-inert")) { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
     });
   }
+  var mainActions = banner.querySelector("[data-cookie-main]");
+  var moreBtn = banner.querySelector("[data-cookie-custom-open]");
+  var customPanel = banner.querySelector(".cookie-custom");
+  var cbAudience = banner.querySelector("[data-cookie-audience]");
+  var cbAds = banner.querySelector("[data-cookie-ads]");
+  function showCustom(on){
+    mainActions.hidden = on; moreBtn.hidden = on; customPanel.hidden = !on;
+    if (on){ var cur = read() || { audience: false, ads: false }; cbAudience.checked = cur.audience; cbAds.checked = cur.ads; }
+  }
   function open(){
+    showCustom(false);
     banner.hidden = false;
     document.documentElement.classList.add("cookie-open");
     setInert(true);
@@ -889,14 +924,19 @@ html.cookie-open{overflow:hidden}
     setInert(false);
   }
 
-  banner.addEventListener("click", function(e){
-    var b = e.target.closest("[data-consent]");
-    if (!b) return;
-    var v = b.getAttribute("data-consent");
-    save(v);
-    if (v === "granted") loadPixel(); else revokePixel();
-    if (window.dhOnConsent) window.dhOnConsent(v);
+  function choose(c){
+    save(c);
+    if (c.ads) loadPixel(); else revokePixel();
+    if (window.dhOnConsent) window.dhOnConsent(c);
     close();
+  }
+  banner.addEventListener("click", function(e){
+    var t = e.target;
+    var b = t.closest("[data-consent]");
+    if (b){ var all = b.getAttribute("data-consent") === "granted"; choose({ audience: all, ads: all }); return; }
+    if (t.closest("[data-cookie-custom-open]")) showCustom(true);
+    else if (t.closest("[data-cookie-custom-back]")) showCustom(false);
+    else if (t.closest("[data-cookie-custom-save]")) choose({ audience: cbAudience.checked, ads: cbAds.checked });
   });
   document.addEventListener("click", function(e){
     if (e.target.closest("[data-cookie-settings]")) open();
@@ -905,7 +945,7 @@ html.cookie-open{overflow:hidden}
   // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
 
   var choice = read();
-  if (choice === "granted") loadPixel();
+  if (choice && choice.ads) loadPixel();
   if (choice && window.dhOnConsent) window.dhOnConsent(choice);
   // Les pages légales (data-cookie-prompt="manual") restent lisibles : la modale n'y s'ouvre que via « Gérer mes cookies ».
   else if (choice === null && document.body.getAttribute("data-cookie-prompt") !== "manual") open();

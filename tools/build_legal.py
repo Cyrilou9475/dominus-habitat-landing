@@ -54,7 +54,7 @@ PAGES = {
             ]),
             ("cookies", "Cookies", [
                 "Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude). Le mode de consentement de Google (Consent Mode v2) est réglé sur « refusé » par défaut.",
-                'Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
+                'Vous pouvez tout accepter, tout refuser, ou choisir finalité par finalité (mesure d’audience, publicité) avec le bouton « Personnaliser mes choix ». Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
                 "Meta et Google adhèrent au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
             ]),
             ("securite", "Mesures de sécurité", [
