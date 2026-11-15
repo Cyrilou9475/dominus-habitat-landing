@@ -88,3 +88,4 @@ et la page cesse de mesurer.
 
 - Rendu à 360, 768 et 1440 px sans défilement horizontal ; parcours complet du formulaire (erreurs, étapes, confirmation, focus) ; comparateur au clavier ; aucune erreur console ni violation CSP (Chromium).
 - Reste à faire avant mise en ligne : test sur mobile réel (Chrome et Safari) et audit Lighthouse sur l'URL de production.
+Publication du 15/11
