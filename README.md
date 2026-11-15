@@ -32,7 +32,18 @@ Rien n'est publié sans les trois étapes (avant, pendant, après), l'accord éc
 Maquette locale avec les chantiers non publiés : `python3 tools/build_chantiers.py --apercu /tmp/apercu` (ne jamais mettre en ligne).
 
 Mesure et envoi des demandes : bloc `DH_CONFIG` dans le script `<!-- mesure:start -->` d'`index.html` (adresse de la source « Formulaire web » du CRM,
-identifiants GA4 et Google Ads). Rien ne se déclenche avant le consentement (Consent Mode v2 refusé par défaut). Test A/B : `?v=b` sur la page publicitaire.
+identifiants GA4 et Google Ads). Test A/B : `?v=b` sur la page publicitaire.
+
+**Consentement : Consent Mode v2 en mode avancé.** Tout est refusé par défaut (`ad_storage`, `analytics_storage`, `ad_user_data`,
+`ad_personalization`), avec `ads_data_redaction` et `url_passthrough`. La balise Google est chargée dès l'arrivée : tant que le
+visiteur n'a rien accepté, elle n'écrit aucun cookie et n'envoie que des signaux anonymes, sans identifiant, que Google utilise
+pour estimer les conversions manquantes. Sans cela, chaque visiteur qui refuse est une conversion invisible, et Google Ads
+apprend sur des données tronquées. Le Pixel Meta n'a pas d'équivalent : il reste chargé uniquement après acceptation, et le
+téléphone des conversions améliorées n'est jamais transmis sans accord publicitaire explicite.
+
+Vérification après toute modification du bloc `mesure` : `node tests/consentement.test.mjs` (16 scénarios : refus, acceptation,
+cookies, conversion, Pixel Meta). Puis les trois scripts de génération, sinon la CSP d'`_headers` ne correspond plus au script
+et la page cesse de mesurer.
 
 ## À remplacer avant mise en ligne
 
