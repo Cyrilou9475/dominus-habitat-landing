@@ -274,11 +274,9 @@ LP_JS = r"""<script>
     ok = setError(form.cp, "err-cp", /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(form.cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
     var picked = form.querySelector("input[name=logement]:checked");
     ok = setError(null, "err-logement", picked ? "" : "Choisissez votre type de logement.") && ok;
-    var statut = form.querySelector("input[name=proprietaire]:checked");
-    ok = setError(null, "err-proprietaire", statut ? "" : "Indiquez si vous êtes propriétaire ou locataire.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))
@@ -603,14 +601,13 @@ def page_lp(index, items, out_root):
           <li>{PIN} Chantiers visibles avant, pendant et après</li>
           <li>{PIN} Aucune surface habitable perdue</li>
           <li>{PIN} Entreprises partenaires certifiées RGE</li>
-          <li>{PIN} Primes énergie (CEE) possibles selon votre situation</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</a></p>
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Moins d'une minute pour remplir.</p>
+          <p class="lead-intro">Cinq questions, moins d'une minute.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
           <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
@@ -619,11 +616,6 @@ def page_lp(index, items, out_root):
             <label><input type="radio" name="logement" value="Maison individuelle" required> Maison individuelle</label>
             <label><input type="radio" name="logement" value="Maison de ville"> Maison de ville</label>
             <span class="err" id="err-logement" role="alert"></span>
-          </fieldset>
-          <fieldset class="choices-inline"><legend>Vous êtes</legend>
-            <label><input type="radio" name="proprietaire" value="Propriétaire" required> Propriétaire</label>
-            <label><input type="radio" name="proprietaire" value="Locataire"> Locataire</label>
-            <span class="err" id="err-proprietaire" role="alert"></span>
           </fieldset>
           <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -654,7 +646,7 @@ def page_lp(index, items, out_root):
     <div class="benefits">
       <div class="benefit"><h3>Une façade neuve et protégée</h3><p>L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte. Fissures et murs fatigués disparaissent.</p></div>
       <div class="benefit"><h3>Aucune surface perdue</h3><p>Tout se passe dehors : vos pièces gardent leur taille et vous continuez à vivre normalement pendant le chantier.</p></div>
-      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et les aides possibles, dont les primes énergie (CEE), puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
+      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et vos aides possibles, puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
     </div>
     <p class="hero-actions center"><a class="btn btn-gold" href="#lp-form" data-cta="lp-bas">Demander mon étude gratuite{ARROW}</a></p>
   </div>
