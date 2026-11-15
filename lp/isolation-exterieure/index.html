@@ -385,6 +385,12 @@ body{padding-bottom:var(--renov-h)}
 .cookie-box p{font-size:1rem;color:var(--text)}
 .cookie-box a{color:var(--marine)}
 .cookie-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem}
+.cookie-actions[hidden],.cookie-more[hidden],.cookie-custom[hidden]{display:none}
+.cookie-more{width:100%;margin-top:12px}
+.cookie-opt{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:var(--radius);cursor:pointer}
+.cookie-opt input{width:22px;height:22px;margin-top:2px;flex-shrink:0;accent-color:var(--marine)}
+.cookie-opt strong{display:block;color:var(--ink)}
+.cookie-opt span span{display:block;font-size:.92rem;color:var(--text)}
 html.cookie-open{overflow:hidden}
 .btn-outline{background:#fff;color:var(--marine);border-color:var(--marine)}
 .btn-outline:hover{background:#eef3f9}
@@ -554,36 +560,37 @@ html.cookie-open{overflow:hidden}
       <div>
         <p class="kicker kicker-light">Isolation thermique par l'extérieur</p>
         <h1 data-ab="titre" data-a="Une façade neuve qui garde la chaleur de votre maison." data-b="Isolez votre maison par l'extérieur, sans perdre un mètre carré.">Une façade neuve qui garde la chaleur <span class="h1-accent">de votre maison.</span></h1>
-        <p class="hero-sub">Étude gratuite et sans engagement : un conseiller étudie votre façade et vous rappelle. Vous restez chez vous pendant les travaux.</p>
+        <p class="hero-sub">Étude gratuite et sans engagement : un conseiller vous rappelle sous 24 h ouvrées, étudie votre projet et vous met en relation avec une entreprise certifiée RGE.</p>
         <ul class="hero-points">
           <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Chantiers visibles avant, pendant et après</li>
           <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Aucune surface habitable perdue</li>
-          <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Un seul interlocuteur, de l'étude à la réception</li>
+          <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Entreprises partenaires certifiées RGE</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a></p>
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Quatre questions, moins d'une minute.</p>
+          <p class="lead-intro">Cinq questions, moins d'une minute.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
+          <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
           <div class="field"><label for="lp-cp">Code postal</label><input id="lp-cp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" required maxlength="5" aria-describedby="err-cp"><span class="err" id="err-cp"></span></div>
           <fieldset class="choices-inline"><legend>Type de logement</legend>
             <label><input type="radio" name="logement" value="Maison individuelle" required> Maison individuelle</label>
             <label><input type="radio" name="logement" value="Maison de ville"> Maison de ville</label>
             <span class="err" id="err-logement" role="alert"></span>
           </fieldset>
-          <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être recontacté par Dominus Habitat au sujet de mon projet. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
+          <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="page_origine"><input type="hidden" name="variante">
           <button type="submit" class="btn btn-gold btn-block" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></button>
           <p class="err" id="err-envoi" role="alert"></p>
-          <p class="consent">Sans engagement. Vos données ne sont ni vendues ni cédées.</p>
+          <p class="consent">Sans engagement. Vos coordonnées ne sont transmises qu'à une seule entreprise partenaire et ne servent à rien d'autre.</p>
         </form>
         <div class="done" id="lead-done" hidden tabindex="-1" aria-live="polite">
           <h2>Merci, votre demande est bien reçue.</h2>
-          <p>Un conseiller Dominus Habitat vous rappelle pour préparer votre étude gratuite.</p>
+          <p>Un conseiller Dominus Habitat vous rappelle sous 24 h ouvrées pour préparer votre étude gratuite.</p>
         </div>
       </div>
     </div>
@@ -591,9 +598,9 @@ html.cookie-open{overflow:hidden}
 </div>
 <section class="lp-chantiers" aria-labelledby="lp-ch">
   <div class="wrap">
-    <p class="kicker">Nos réalisations</p>
-    <h2 id="lp-ch">Nos chantiers, notre savoir-faire en images.</h2>
-    <p class="lede">Des chantiers réels, des travaux visibles, un savoir-faire à découvrir.</p>
+    <p class="kicker">Chantiers partenaires</p>
+    <h2 id="lp-ch">Des chantiers réalisés par nos entreprises partenaires.</h2>
+    <p class="lede">Des chantiers réels, réalisés par nos entreprises partenaires certifiées RGE.</p>
     <div class="chantier-carousel" data-carousel>
   <div class="chantier-track" tabindex="0" role="region" aria-label="Trois chantiers avant, pendant, après" aria-roledescription="carrousel"><article class="chantier-card" data-gallery data-chantier="isolation-exterieure-nord-59-fourmies-001" data-departement="59" data-travaux="ite">
   
@@ -637,7 +644,7 @@ html.cookie-open{overflow:hidden}
     <div class="benefits">
       <div class="benefit"><h3>Une façade neuve et protégée</h3><p>L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte. Fissures et murs fatigués disparaissent.</p></div>
       <div class="benefit"><h3>Aucune surface perdue</h3><p>Tout se passe dehors : vos pièces gardent leur taille et vous continuez à vivre normalement pendant le chantier.</p></div>
-      <div class="benefit"><h3>Un seul interlocuteur</h3><p>Étude, visite technique, déclaration en mairie, pose et réception : nous suivons votre chantier de bout en bout.</p></div>
+      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et vos aides possibles, puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
     </div>
     <p class="hero-actions center"><a class="btn btn-gold" href="#lp-form" data-cta="lp-bas">Demander mon étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a></p>
   </div>
@@ -723,23 +730,31 @@ html.cookie-open{overflow:hidden}
 <!-- mesure:start -->
 <script>
 /* Mesure (GA4, Google Ads, Pixel Meta via le bandeau) et envoi des demandes au CRM.
-   Rien ne se déclenche avant le consentement : Consent Mode v2 « refusé » par défaut, gtag chargé seulement après « Accepter ». */
+   Consent Mode v2 en mode AVANCÉ : tout est « refusé » par défaut. La balise Google est chargée dès l'arrivée,
+   mais tant que le visiteur n'a rien accepté elle n'écrit aucun cookie et n'envoie que des signaux anonymes,
+   sans identifiant (ads_data_redaction). Google s'en sert pour estimer les conversions manquantes.
+   Dès qu'un choix est fait, « consent update » l'applique. Le Pixel Meta, lui, n'a pas d'équivalent :
+   il reste chargé uniquement après acceptation. */
 (function(){
   "use strict";
   var CFG = window.DH_CONFIG = {
-    leadEndpoint: "https://crm.dominusconsultancy.com/api/sources/0bbace71d00cb29654/84802d236e175aa23cbe6e3a",   // source « Formulaire web » du CRM Dominus (identifiant et clé repris du code d'intégration du CRM)
-    emailEndpoint: "",  // TODO : adresse du formulaire Formspree qui envoie chaque demande à contact@dominushabitat.com, ex. https://formspree.io/f/xxxxxxxx
+    leadEndpoint: "https://crm.dominusconsultancy.com/api/sources/7a7ee0f6ae6a1188d7/b02e67698b6d23fdc40e034fde1c3a94ad695ca788d68dcc",   // source « Formulaire Site ITE » (type Webhook générique) du CRM Dominus
+    emailEndpoint: "https://formspree.io/f/xaeoqgow",  // TODO : adresse du formulaire Formspree qui envoie chaque demande à contact@dominushabitat.com, ex. https://formspree.io/f/xxxxxxxx
     ga4: "G-NKVJWQLPEW", // GA4 dominushabitat.com (propriété 564354445)
-    adsId: "",          // TODO : identifiant Google Ads, ex. AW-XXXXXXXXX
-    adsLabel: "",       // TODO : étiquette de la conversion « Lead »
+    adsId: "AW-18575408445",
+    adsLabel: "wZC8CJC8xbgdEL36uJlF",
     adsEnhanced: false  // conversions améliorées (téléphone haché par Google) : à activer après validation de la politique de confidentialité
   };
   var ATTR_KEY = "dh-attribution", ATTR = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
-  var granted = false, loaded = false, viewed = false;
+  var consent = { audience: false, ads: false }, viewed = false;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
   gtag("consent", "default", { ad_storage: "denied", analytics_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
+  // Sans consentement publicitaire : aucun identifiant de clic n'est transmis à Google (signaux anonymes seulement)
+  gtag("set", "ads_data_redaction", true);
+  // Le gclid est passé d'une page à l'autre par l'adresse quand les cookies sont refusés, pour ne pas perdre l'attribution
+  gtag("set", "url_passthrough", true);
   gtag("js", new Date());
 
   // Attribution : paramètres publicitaires de l'arrivée sur le site et page d'origine, gardés le temps de la session
@@ -767,32 +782,35 @@ html.cookie-open{overflow:hidden}
     var vi = form.querySelector("input[name=variante]"); if (vi) vi.value = window.DH_VARIANTE;
   });
 
-  function loadGtag(){
+  // Mode avancé : la balise est chargée et configurée dès l'arrivée, avec le consentement refusé par défaut.
+  // Elle n'écrit alors aucun cookie ; elle n'envoie que des signaux anonymes, que Google utilise pour estimer
+  // les conversions des visiteurs qui ont refusé. Sans cela, un refus = une conversion invisible et perdue.
+  (function startGtag(){
     var id = CFG.ga4 || CFG.adsId;
-    if (loaded || !id) return;
-    loaded = true;
+    if (!id) return;
     var s = document.createElement("script");
     s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
     document.head.appendChild(s);
     if (CFG.ga4) gtag("config", CFG.ga4, { anonymize_ip: true });
     if (CFG.adsId) gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced });
-  }
+  })();
   window.dhOnConsent = function(choice){
-    granted = choice === "granted";
-    var s = granted ? "granted" : "denied";
-    gtag("consent", "update", { ad_storage: s, analytics_storage: s, ad_user_data: s, ad_personalization: s });
-    if (granted){ loadGtag(); if (document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); } }
+    if (typeof choice === "string") choice = { audience: choice === "granted", ads: choice === "granted" };
+    consent = { audience: !!choice.audience, ads: !!choice.ads };
+    var a = consent.audience ? "granted" : "denied", p = consent.ads ? "granted" : "denied";
+    gtag("consent", "update", { ad_storage: p, analytics_storage: a, ad_user_data: p, ad_personalization: p });
   };
   window.dhEvent = function(name, params){
-    if (!granted) return;
+    // Envoyé quel que soit le choix : l'état du consentement, lui, décide côté Google de ce qui est stocké
     gtag("event", name, Object.assign({ page_path: location.pathname, variante: window.DH_VARIANTE }, params || {}));
   };
   window.dhLead = function(lead){
-    if (!granted) return;
-    if (CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
+    // Les conversions améliorées (téléphone haché) n'ont lieu qu'avec consentement publicitaire explicite
+    if (consent.ads && CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
     window.dhEvent("generate_lead", { logement: lead && lead.logement });
     if (CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
-    if (window.fbq) window.fbq("track", "Lead");
+    // Meta n'a pas de mode de consentement : le pixel ne part qu'après acceptation
+    if (consent.ads && window.fbq) window.fbq("track", "Lead");
   };
   window.dhSendLead = function(data){
     var payload = Object.assign({}, attr, data, {
@@ -821,6 +839,8 @@ html.cookie-open{overflow:hidden}
       return { ok: true };
     });
   };
+  // Page d'un chantier : vue comptée une seule fois, dès l'arrivée
+  if (document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); }
   // Événements : clics sur les boutons d'action et le téléphone, premier champ touché du formulaire
   document.addEventListener("click", function(e){
     var cta = e.target.closest("[data-cta]");
@@ -838,9 +858,18 @@ html.cookie-open{overflow:hidden}
   <div class="cookie-box" role="dialog" aria-modal="true" aria-labelledby="cookie-title" aria-describedby="cookie-text" tabindex="-1">
     <p class="cookie-title" id="cookie-title">Vos choix en matière de cookies</p>
     <p id="cookie-text">Ce site utilise le Pixel Meta, Google Analytics et le suivi des conversions Google Ads pour mesurer son audience et l'efficacité de nos publicités. Vous pouvez changer d'avis à tout moment via « Gérer mes cookies » en bas de page. <a href="/confidentialite.html#cookies">En savoir plus</a></p>
-    <div class="cookie-actions">
+    <div class="cookie-actions" data-cookie-main>
       <button type="button" class="btn btn-outline" data-consent="denied">Refuser</button>
       <button type="button" class="btn btn-gold" data-consent="granted">Accepter</button>
+    </div>
+    <button type="button" class="btn btn-line cookie-more" data-cookie-custom-open>Personnaliser mes choix</button>
+    <div class="cookie-custom" hidden>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-audience><span><strong>Mesure d’audience</strong><span>Google Analytics : pages vues, clics et demandes d’étude, pour améliorer le site.</span></span></label>
+      <label class="cookie-opt"><input type="checkbox" data-cookie-ads><span><strong>Publicité</strong><span>Pixel Meta et suivi des conversions Google Ads : mesurer l’efficacité de nos publicités.</span></span></label>
+      <div class="cookie-actions">
+        <button type="button" class="btn btn-outline" data-cookie-custom-back>Retour</button>
+        <button type="button" class="btn btn-gold" data-cookie-custom-save>Enregistrer</button>
+      </div>
     </div>
   </div>
 </div>
@@ -855,15 +884,20 @@ html.cookie-open{overflow:hidden}
   var banner = document.getElementById("cookie-banner");
   var box = banner.querySelector(".cookie-box");
 
+  // Choix mémorisé : { audience, ads } (mesure d'audience / publicité). Les anciens choix « granted » / « denied » sont repris tels quels.
   function read(){
     try {
       var c = JSON.parse(localStorage.getItem(KEY));
-      if (c && (c.v === "granted" || c.v === "denied") && Date.now() - c.t < MAX_AGE) return c.v;
+      if (c && Date.now() - c.t < MAX_AGE){
+        if (c.v === "granted") return { audience: true, ads: true };
+        if (c.v === "denied") return { audience: false, ads: false };
+        if (typeof c.a === "boolean" && typeof c.p === "boolean") return { audience: c.a, ads: c.p };
+      }
     } catch (e) {}
     return null;
   }
-  function save(v){
-    try { localStorage.setItem(KEY, JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+  function save(c){
+    try { localStorage.setItem(KEY, JSON.stringify({ a: !!c.audience, p: !!c.ads, t: Date.now() })); } catch (e) {}
   }
 
   function loadPixel(){
@@ -894,7 +928,17 @@ html.cookie-open{overflow:hidden}
       if (el !== banner && el.tagName !== "SCRIPT" && !el.hasAttribute("data-no-inert")) { if (on) el.setAttribute("inert", ""); else el.removeAttribute("inert"); }
     });
   }
+  var mainActions = banner.querySelector("[data-cookie-main]");
+  var moreBtn = banner.querySelector("[data-cookie-custom-open]");
+  var customPanel = banner.querySelector(".cookie-custom");
+  var cbAudience = banner.querySelector("[data-cookie-audience]");
+  var cbAds = banner.querySelector("[data-cookie-ads]");
+  function showCustom(on){
+    mainActions.hidden = on; moreBtn.hidden = on; customPanel.hidden = !on;
+    if (on){ var cur = read() || { audience: false, ads: false }; cbAudience.checked = cur.audience; cbAds.checked = cur.ads; }
+  }
   function open(){
+    showCustom(false);
     banner.hidden = false;
     document.documentElement.classList.add("cookie-open");
     setInert(true);
@@ -906,14 +950,19 @@ html.cookie-open{overflow:hidden}
     setInert(false);
   }
 
-  banner.addEventListener("click", function(e){
-    var b = e.target.closest("[data-consent]");
-    if (!b) return;
-    var v = b.getAttribute("data-consent");
-    save(v);
-    if (v === "granted") loadPixel(); else revokePixel();
-    if (window.dhOnConsent) window.dhOnConsent(v);
+  function choose(c){
+    save(c);
+    if (c.ads) loadPixel(); else revokePixel();
+    if (window.dhOnConsent) window.dhOnConsent(c);
     close();
+  }
+  banner.addEventListener("click", function(e){
+    var t = e.target;
+    var b = t.closest("[data-consent]");
+    if (b){ var all = b.getAttribute("data-consent") === "granted"; choose({ audience: all, ads: all }); return; }
+    if (t.closest("[data-cookie-custom-open]")) showCustom(true);
+    else if (t.closest("[data-cookie-custom-back]")) showCustom(false);
+    else if (t.closest("[data-cookie-custom-save]")) choose({ audience: cbAudience.checked, ads: cbAds.checked });
   });
   document.addEventListener("click", function(e){
     if (e.target.closest("[data-cookie-settings]")) open();
@@ -922,7 +971,7 @@ html.cookie-open{overflow:hidden}
   // Mesure des demandes d'étude, uniquement si consentement (appelé par le formulaire)
 
   var choice = read();
-  if (choice === "granted") loadPixel();
+  if (choice && choice.ads) loadPixel();
   if (choice && window.dhOnConsent) window.dhOnConsent(choice);
   // Les pages légales (data-cookie-prompt="manual") restent lisibles : la modale n'y s'ouvre que via « Gérer mes cookies ».
   else if (choice === null && document.body.getAttribute("data-cookie-prompt") !== "manual") open();
@@ -1015,12 +1064,13 @@ html.cookie-open{overflow:hidden}
     ok = setError(form.prenom, "err-prenom", form.prenom.value.trim().length < 2 ? "Indiquez votre prénom." : "") && ok;
     var t = form.tel.value.replace(/[\s.\-]/g, "");
     ok = setError(form.tel, "err-tel", /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
+    ok = setError(form.email, "err-email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.value.trim()) ? "" : "Indiquez une adresse email valide, par exemple nom@exemple.fr.") && ok;
     ok = setError(form.cp, "err-cp", /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(form.cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
     var picked = form.querySelector("input[name=logement]:checked");
     ok = setError(null, "err-logement", picked ? "" : "Choisissez votre type de logement.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))

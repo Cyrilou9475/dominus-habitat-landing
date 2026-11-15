@@ -37,24 +37,25 @@ PAGES = {
         "title": "Politique de confidentialité",
         "description": "Politique de confidentialité de Dominus Habitat : données collectées, finalité, conservation, cookies et exercice de vos droits.",
         "rows": [
-            ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation). Avec votre demande sont enregistrés la page d’origine et, le cas échéant, les paramètres de la campagne publicitaire qui vous a amené sur le site (utm, gclid, fbclid)."),
-            ("Finalité", "Recontacter le prospect pour établir un devis ITE ; mesurer l’efficacité des campagnes publicitaires"),
-            ("Base légale", "Intérêt légitime"),
+            ("Données collectées", "Via le formulaire de demande d’étude : nom, prénom, numéro de téléphone, adresse email, code postal, type de logement (maison individuelle ou maison de ville), surface de façade estimée, et toute information complémentaire communiquée lors des échanges ultérieurs avec nos conseillers (situation du logement, année de construction, mode de chauffage, objectifs de rénovation). Avec votre demande sont enregistrés la page d’origine et, le cas échéant, les paramètres de la campagne publicitaire qui vous a amené sur le site (utm, gclid, fbclid)."),
+            ("Finalité", "Rappeler le demandeur pour étudier son projet d’isolation et, avec son accord, le mettre en relation avec une entreprise partenaire certifiée RGE chargée de la visite technique, du devis et des travaux ; mesurer l’efficacité des campagnes publicitaires"),
+            ("Base légale", "Mesures précontractuelles prises à votre demande (rappel et étude du projet) ; consentement pour la transmission de vos coordonnées à l’entreprise partenaire ; consentement pour les cookies de mesure et de publicité"),
             ("Conservation", "3 ans"),
-            ("Destinataires", "Équipe Dominus Habitat et sociétés partenaires intervenant pour la réalisation du devis et des travaux d’isolation."),
+            ("Destinataires", "Équipe Dominus Habitat ; avec votre accord, une seule entreprise partenaire certifiée RGE, qui réalise la visite technique, le devis et les travaux et vous recontacte à ce titre. Dominus Habitat est rémunérée par cette entreprise lorsque des travaux sont signés."),
             ("Vos droits", "Accès, rectification, suppression, opposition, portabilité : " + EMAIL + ". Réponse sous 30 jours."),
             ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
             ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
         ],
         "sections": [
             ("stockage", "Stockage des données", [
-                "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et à " + EMAIL + ". Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
+                "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et, en parallèle, à " + EMAIL + " par l’intermédiaire du service d’envoi de formulaires Formspree (Formspree Inc., États-Unis), qui agit comme sous-traitant. Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
                 "Les serveurs de Google sont situés dans l’Union européenne et aux États-Unis. Google adhère au " + GOOGLE_DPF + " et agit comme sous-traitant dans le cadre de l’accord de traitement des données (DPA) Google Workspace.",
                 "Le site lui-même ne stocke aucune donnée : il transmet la demande à notre CRM.",
             ]),
             ("cookies", "Cookies", [
-                "Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude). Le mode de consentement de Google (Consent Mode v2) est réglé sur « refusé » par défaut.",
-                'Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
+                "Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude).",
+                "Le mode de consentement de Google (Consent Mode v2) est réglé sur « refusé » par défaut, en mode avancé : tant que vous n’avez rien accepté, aucun cookie n’est déposé et aucun identifiant publicitaire n’est transmis. La balise Google envoie seulement des signaux anonymes, sans cookie et sans identifiant, qui permettent à Google d’estimer statistiquement le nombre de demandes issues de ses publicités. Ces signaux ne permettent ni de vous identifier, ni de vous suivre d’un site à l’autre. Si vous acceptez, les cookies de mesure et de publicité correspondants sont alors déposés.",
+                'Vous pouvez tout accepter, tout refuser, ou choisir finalité par finalité (mesure d’audience, publicité) avec le bouton « Personnaliser mes choix ». Vous pouvez retirer votre consentement à tout moment via le lien « Gérer mes cookies » en bas de page : <button type="button" class="link-btn link-inline" data-cookie-settings>gérer mes cookies</button>.',
                 "Meta et Google adhèrent au Data Privacy Framework UE–États-Unis. Aucun autre cookie de traçage n’est utilisé.",
             ]),
             ("securite", "Mesures de sécurité", [
