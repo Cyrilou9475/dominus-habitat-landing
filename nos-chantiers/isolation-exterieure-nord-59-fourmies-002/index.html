@@ -186,6 +186,11 @@ section{padding:clamp(64px,9vw,112px) 0}
 .choice input:checked+label{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--gold)}
 .choice input:checked+label .choice-check{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .choice input:focus-visible+label{outline:3px solid var(--gold);outline-offset:3px}
+.choice-icon label{background:linear-gradient(160deg,var(--marine) 0%,var(--ink) 100%)}
+.choice-icon label::before{display:none}
+.choice-glyph{position:absolute;left:0;right:0;top:0;bottom:34%;z-index:1;display:grid;place-items:center;color:var(--gold)}
+.choice-glyph svg{width:clamp(40px,32%,56px);height:auto}
+.choice:hover .choice-glyph{color:#f5cd78}
 @media (max-width:420px){.choice-text b{font-size:1rem}.choice-text small{font-size:.75rem}.choices{gap:10px}}
 .range-out{font:700 2.1rem/1 var(--serif);color:var(--marine);margin:.2rem 0 .8rem}
 .range-out small{font:500 1rem var(--sans);color:var(--muted);margin-left:.25rem}
@@ -535,6 +540,15 @@ html.cookie-open{overflow:hidden}
 .lp-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:start}
 @media (max-width:900px){.lp-grid{grid-template-columns:1fr}}
 .lp-form .field{margin-top:.9rem}
+.statut{border:0;padding:0;margin:1rem 0 0}
+.statut legend{font-weight:500;font-size:.96rem;margin-bottom:6px;padding:0}
+.statut-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.big-choice{position:relative;display:block}
+.big-choice input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:1}
+.big-choice span{display:flex;align-items:center;justify-content:center;min-height:56px;padding:12px 10px;border:2px solid var(--line);border-radius:12px;background:#fff;font:600 1.02rem/1.2 var(--sans);color:var(--ink);text-align:center}
+.big-choice:hover span{border-color:var(--marine)}
+.big-choice input:checked+span{background:var(--marine);border-color:var(--marine);color:#fff;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--gold)}
+.big-choice input:focus-visible+span{outline:3px solid var(--marine);outline-offset:3px}
 .choices-inline{border:0;padding:0;margin:1rem 0 0}
 .choices-inline legend{font-weight:500;font-size:.96rem;margin-bottom:6px;padding:0}
 .choices-inline label{display:inline-flex;align-items:center;gap:8px;margin:4px 16px 4px 0;min-height:44px;font-weight:500}

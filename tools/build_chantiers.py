@@ -263,6 +263,14 @@ LP_JS = r"""<script>
   "use strict";
   var form = document.getElementById("lead-form"); if (!form) return;
   function setError(input, id, msg){ document.getElementById(id).textContent = msg || ""; if (input) input.setAttribute("aria-invalid", msg ? "true" : "false"); return !msg; }
+  // La question « Vous êtes » n'apparaît qu'une fois le type de logement choisi.
+  var statutBloc = document.getElementById("statut-bloc");
+  function majStatut(){ statutBloc.hidden = !form.querySelector("input[name=logement]:checked"); }
+  form.addEventListener("change", function(e){
+    if (e.target.name === "logement"){ majStatut(); document.getElementById("err-logement").textContent = ""; }
+    if (e.target.name === "proprietaire") document.getElementById("err-proprietaire").textContent = "";
+  });
+  majStatut();
   form.addEventListener("submit", function(e){
     e.preventDefault();
     if (form.website.value) return;
@@ -274,9 +282,11 @@ LP_JS = r"""<script>
     ok = setError(form.cp, "err-cp", /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(form.cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
     var picked = form.querySelector("input[name=logement]:checked");
     ok = setError(null, "err-logement", picked ? "" : "Choisissez votre type de logement.") && ok;
+    var statut = form.querySelector("input[name=proprietaire]:checked");
+    if (picked) ok = setError(form.querySelector("input[name=proprietaire]"), "err-proprietaire", statut ? "" : "Indiquez si vous êtes propriétaire ou locataire.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))
@@ -607,7 +617,7 @@ def page_lp(index, items, out_root):
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Cinq questions, moins d'une minute.</p>
+          <p class="lead-intro">Six questions, moins d'une minute.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
           <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
@@ -616,6 +626,13 @@ def page_lp(index, items, out_root):
             <label><input type="radio" name="logement" value="Maison individuelle" required> Maison individuelle</label>
             <label><input type="radio" name="logement" value="Maison de ville"> Maison de ville</label>
             <span class="err" id="err-logement" role="alert"></span>
+          </fieldset>
+          <fieldset class="statut" id="statut-bloc" hidden><legend>Vous êtes</legend>
+            <div class="statut-choices">
+              <label class="big-choice"><input type="radio" name="proprietaire" value="Propriétaire" required><span>Propriétaire</span></label>
+              <label class="big-choice"><input type="radio" name="proprietaire" value="Locataire"><span>Locataire</span></label>
+            </div>
+            <span class="err" id="err-proprietaire" role="alert"></span>
           </fieldset>
           <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
