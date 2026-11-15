@@ -603,13 +603,14 @@ def page_lp(index, items, out_root):
           <li>{PIN} Chantiers visibles avant, pendant et après</li>
           <li>{PIN} Aucune surface habitable perdue</li>
           <li>{PIN} Entreprises partenaires certifiées RGE</li>
+          <li>{PIN} Primes énergie (CEE) possibles selon votre situation</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</a></p>
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Moins d'une minute. Un conseiller vous rappelle sous 24 h ouvrées.</p>
+          <p class="lead-intro">Moins d'une minute pour remplir.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
           <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
@@ -653,7 +654,7 @@ def page_lp(index, items, out_root):
     <div class="benefits">
       <div class="benefit"><h3>Une façade neuve et protégée</h3><p>L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte. Fissures et murs fatigués disparaissent.</p></div>
       <div class="benefit"><h3>Aucune surface perdue</h3><p>Tout se passe dehors : vos pièces gardent leur taille et vous continuez à vivre normalement pendant le chantier.</p></div>
-      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et vos aides possibles, puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
+      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et les aides possibles, dont les primes énergie (CEE), puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
     </div>
     <p class="hero-actions center"><a class="btn btn-gold" href="#lp-form" data-cta="lp-bas">Demander mon étude gratuite{ARROW}</a></p>
   </div>
