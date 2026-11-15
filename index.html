@@ -1098,7 +1098,11 @@ html.cookie-open{overflow:hidden}
 <!-- mesure:start -->
 <script>
 /* Mesure (GA4, Google Ads, Pixel Meta via le bandeau) et envoi des demandes au CRM.
-   Rien ne se déclenche avant le consentement : Consent Mode v2 « refusé » par défaut, gtag chargé seulement après « Accepter ». */
+   Consent Mode v2 en mode AVANCÉ : tout est « refusé » par défaut. La balise Google est chargée dès l'arrivée,
+   mais tant que le visiteur n'a rien accepté elle n'écrit aucun cookie et n'envoie que des signaux anonymes,
+   sans identifiant (ads_data_redaction). Google s'en sert pour estimer les conversions manquantes.
+   Dès qu'un choix est fait, « consent update » l'applique. Le Pixel Meta, lui, n'a pas d'équivalent :
+   il reste chargé uniquement après acceptation. */
 (function(){
   "use strict";
   var CFG = window.DH_CONFIG = {
@@ -1110,11 +1114,15 @@ html.cookie-open{overflow:hidden}
     adsEnhanced: false  // conversions améliorées (téléphone haché par Google) : à activer après validation de la politique de confidentialité
   };
   var ATTR_KEY = "dh-attribution", ATTR = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
-  var consent = { audience: false, ads: false }, loaded = false, viewed = false, cfgGa = false, cfgAds = false;
+  var consent = { audience: false, ads: false }, viewed = false;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = window.gtag || gtag;
   gtag("consent", "default", { ad_storage: "denied", analytics_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 });
+  // Sans consentement publicitaire : aucun identifiant de clic n'est transmis à Google (signaux anonymes seulement)
+  gtag("set", "ads_data_redaction", true);
+  // Le gclid est passé d'une page à l'autre par l'adresse quand les cookies sont refusés, pour ne pas perdre l'attribution
+  gtag("set", "url_passthrough", true);
   gtag("js", new Date());
 
   // Attribution : paramètres publicitaires de l'arrivée sur le site et page d'origine, gardés le temps de la session
@@ -1142,36 +1150,34 @@ html.cookie-open{overflow:hidden}
     var vi = form.querySelector("input[name=variante]"); if (vi) vi.value = window.DH_VARIANTE;
   });
 
-  function loadGtag(){
+  // Mode avancé : la balise est chargée et configurée dès l'arrivée, avec le consentement refusé par défaut.
+  // Elle n'écrit alors aucun cookie ; elle n'envoie que des signaux anonymes, que Google utilise pour estimer
+  // les conversions des visiteurs qui ont refusé. Sans cela, un refus = une conversion invisible et perdue.
+  (function startGtag(){
     var id = CFG.ga4 || CFG.adsId;
     if (!id) return;
-    if (!loaded){
-      loaded = true;
-      var s = document.createElement("script");
-      s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-      document.head.appendChild(s);
-    }
-    // Chaque outil n'est configuré que si sa finalité a été acceptée : audience pour GA4, publicité pour Google Ads
-    if (consent.audience && CFG.ga4 && !cfgGa){ cfgGa = true; gtag("config", CFG.ga4, { anonymize_ip: true }); }
-    if (consent.ads && CFG.adsId && !cfgAds){ cfgAds = true; gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced }); }
-  }
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s);
+    if (CFG.ga4) gtag("config", CFG.ga4, { anonymize_ip: true });
+    if (CFG.adsId) gtag("config", CFG.adsId, { allow_enhanced_conversions: !!CFG.adsEnhanced });
+  })();
   window.dhOnConsent = function(choice){
     if (typeof choice === "string") choice = { audience: choice === "granted", ads: choice === "granted" };
     consent = { audience: !!choice.audience, ads: !!choice.ads };
     var a = consent.audience ? "granted" : "denied", p = consent.ads ? "granted" : "denied";
     gtag("consent", "update", { ad_storage: p, analytics_storage: a, ad_user_data: p, ad_personalization: p });
-    if (consent.audience || consent.ads) loadGtag();
-    if (consent.audience && document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); }
   };
   window.dhEvent = function(name, params){
-    if (!consent.audience) return;
+    // Envoyé quel que soit le choix : l'état du consentement, lui, décide côté Google de ce qui est stocké
     gtag("event", name, Object.assign({ page_path: location.pathname, variante: window.DH_VARIANTE }, params || {}));
   };
   window.dhLead = function(lead){
-    if (!consent.audience && !consent.ads) return;
+    // Les conversions améliorées (téléphone haché) n'ont lieu qu'avec consentement publicitaire explicite
     if (consent.ads && CFG.adsEnhanced && lead && lead.tel) gtag("set", "user_data", { phone_number: lead.tel });
     window.dhEvent("generate_lead", { logement: lead && lead.logement });
-    if (consent.ads && CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
+    if (CFG.adsId && CFG.adsLabel) gtag("event", "conversion", { send_to: CFG.adsId + "/" + CFG.adsLabel });
+    // Meta n'a pas de mode de consentement : le pixel ne part qu'après acceptation
     if (consent.ads && window.fbq) window.fbq("track", "Lead");
   };
   window.dhSendLead = function(data){
@@ -1201,6 +1207,8 @@ html.cookie-open{overflow:hidden}
       return { ok: true };
     });
   };
+  // Page d'un chantier : vue comptée une seule fois, dès l'arrivée
+  if (document.body.dataset.chantier && !viewed){ viewed = true; window.dhEvent("view_chantier", { chantier: document.body.dataset.chantier }); }
   // Événements : clics sur les boutons d'action et le téléphone, premier champ touché du formulaire
   document.addEventListener("click", function(e){
     var cta = e.target.closest("[data-cta]");
