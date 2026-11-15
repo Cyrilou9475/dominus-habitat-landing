@@ -565,13 +565,14 @@ html.cookie-open{overflow:hidden}
           <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Chantiers visibles avant, pendant et après</li>
           <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Aucune surface habitable perdue</li>
           <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Entreprises partenaires certifiées RGE</li>
+          <li><svg class="pin" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M8 14.5s4.5-4.3 4.5-8a4.5 4.5 0 0 0-9 0c0 3.7 4.5 8 4.5 8z"/><circle cx="8" cy="6.5" r="1.6"/></svg> Primes énergie (CEE) possibles selon votre situation</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a></p>
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
           <h2 id="lp-form">Demander mon étude gratuite</h2>
-          <p class="lead-intro">Cinq questions, moins d'une minute.</p>
+          <p class="lead-intro">Moins d'une minute pour remplir.</p>
           <div class="field"><label for="lp-prenom">Prénom</label><input id="lp-prenom" name="prenom" type="text" autocomplete="given-name" required maxlength="60" aria-describedby="err-prenom"><span class="err" id="err-prenom"></span></div>
           <div class="field"><label for="lp-tel">Téléphone</label><input id="lp-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="err-tel"><span class="err" id="err-tel"></span></div>
           <div class="field"><label for="lp-email">Email</label><input id="lp-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="120" aria-describedby="err-email"><span class="err" id="err-email"></span></div>
@@ -580,6 +581,11 @@ html.cookie-open{overflow:hidden}
             <label><input type="radio" name="logement" value="Maison individuelle" required> Maison individuelle</label>
             <label><input type="radio" name="logement" value="Maison de ville"> Maison de ville</label>
             <span class="err" id="err-logement" role="alert"></span>
+          </fieldset>
+          <fieldset class="choices-inline"><legend>Vous êtes</legend>
+            <label><input type="radio" name="proprietaire" value="Propriétaire" required> Propriétaire</label>
+            <label><input type="radio" name="proprietaire" value="Locataire"> Locataire</label>
+            <span class="err" id="err-proprietaire" role="alert"></span>
           </fieldset>
           <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -644,7 +650,7 @@ html.cookie-open{overflow:hidden}
     <div class="benefits">
       <div class="benefit"><h3>Une façade neuve et protégée</h3><p>L'isolant est recouvert d'un enduit de finition dont vous choisissez la teinte. Fissures et murs fatigués disparaissent.</p></div>
       <div class="benefit"><h3>Aucune surface perdue</h3><p>Tout se passe dehors : vos pièces gardent leur taille et vous continuez à vivre normalement pendant le chantier.</p></div>
-      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et vos aides possibles, puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
+      <div class="benefit"><h3>Un conseiller à vos côtés</h3><p>Il étudie votre projet et les aides possibles, dont les primes énergie (CEE), puis vous met en relation avec une entreprise certifiée RGE qui assure la visite, les démarches et les travaux.</p></div>
     </div>
     <p class="hero-actions center"><a class="btn btn-gold" href="#lp-form" data-cta="lp-bas">Demander mon étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a></p>
   </div>
@@ -1068,9 +1074,11 @@ html.cookie-open{overflow:hidden}
     ok = setError(form.cp, "err-cp", /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(form.cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
     var picked = form.querySelector("input[name=logement]:checked");
     ok = setError(null, "err-logement", picked ? "" : "Choisissez votre type de logement.") && ok;
+    var statut = form.querySelector("input[name=proprietaire]:checked");
+    ok = setError(null, "err-proprietaire", statut ? "" : "Indiquez si vous êtes propriétaire ou locataire.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))
