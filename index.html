@@ -211,11 +211,6 @@ section{padding:clamp(64px,9vw,112px) 0}
 .choice input:checked+label{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--gold)}
 .choice input:checked+label .choice-check{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 .choice input:focus-visible+label{outline:3px solid var(--gold);outline-offset:3px}
-.choice-icon label{background:linear-gradient(160deg,var(--marine) 0%,var(--ink) 100%)}
-.choice-icon label::before{display:none}
-.choice-glyph{position:absolute;left:0;right:0;top:0;bottom:34%;z-index:1;display:grid;place-items:center;color:var(--gold)}
-.choice-glyph svg{width:clamp(40px,32%,56px);height:auto}
-.choice:hover .choice-glyph{color:#f5cd78}
 @media (max-width:420px){.choice-text b{font-size:1rem}.choice-text small{font-size:.75rem}.choices{gap:10px}}
 .range-out{font:700 2.1rem/1 var(--serif);color:var(--marine);margin:.2rem 0 .8rem}
 .range-out small{font:500 1rem var(--sans);color:var(--muted);margin-left:.25rem}
@@ -667,18 +662,18 @@ html.cookie-open{overflow:hidden}
           <fieldset class="step" data-step="2" hidden>
             <legend>Vous êtes ?</legend>
             <div class="choices">
-              <div class="choice choice-icon">
+              <div class="choice">
                 <input type="radio" name="proprietaire" id="pr-proprietaire" value="Propriétaire" required>
                 <label for="pr-proprietaire">
-                  <span class="choice-glyph" aria-hidden="true"><svg width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22L24 7l18 15"/><path d="M10 19v22h28V19"/><circle cx="21" cy="29" r="4"/><path d="M25 31l9 6M31 35l-2 3M34 37l-2 3"/></svg></span>
+                  <img src="assets/choix-proprietaire.webp" width="640" height="640" alt="" decoding="async">
                   <span class="choice-text"><b>Propriétaire</b><small>Je possède le logement</small></span>
                   <span class="choice-check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </label>
               </div>
-              <div class="choice choice-icon">
+              <div class="choice">
                 <input type="radio" name="proprietaire" id="pr-locataire" value="Locataire">
                 <label for="pr-locataire">
-                  <span class="choice-glyph" aria-hidden="true"><svg width="52" height="52" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22L24 7l18 15"/><path d="M10 19v22h28V19"/><path d="M19 41V28h10v13"/><circle cx="26.5" cy="35" r=".9" fill="currentColor"/></svg></span>
+                  <img src="assets/choix-locataire.webp" width="640" height="640" alt="" decoding="async">
                   <span class="choice-text"><b>Locataire</b><small>Je loue le logement</small></span>
                   <span class="choice-check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2.5 8.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 </label>
