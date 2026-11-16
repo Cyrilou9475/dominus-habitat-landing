@@ -357,15 +357,19 @@ input[type=range]{width:100%;accent-color:var(--marine);height:32px;cursor:point
 /* ---------- Bandeau France Rénov' (obligatoire, fixe, non masquable) ---------- */
 :root{--renov-h:0px}
 /* Encart France Rénov' (charte Anah : en haut de page, 150 px min., pleine largeur mobile, cliquable) */
-.renov-encart{background:#fff;border-top:3px solid #000;border-bottom:3px solid #000}
-.renov-encart a{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.5vw,32px);min-height:150px;max-width:1200px;margin:0 auto;padding:12px clamp(16px,3vw,32px);color:#000;text-decoration:none}
-.renov-encart img{display:block;width:clamp(200px,22vw,270px);height:auto;flex:none}
-.renov-encart span{font:400 clamp(1rem,1.25vw,1.12rem)/1.35 "Helvetica Neue",Arial,sans-serif;max-width:34ch}
-.renov-encart b{font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-.hero .renov-encart,.lp-hero .renov-encart{margin-top:28px}
-@media (max-width:900px){.hero .renov-encart,.lp-hero .renov-encart{margin-inline:calc(-1 * var(--gutter))}}
-.renov-encart a:focus-visible{outline:3px solid #164174;outline-offset:-6px}
-@media (max-width:700px){.renov-encart a{flex-direction:column;text-align:center;gap:10px;padding:14px 16px}.renov-encart img{width:170px}.renov-encart span{max-width:none;font-size:1rem;line-height:1.3}}
+/* Encart France Rénov' (charte Anah 2026) : contenu figé (logos officiels, texte, liserés noirs intérieurs, sauts de ligne de la p. 9) ; seul l'écrin est à nos couleurs */
+.renov-encart{grid-column:1/-1;background:#fff;border-radius:10px;padding:14px clamp(18px,3vw,36px);box-shadow:0 24px 60px -24px rgba(5,15,30,.55)}
+.renov-encart a{display:flex;align-items:center;justify-content:center;gap:clamp(20px,3vw,40px);min-height:122px;padding:12px 0;border-top:2px solid #000;border-bottom:2px solid #000;color:#000;text-decoration:none}
+.renov-encart img{display:block;width:clamp(190px,18vw,230px);height:auto;flex:none}
+.renov-encart span{font:400 1.05rem/1.4 "Helvetica Neue",Arial,sans-serif;white-space:nowrap}
+.renov-encart b{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.renov-encart br{display:none}
+.renov-encart .b2{display:inline}
+.renov-top{margin-block:16px}
+.renov-encart a:focus-visible{outline:3px solid #164174;outline-offset:4px}
+@media (max-width:1000px){.renov-encart .b2{display:none}.renov-encart .b3{display:inline}}
+@media (max-width:700px){.renov-top{margin-block:0}.renov-encart{border-radius:0;box-shadow:none;border-bottom:1px solid var(--line);margin-inline:calc(-1 * var(--gutter));padding:12px var(--gutter)}.renov-encart a{flex-direction:column;gap:10px;text-align:center}.renov-encart img{width:170px}.renov-encart span{font-size:1rem}}
+@media (max-width:420px){.renov-encart .b3{display:none}.renov-encart .b4{display:inline}}
 body{padding-bottom:var(--renov-h)}
 /* aides:css */
 .aides-card{display:none}
@@ -575,12 +579,14 @@ html.cookie-open{overflow:hidden}
     <a class="btn btn-gold header-cta" href="/#etude">Étude gratuite<svg class="btn-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h11M10 4.5L14.5 9 10 13.5"/></svg></a>
   </div>
 </header>
+<div class="wrap renov-top">
 <aside class="renov-encart" id="renov-banner" aria-label="Service public France Rénov’" data-no-inert>
-          <a href="https://france-renov.gouv.fr/servicepublic" target="_blank" rel="noopener">
-            <img src="/assets/france-renov-logos.webp" width="1200" height="355" alt="République Française – France Rénov’">
-            <span>Avant de vous engager, le service public vous informe gratuitement pour préparer et sécuriser votre projet : <b>france-renov.gouv.fr</b></span>
-          </a>
-        </aside>
+        <a href="https://france-renov.gouv.fr/servicepublic" target="_blank" rel="noopener">
+          <img src="/assets/france-renov-logos.webp" width="1200" height="355" alt="République Française – France Rénov’">
+          <span>Avant de vous engager, le service public <br class="b3 b4">vous informe gratuitement <br class="b2">pour <br class="b4">préparer <br class="b3">et sécuriser votre projet&nbsp;: <br class="b4"><b>france-renov.gouv.fr</b></span>
+        </a>
+      </aside>
+</div>
 
 <main id="contenu">
 <div class="roof-bottom">

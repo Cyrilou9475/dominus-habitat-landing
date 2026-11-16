@@ -146,7 +146,9 @@ for slug, page in PAGES.items():
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 {localize(header, slug)}
+<div class="wrap renov-top">
 {renov}
+</div>
 
 <main id="contenu">
 <div class="roof-bottom">

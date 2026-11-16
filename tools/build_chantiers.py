@@ -357,7 +357,7 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
     if "<!-- renov -->" in body:  # encart placé dans le contenu, près du texte sur les travaux
         body, renov_top = body.replace("<!-- renov -->", renov), ""
     else:
-        renov_top = renov
+        renov_top = f'<div class="wrap renov-top">\n{renov}\n</div>'
     og = og_image or f"{SITE}assets/logo-dominus-habitat.png"
     return f"""<!doctype html>
 <html lang="fr">
@@ -617,7 +617,6 @@ def page_lp(index, items, out_root):
           <li>{PIN} Entreprises partenaires certifiées RGE</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</a></p>
-        <!-- renov -->
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
@@ -651,6 +650,7 @@ def page_lp(index, items, out_root):
           <p>Un conseiller Dominus Habitat vous rappelle sous 24 h ouvrées pour préparer votre étude gratuite.</p>
         </div>
       </div>
+<!-- renov -->
     </div>
   </div>
 </div>
