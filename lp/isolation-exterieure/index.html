@@ -611,7 +611,8 @@ html.cookie-open{overflow:hidden}
             <span class="err" id="err-proprietaire" role="alert"></span>
           </fieldset>
           <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
-          <fieldset class="choix-email"><legend>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</legend>
+          <label class="consent-check consent-email" data-ui="case"><input type="checkbox" name="consentement_email_case" value="oui"><span>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</span></label>
+          <fieldset class="choix-email" data-ui="choix" hidden><legend>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</legend>
             <div class="statut-choices">
               <label class="big-choice"><input type="radio" name="consentement_email" value="oui" required><span>Oui</span></label>
               <label class="big-choice"><input type="radio" name="consentement_email" value="non"><span>Non</span></label>
@@ -1093,6 +1094,15 @@ html.cookie-open{overflow:hidden}
     if (e.target.name === "proprietaire") document.getElementById("err-proprietaire").textContent = "";
   });
   majStatut();
+  // Test : case facultative (« case ») ou choix oui / non obligatoire (« choix »). Tirage au sort à chaque chargement, sans rien stocker ; la version vue part avec la demande.
+  var emailUi = Math.random() < 0.5 ? "case" : "choix";
+  Array.prototype.forEach.call(form.querySelectorAll("[data-ui]"), function(el){ el.hidden = el.getAttribute("data-ui") !== emailUi; });
+  function emailConsent(){
+    var txt = (emailUi === "case" ? form.querySelector("[data-ui=case] span") : form.querySelector("[data-ui=choix] legend")).textContent.replace(/\s+/g, " ").trim();
+    if (emailUi === "case") return { valeur: form.querySelector("input[name=consentement_email_case]").checked ? "oui" : "non", texte: txt };
+    var r = form.querySelector("input[name=consentement_email]:checked");
+    return { valeur: r ? r.value : "", texte: txt };
+  }
   form.addEventListener("submit", function(e){
     e.preventDefault();
     if (form.website.value) return;
@@ -1107,9 +1117,10 @@ html.cookie-open{overflow:hidden}
     var statut = form.querySelector("input[name=proprietaire]:checked");
     if (picked) ok = setError(form.querySelector("input[name=proprietaire]"), "err-proprietaire", statut ? "" : "Indiquez si vous êtes propriétaire ou locataire.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
-    ok = setError(null, "err-email-choix", form.querySelector("input[name=consentement_email]:checked") ? "" : "Répondez par oui ou par non pour envoyer votre demande.") && ok;
+    ok = setError(null, "err-email-choix", emailConsent().valeur ? "" : "Répondez par oui ou par non pour envoyer votre demande.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", consentement_email: form.querySelector("input[name=consentement_email]:checked").value, consentement_email_texte: form.querySelector(".choix-email legend").textContent.replace(/\s+/g, " ").trim(), page: location.href };
+    var emailC = emailConsent();
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", consentement_email: emailC.valeur, consentement_email_texte: emailC.texte, consentement_email_ui: emailUi, page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))

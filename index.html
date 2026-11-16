@@ -738,7 +738,8 @@ html.cookie-open{overflow:hidden}
               <label for="website">Ne pas remplir ce champ</label>
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
-            <fieldset class="choix-email"><legend>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</legend>
+            <label class="consent-check consent-email" data-ui="case"><input type="checkbox" name="consentement_email_case" value="oui"><span>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</span></label>
+            <fieldset class="choix-email" data-ui="choix" hidden><legend>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</legend>
               <div class="statut-choices">
                 <label class="big-choice"><input type="radio" name="consentement_email" value="oui" required><span>Oui</span></label>
                 <label class="big-choice"><input type="radio" name="consentement_email" value="non"><span>Non</span></label>
@@ -1418,6 +1419,16 @@ html.cookie-open{overflow:hidden}
     return !msg;
   }
 
+  // Test : case facultative (« case ») ou choix oui / non obligatoire (« choix »). Tirage au sort à chaque chargement, sans rien stocker ; la version vue part avec la demande.
+  var emailUi = Math.random() < 0.5 ? "case" : "choix";
+  Array.prototype.forEach.call(form.querySelectorAll("[data-ui]"), function(el){ el.hidden = el.getAttribute("data-ui") !== emailUi; });
+  function emailConsent(){
+    var txt = (emailUi === "case" ? form.querySelector("[data-ui=case] span") : form.querySelector("[data-ui=choix] legend")).textContent.replace(/\s+/g, " ").trim();
+    if (emailUi === "case") return { valeur: form.querySelector("input[name=consentement_email_case]").checked ? "oui" : "non", texte: txt };
+    var r = form.querySelector("input[name=consentement_email]:checked");
+    return { valeur: r ? r.value : "", texte: txt };
+  }
+
   function validateStep(n){
     if (n === 1){
       var picked = form.querySelector("input[name=logement]:checked");
@@ -1435,7 +1446,7 @@ html.cookie-open{overflow:hidden}
       ok = setError(tel, document.getElementById("err-tel"), /^(?:(?:\+|00)33|0)[1-9]\d{8}$/.test(t) ? "" : "Indiquez un numéro français valide, par exemple 06 12 34 56 78.") && ok;
       ok = setError(email, document.getElementById("err-email"), /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim()) ? "" : "Indiquez une adresse email valide, par exemple nom@exemple.fr.") && ok;
       ok = setError(cp, document.getElementById("err-cp"), /^(?:0[1-9]|[1-8]\d|9[0-8])\d{3}$/.test(cp.value.trim()) ? "" : "Indiquez un code postal à 5 chiffres.") && ok;
-      ok = setError(null, document.getElementById("err-email-choix"), form.querySelector("input[name=consentement_email]:checked") ? "" : "Répondez par oui ou par non pour envoyer votre demande.") && ok;
+      ok = setError(null, document.getElementById("err-email-choix"), emailConsent().valeur ? "" : "Répondez par oui ou par non pour envoyer votre demande.") && ok;
       if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); }
       return ok;
     }
@@ -1474,6 +1485,7 @@ html.cookie-open{overflow:hidden}
     if (!validateStep(4)) return;
     if (form.website.value) return; // honeypot : robot probable, on ignore silencieusement
 
+    var emailC = emailConsent();
     var data = {
       logement: form.querySelector("input[name=logement]:checked").value,
       proprietaire: form.querySelector("input[name=proprietaire]:checked").value,
@@ -1482,8 +1494,9 @@ html.cookie-open{overflow:hidden}
       tel: form.tel.value.trim(),
       email: form.email.value.trim(),
       cp: form.cp.value.trim(),
-      consentement_email: form.querySelector("input[name=consentement_email]:checked").value,
-      consentement_email_texte: form.querySelector(".choix-email legend").textContent.replace(/\s+/g, " ").trim(),
+      consentement_email: emailC.valeur,
+      consentement_email_texte: emailC.texte,
+      consentement_email_ui: emailUi,
       page: location.href
     };
 
