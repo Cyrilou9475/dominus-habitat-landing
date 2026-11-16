@@ -348,7 +348,7 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
     mobile = absolutize(block(index, r'<div class="mobile-cta".*?</a>\s*</div>'))
     mesure = absolutize(block(index, r"<!-- mesure:start -->.*?<!-- mesure:end -->"))
     aides = absolutize(block(index, r"<!-- aides:start -->.*?<!-- aides:end -->"))
-    renov = block(index, r'<div class="renov-banner".*?</script>')  # bandeau France Rénov' (obligatoire sur toutes les pages)
+    renov = block(index, r'<aside class="renov-encart".*?</aside>')  # bandeau France Rénov' (obligatoire sur toutes les pages)
     cookies = absolutize(block(index, r'<div class="cookie-banner".*?</script>'))
     if light:
         # Page publicitaire : en-tête réduit à la marque (pas de navigation), pied de page légal seulement
@@ -384,6 +384,7 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 {header}
+{renov}
 
 <main id="contenu">
 {body}
@@ -394,7 +395,6 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
 {mobile}
 
 {LIGHTBOX}
-{renov}
 {aides}
 {mesure}
 {cookies}
