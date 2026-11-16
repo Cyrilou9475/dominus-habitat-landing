@@ -41,7 +41,7 @@ PAGES = {
             ("Finalité", "Rappeler le demandeur pour étudier son projet d’isolation et, avec son accord, le mettre en relation avec une entreprise partenaire certifiée RGE chargée de la visite technique, du devis et des travaux ; avec son accord séparé, lui envoyer par email des conseils et offres de Dominus Habitat (prospection) ; mesurer l’efficacité des campagnes publicitaires"),
             ("Base légale", "Mesures précontractuelles prises à votre demande (rappel et étude du projet) ; consentement pour la transmission de vos coordonnées à l’entreprise partenaire ; consentement distinct et facultatif pour les emails de prospection ; consentement pour les cookies de mesure et de publicité"),
             ("Conservation", "Demande d’étude : 3 ans. Emails de prospection : jusqu’à votre désinscription et, au plus tard, 36 mois après notre dernier contact avec vous. Seule une trace minimale de votre consentement (date, texte accepté, source) peut être gardée au-delà, pour prouver le respect de vos droits."),
-            ("Destinataires", "Équipe Dominus Habitat ; avec votre accord, une seule entreprise partenaire certifiée RGE, qui réalise la visite technique, le devis et les travaux et vous recontacte à ce titre. Dominus Habitat est rémunérée par cette entreprise lorsque des travaux sont signés."),
+            ("Destinataires", "Équipe Dominus Habitat ; avec votre accord, une seule entreprise partenaire certifiée RGE, qui réalise la visite technique, le devis et les travaux et vous recontacte à ce titre. Dominus Habitat est rémunérée par cette entreprise lorsque des travaux sont signés. Brevo (société française, serveurs dans l’Union européenne), sous-traitant chargé de l’envoi des emails de prospection."),
             ("Vos droits", "Accès, rectification, suppression, opposition, portabilité, retrait de votre consentement aux emails à tout moment : " + EMAIL + ". Réponse sous 30 jours."),
             ("Réclamation", "CNIL — " + CNIL + " — 3 place de Fontenoy, 75007 Paris"),
             ("Responsable du traitement", "Dominus Consultancy FZCO, Thomas Martin, IFZA Properties, Dubai Silicon Oasis, Dubai, UAE"),
@@ -49,15 +49,14 @@ PAGES = {
         "sections": [
             ("stockage", "Stockage des données", [
                 "Les données du formulaire sont transmises à notre outil de gestion des demandes (CRM Dominus, hébergé par Supabase et Vercel dans l’Union européenne) et, en parallèle, à " + EMAIL + " par l’intermédiaire du service d’envoi de formulaires Formspree (Formspree Inc., États-Unis), qui agit comme sous-traitant. Cette boîte est hébergée via Cloudflare Email Routing et Gmail (Google LLC).",
+                "Pour les personnes qui ont accepté de recevoir nos emails, leur adresse email et leur prénom sont transmis à Brevo (Brevo SAS, France ; serveurs dans l’Union européenne), qui envoie les messages pour notre compte.",
                 "Les serveurs de Google sont situés dans l’Union européenne et aux États-Unis. Google adhère au " + GOOGLE_DPF + " et agit comme sous-traitant dans le cadre de l’accord de traitement des données (DPA) Google Workspace.",
                 "Le site lui-même ne stocke aucune donnée : il transmet la demande à notre CRM.",
             ]),
             ("emails", "Emails de prospection", [
-                "Lors de votre demande, nous vous demandons si vous souhaitez recevoir par email les conseils et offres de Dominus Habitat sur l’isolation et la rénovation de l’habitat. Votre réponse est libre : répondre « non » (ou ne pas cocher la case) n’a aucune conséquence sur votre demande d’étude. Nous ne vous écrivons à ce titre que si vous avez répondu « oui ».",
-                "Avant le premier envoi, nous vous demandons de confirmer votre adresse email en cliquant sur un lien de confirmation (double consentement). Sans confirmation, aucun email de prospection n’est envoyé.",
-                "Nous conservons la preuve de votre choix : la date et l’heure, le texte exact qui vous était présenté, la page du formulaire et votre adresse IP.",
-                "Vous pouvez vous désinscrire à tout moment, en un clic grâce au lien présent en bas de chaque email, ou en écrivant à " + EMAIL + ". Votre désinscription est prise en compte immédiatement et nous ne vous écrivons plus.",
-                "Vos données de prospection sont conservées jusqu’à votre désinscription et, au plus tard, 36 mois après notre dernier contact avec vous ; elles sont ensuite supprimées ou anonymisées.",
+                "Si vous répondez « oui » à la question sur les emails, nous vous envoyons des conseils et offres de Dominus Habitat sur l’isolation et la rénovation de l’habitat. Votre réponse est libre : répondre « non » n’a aucune conséquence sur votre demande d’étude.",
+                "Nous conservons la preuve de votre choix : la date et l’heure, le texte affiché, la page du formulaire et votre adresse IP.",
+                "Chaque email contient un lien pour vous désinscrire en un clic ; vous pouvez aussi écrire à " + EMAIL + ". Votre désinscription est immédiate. Vos données de prospection sont conservées jusqu’à votre désinscription et, au plus tard, 36 mois après notre dernier contact, puis supprimées ou anonymisées.",
             ]),
             ("cookies", "Cookies", [
                 "Ce site utilise, uniquement après votre consentement : le Pixel Meta (Meta Platforms Ireland Ltd, 4 Grand Canal Square, Dublin 2, Irlande) à des fins publicitaires ; Google Analytics 4 et le suivi des conversions Google Ads (Google Ireland Ltd, Gordon House, Barrow Street, Dublin 4, Irlande) pour mesurer l’audience du site et l’efficacité de nos publicités (pages vues, clics sur les boutons, demandes d’étude).",
