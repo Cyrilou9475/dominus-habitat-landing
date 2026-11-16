@@ -354,6 +354,10 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
         # Page publicitaire : en-tête réduit à la marque (pas de navigation), pied de page légal seulement
         header = re.sub(r'<a class="header-link".*?</a>', "", header, flags=re.S)
         footer = re.sub(r'<div>\s*<h2>La page</h2>.*?</div>\s*', "", footer, count=1, flags=re.S)
+    if "<!-- renov -->" in body:  # encart placé dans le contenu, près du texte sur les travaux
+        body, renov_top = body.replace("<!-- renov -->", renov), ""
+    else:
+        renov_top = renov
     og = og_image or f"{SITE}assets/logo-dominus-habitat.png"
     return f"""<!doctype html>
 <html lang="fr">
@@ -384,7 +388,7 @@ def layout(index, *, title, description, canonical, body, robots="index, follow"
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 {header}
-{renov}
+{renov_top}
 
 <main id="contenu">
 {body}
@@ -613,6 +617,7 @@ def page_lp(index, items, out_root):
           <li>{PIN} Entreprises partenaires certifiées RGE</li>
         </ul>
         <p class="hero-actions"><a class="btn btn-gold" href="#lp-form" data-cta="lp-hero" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</a></p>
+        <!-- renov -->
       </div>
       <div class="lead" id="etude">
         <form id="lead-form" class="lp-form" novalidate action="/" method="post">
