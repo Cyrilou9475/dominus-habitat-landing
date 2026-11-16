@@ -286,7 +286,7 @@ LP_JS = r"""<script>
     if (picked) ok = setError(form.querySelector("input[name=proprietaire]"), "err-proprietaire", statut ? "" : "Indiquez si vous êtes propriétaire ou locataire.") && ok;
     ok = setError(form.consentement, "err-consent", form.consentement.checked ? "" : "Cochez la case pour que nous puissions vous rappeler.") && ok;
     if (!ok){ var bad = form.querySelector("[aria-invalid=true]"); if (bad) bad.focus(); return; }
-    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", page: location.href };
+    var data = { prenom: form.prenom.value.trim(), tel: form.tel.value.trim(), email: form.email.value.trim(), cp: form.cp.value.trim(), logement: picked.value, proprietaire: statut.value, consentement: "oui", consentement_email: form.consentement_email.checked ? "oui" : "non", consentement_email_texte: form.consentement_email.parentNode.textContent.replace(/\s+/g, " ").trim(), page: location.href };
     var btn = form.querySelector("button[type=submit]"), err = document.getElementById("err-envoi");
     btn.disabled = true; err.textContent = "";
     (window.dhSendLead ? window.dhSendLead(data) : Promise.resolve({ ok: true }))
@@ -639,6 +639,7 @@ def page_lp(index, items, out_root):
             <span class="err" id="err-proprietaire" role="alert"></span>
           </fieldset>
           <label class="consent-check"><input type="checkbox" name="consentement" required> J'accepte d'être rappelé par Dominus Habitat au sujet de mon projet et que mes coordonnées soient transmises à une entreprise partenaire certifiée RGE pour la visite technique et le devis. <a href="/confidentialite.html">Politique de confidentialité</a>.<span class="err" id="err-consent"></span></label>
+          <label class="consent-check consent-email"><input type="checkbox" name="consentement_email" value="oui"><span>Je souhaite recevoir par email les conseils et offres de Dominus Habitat. Je peux me désinscrire à tout moment.</span></label>
           <label class="visually-hidden" for="lp-website" aria-hidden="true">Ne pas remplir</label><input class="visually-hidden" id="lp-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="gclid"><input type="hidden" name="fbclid"><input type="hidden" name="page_origine"><input type="hidden" name="variante">
           <button type="submit" class="btn btn-gold btn-block" data-ab="cta" data-a="Demander mon étude gratuite" data-b="Recevoir mon étude gratuite">Demander mon étude gratuite{ARROW}</button>
